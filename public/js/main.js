@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const bioheroEl = document.getElementById('dev-bio-hero');
   const avatarEl = document.getElementById('dev-avatar');
   const resumeBtn = document.getElementById('dev-resume-btn');
+  const heroResumeBtn = document.getElementById('hero-resume-btn');
+  const heroGithubBtn = document.getElementById('hero-github-btn');
   const contactEmailEl = document.getElementById('contact-email-val');
   const contactWhatsappEl = document.getElementById('contact-whatsapp-val');
   const contactLocEl = document.getElementById('contact-loc-val');
@@ -43,6 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
       heroDesc: "Full Stack Developer, Software Engineer, and Educational Content Creator helping thousands of developers worldwide master modern programming.",
       btnExploreProjects: "Explore Projects",
       btnLetCollaborate: "Let's Collaborate",
+      btnContactMe: "Contact Me",
+      btnDownloadCv: "Download CV",
+      btnGithub: "GitHub",
       aboutTitle: "About Me",
       metricProjects: "Projects Built",
       metricVideos: "YouTube Tutorials",
@@ -130,6 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
       heroDesc: "مهندس برمجيات ومطور ويب شامل وصانع محتوى تعليمي أساعد آلاف المطورين حول العالم على احتراف البرمجة الحديثة.",
       btnExploreProjects: "استكشف مشاريعي",
       btnLetCollaborate: "دعنا نتعاون",
+      btnContactMe: "اتصل بي",
+      btnDownloadCv: "تنزيل الـ CV",
+      btnGithub: "جيت هاب",
       aboutTitle: "من أنا",
       metricProjects: "المشاريع المنجزة",
       metricVideos: "شروحات يوتيوب",
@@ -247,6 +255,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (resumeBtn && info.resumeUrl && info.resumeUrl !== '#') {
           resumeBtn.href = info.resumeUrl;
           resumeBtn.target = "_blank";
+        }
+        if (heroResumeBtn && info.resumeUrl && info.resumeUrl !== '#') {
+          heroResumeBtn.href = info.resumeUrl;
+          heroResumeBtn.target = "_blank";
+        }
+        if (heroGithubBtn && info.githubUrl) {
+          heroGithubBtn.href = info.githubUrl;
+          heroGithubBtn.target = "_blank";
         }
 
         if (contactEmailEl) {
