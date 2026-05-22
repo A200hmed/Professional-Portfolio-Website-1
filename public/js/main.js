@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const avatarEl = document.getElementById('dev-avatar');
   const resumeBtn = document.getElementById('dev-resume-btn');
   const heroResumeBtn = document.getElementById('hero-resume-btn');
-  const heroGithubBtn = document.getElementById('hero-github-btn');
   const contactEmailEl = document.getElementById('contact-email-val');
   const contactWhatsappEl = document.getElementById('contact-whatsapp-val');
   const contactLocEl = document.getElementById('contact-loc-val');
@@ -259,10 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (heroResumeBtn && info.resumeUrl && info.resumeUrl !== '#') {
           heroResumeBtn.href = info.resumeUrl;
           heroResumeBtn.target = "_blank";
-        }
-        if (heroGithubBtn && info.githubUrl) {
-          heroGithubBtn.href = info.githubUrl;
-          heroGithubBtn.target = "_blank";
         }
 
         if (contactEmailEl) {
