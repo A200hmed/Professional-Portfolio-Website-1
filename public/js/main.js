@@ -244,7 +244,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (bioheroEl) bioheroEl.textContent = lang === 'ar' ? (info.bio_ar || info.bio) : info.bio;
         if (contactLocEl) contactLocEl.textContent = lang === 'ar' ? (info.location_ar || info.location) : info.location;
         if (avatarEl && info.avatar) avatarEl.src = info.avatar;
-        if (resumeBtn && info.resumeUrl && info.resumeUrl !== '#') resumeBtn.href = info.resumeUrl;
+        if (resumeBtn && info.resumeUrl && info.resumeUrl !== '#') {
+          resumeBtn.href = info.resumeUrl;
+          resumeBtn.target = "_blank";
+        }
 
         if (contactEmailEl) {
           contactEmailEl.textContent = info.email;
