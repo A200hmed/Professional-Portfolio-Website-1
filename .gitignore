@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Environment Variables (NEVER commit these!)
+.env
+
+# Logs
+*.log
+npm-debug.log*
+logs/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/settings.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Build artifacts
+dist/
+build/

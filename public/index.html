@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahmed Khaled Anwar | Software Engineer & Educational Content Creator</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+  <meta name="description" content="Ahmed Khaled Anwar — Full Stack Developer, Software Engineer, and Educational Content Creator. Building modern web applications and teaching thousands of developers worldwide.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Floating Luxury Mesh Backgrounds -->
+  <div class="background-grid"></div>
+  <div class="mesh-glow-1"></div>
+  <div class="mesh-glow-2"></div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <a href="#" class="logo">
+        AKA <span></span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#hero" class="active" data-i18n="navHome">Home</a></li>
+          <li><a href="#about" data-i18n="navAbout">About</a></li>
+          <li><a href="#skills" data-i18n="navSkills">Skills</a></li>
+          <li><a href="#languages" data-i18n="navLanguages">Languages</a></li>
+          <li><a href="#projects" data-i18n="navProjects">Projects</a></li>
+          <li><a href="#youtube" data-i18n="navYoutube">YouTube</a></li>
+          <li><a href="#experience" data-i18n="navResume">Resume</a></li>
+          <li><a href="#contact" data-i18n="navContact">Contact</a></li>
+        </ul>
+      </nav>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <button id="lang-toggle-btn" class="btn btn-secondary" style="padding: 10px 16px; font-size: 0.85rem; height: 38px;">العربية</button>
+        <a href="#experience" id="dev-resume-btn" class="btn btn-secondary" style="padding: 10px 24px; font-size: 0.85rem; height: 38px; display:inline-flex; align-items:center;" data-i18n="btnGetResume">Get Resume</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Section 1: Hero -->
+  <section id="hero" class="section hero-section">
+    <div class="grid-2">
+      <div>
+        <div class="hero-subtitle">
+          <span></span><span data-i18n="heroSubtitle">Portfolio 2026 — Cairo, Egypt</span>
+        </div>
+        <h1 class="hero-title text-gradient" data-i18n="heroTitle">
+          Building <br>
+          <span class="text-accent-cyan">Digital Systems</span> <br>
+          & Teaching Devs.
+        </h1>
+        <p class="hero-desc" id="dev-bio-hero" data-i18n="heroDesc">
+          Full Stack Developer, Software Engineer, and Educational Content Creator helping thousands of developers worldwide master modern programming.
+        </p>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn btn-primary" data-i18n="btnExploreProjects">Explore Projects</a>
+          <a href="#contact" class="btn btn-secondary" data-i18n="btnLetCollaborate">Let's Collaborate</a>
+        </div>
+
+        <!-- Social Quick Links -->
+        <div class="hero-socials" id="hero-social-links" style="margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap;"></div>
+      </div>
+
+      <!-- Visual Terminal mock preview -->
+      <div class="code-preview-container">
+        <div class="glow-under"></div>
+        <div class="glass-card" style="padding: 0; overflow: hidden; border-color: rgba(255,255,255,0.06);">
+          <div class="terminal-header">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">bash — ahmed@devstudio.io</span>
+          </div>
+          <div class="terminal-body" id="terminal-body-code">
+            <!-- Simulated Code lines render here dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: About Me -->
+  <section id="about" class="section" style="border-top: 1px solid rgba(255,255,255,0.02);">
+    <div class="grid-2">
+      <!-- Portrait Card Visual -->
+      <div style="position:relative; width:100%; max-width:400px; margin: 0 auto;">
+        <div style="position:absolute; top:20px; left:20px; right:-20px; bottom:-20px; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); filter: blur(30px); opacity:0.1; z-index:-1; border-radius:20px;"></div>
+        <div class="glass-card" style="padding:16px; border-color:rgba(255,255,255,0.06); border-radius:24px;">
+          <img id="dev-avatar" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400" alt="Ahmed Khaled Anwar" style="width:100%; height:380px; object-fit:cover; border-radius:18px; border:1px solid rgba(255,255,255,0.03);">
+
+          <!-- Floating Badge -->
+          <div style="margin-top: 16px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <div style="padding: 8px 16px; background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.15); border-radius: 20px; font-size: 0.78rem; font-weight: 600; color: var(--accent-cyan);">💻 Full Stack Dev</div>
+            <div style="padding: 8px 16px; background: rgba(168,85,247,0.06); border: 1px solid rgba(168,85,247,0.15); border-radius: 20px; font-size: 0.78rem; font-weight: 600; color: #c084fc;">🎓 Tech Instructor</div>
+            <div style="padding: 8px 16px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15); border-radius: 20px; font-size: 0.78rem; font-weight: 600; color: #f87171;">▶ YouTube Creator</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div>
+        <h2 class="text-gradient-neon" style="font-size: 2.2rem; margin-bottom: 24px;" data-i18n="aboutTitle">About Me</h2>
+        <h3 id="dev-title" style="font-size: 1.25rem; font-weight:600; color: var(--accent-cyan); margin-bottom: 16px;">Software Engineer & Educational Content Creator</h3>
+        <p id="dev-bio" style="color: var(--text-secondary); font-size:1.05rem; line-height:1.7; margin-bottom: 32px;">
+          I build modern web applications and create educational programming content. Highly passionate about teaching advanced system design, clean coding architectures, and modern cloud technologies to the next generation of engineers.
+        </p>
+
+        <!-- Dynamic counters -->
+        <div class="about-metrics">
+          <div class="metric-card">
+            <div class="metric-num text-gradient-neon" id="count-projects">3</div>
+            <div class="metric-label" data-i18n="metricProjects">Projects Built</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-num text-gradient-neon" id="count-videos">3+</div>
+            <div class="metric-label" data-i18n="metricVideos">YouTube Tutorials</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-num text-gradient-neon" id="count-certs">2</div>
+            <div class="metric-label" data-i18n="metricAwards">Certifications</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-num text-gradient-neon">100K+</div>
+            <div class="metric-label" data-i18n="metricStudents">Students Reached</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Skills -->
+  <section id="skills" class="section" style="border-top: 1px solid rgba(255,255,255,0.02);">
+    <div style="text-align: center; margin-bottom: 60px;">
+      <h2 class="text-gradient" style="font-size: 2.5rem; margin-bottom: 16px;" data-i18n="skillsTitle">Core Competencies</h2>
+      <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;" data-i18n="skillsSubtitle">Technical skills built over years of engineering, teaching, and delivering enterprise-grade digital systems.</p>
+    </div>
+
+    <div class="skills-tag-grid">
+      <!-- Programming & Dev -->
+      <div class="glass-card skill-tag-card">
+        <div class="skill-category-title">
+          <span class="skill-cat-icon">&lt;/&gt;</span>
+          <span data-i18n="skillsDev">Programming &amp; Development</span>
+        </div>
+        <div class="skill-tags-wrap" id="skills-dev"></div>
+      </div>
+
+      <!-- Networks & Cloud -->
+      <div class="glass-card skill-tag-card">
+        <div class="skill-category-title">
+          <span class="skill-cat-icon">&#9906;</span>
+          <span data-i18n="skillsNetworking">Networks &amp; Cloud</span>
+        </div>
+        <div class="skill-tags-wrap" id="skills-networking"></div>
+      </div>
+
+      <!-- AI -->
+      <div class="glass-card skill-tag-card">
+        <div class="skill-category-title">
+          <span class="skill-cat-icon">&#129504;</span>
+          <span data-i18n="skillsAi">Artificial Intelligence</span>
+        </div>
+        <div class="skill-tags-wrap" id="skills-ai"></div>
+      </div>
+
+      <!-- Cyber Security -->
+      <div class="glass-card skill-tag-card">
+        <div class="skill-category-title">
+          <span class="skill-cat-icon">&#128737;</span>
+          <span data-i18n="skillsCybersecurity">Cyber Security</span>
+        </div>
+        <div class="skill-tags-wrap" id="skills-cybersecurity"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3b: Programming Languages -->
+  <section id="languages" class="section" style="border-top: 1px solid rgba(255,255,255,0.02); padding-top: 80px; padding-bottom: 80px;">
+    <div style="text-align: center; margin-bottom: 56px;">
+      <h2 class="text-gradient" style="font-size: 2.5rem; margin-bottom: 16px;" data-i18n="langsTitle">Programming Languages</h2>
+      <p style="color: var(--text-secondary); max-width: 520px; margin: 0 auto;" data-i18n="langsSubtitle">Languages I write fluently — from systems programming to scripting, backend APIs, and mobile apps.</p>
+    </div>
+    
+    <div class="lang-categories-wrap">
+      <!-- Frontend -->
+      <div class="lang-category-group" id="group-lang-frontend">
+        <h3 class="text-gradient" style="font-size: 1.4rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-weight: 700;">
+          <span>🎨</span> <span data-i18n="langsFrontend">Frontend Development</span>
+        </h3>
+        <div class="lang-grid" id="languages-frontend-grid"></div>
+      </div>
+
+      <!-- Backend -->
+      <div class="lang-category-group" id="group-lang-backend">
+        <h3 class="text-gradient" style="font-size: 1.4rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-weight: 700;">
+          <span>⚙️</span> <span data-i18n="langsBackend">Backend Development</span>
+        </h3>
+        <div class="lang-grid" id="languages-backend-grid"></div>
+      </div>
+
+      <!-- Mobile Apps -->
+      <div class="lang-category-group" id="group-lang-mobile">
+        <h3 class="text-gradient" style="font-size: 1.4rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-weight: 700;">
+          <span>📱</span> <span data-i18n="langsMobile">Mobile Applications</span>
+        </h3>
+        <div class="lang-grid" id="languages-mobile-grid"></div>
+      </div>
+
+      <!-- Systems & Tools -->
+      <div class="lang-category-group" id="group-lang-systems">
+        <h3 class="text-gradient" style="font-size: 1.4rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-weight: 700;">
+          <span>🛠️</span> <span data-i18n="langsSystems">Systems &amp; Tools</span>
+        </h3>
+        <div class="lang-grid" id="languages-systems-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Projects Showcase -->
+  <section id="projects" class="section" style="border-top: 1px solid rgba(255,255,255,0.02);">
+    <div style="text-align: center; margin-bottom: 48px;">
+      <h2 class="text-gradient" style="font-size: 2.5rem; margin-bottom: 16px;" data-i18n="projectsTitle">Selected Showcase</h2>
+      <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto; margin-bottom: 32px;" data-i18n="projectsSubtitle">A curated catalog of high-quality, production-ready digital systems built to elite specifications.</p>
+
+      <!-- Search bar -->
+      <div style="max-width: 480px; margin: 0 auto 28px; position: relative;">
+        <input
+          type="text"
+          id="project-search"
+          placeholder="Search projects by name or technology..."
+          data-i18n="projectsSearchPlaceholder"
+          class="form-input"
+          autocomplete="off"
+        >
+        <span class="search-icon-span">🔍</span>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs">
+        <button onclick="filterProjects('all', this)" class="filter-tab active" data-i18n="projectsTabAll">All Systems</button>
+        <button onclick="filterProjects('fullstack', this)" class="filter-tab" data-i18n="projectsTabFullstack">Full-Stack</button>
+        <button onclick="filterProjects('frontend', this)" class="filter-tab" data-i18n="projectsTabFrontend">Frontend / UI</button>
+        <button onclick="filterProjects('backend', this)" class="filter-tab" data-i18n="projectsTabBackend">Backend</button>
+        <button onclick="filterProjects('tools', this)" class="filter-tab" data-i18n="projectsTabTools">Dev Tools</button>
+      </div>
+    </div>
+
+    <!-- Showcase Grid -->
+    <div class="projects-grid" id="projects-grid">
+      <!-- Dynamic Project cards render here -->
+    </div>
+  </section>
+
+  <!-- Section 5: GitHub Integration -->
+  <section id="github" class="section" style="border-top: 1px solid rgba(255,255,255,0.02); padding-top: 80px;">
+    <div style="text-align: center; margin-bottom: 48px;">
+      <h2 class="text-gradient" style="font-size: 2.2rem; margin-bottom: 16px;" data-i18n="githubTitle">Open Source Repositories</h2>
+      <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;" data-i18n="githubSubtitle">Live repository metrics fetched dynamically via secure server proxy.</p>
+    </div>
+
+    <div class="projects-grid" id="github-grid" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));">
+      <!-- Live GitHub repo cards render here -->
+    </div>
+  </section>
+
+  <!-- Section 6: YouTube Content Creator -->
+  <section id="youtube" class="section" style="border-top: 1px solid rgba(255,255,255,0.02);">
+    <div style="text-align: center; margin-bottom: 60px;">
+
+      <!-- Channel Badge -->
+      <div style="display: inline-flex; flex-direction: column; align-items: center; gap: 18px; margin-bottom: 32px;">
+        <div style="position: relative; width: 110px; height: 110px;">
+          <!-- Animated glow ring -->
+          <div style="
+            position: absolute; inset: -6px; border-radius: 50%;
+            background: conic-gradient(from 0deg, #38bdf8, #a855f7, #ef4444, #38bdf8);
+            animation: ytBadgeSpin 4s linear infinite;
+            filter: blur(2px); opacity: 0.8;
+          "></div>
+          <div style="
+            position: absolute; inset: 2px; border-radius: 50%;
+            background: var(--bg-primary, #0a0a0f);
+          "></div>
+          <img src="/zero_to_code_badge.png" alt="zero to code YouTube channel"
+            style="
+              position: absolute; inset: 6px; border-radius: 50%;
+              width: calc(100% - 12px); height: calc(100% - 12px);
+              object-fit: cover; z-index: 1;
+            "
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          >
+          <!-- Fallback emoji if image fails -->
+          <div style="
+            display: none; position: absolute; inset: 6px; border-radius: 50%;
+            width: calc(100% - 12px); height: calc(100% - 12px);
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            align-items: center; justify-content: center;
+            font-size: 2.5rem; z-index: 1;
+          ">💻</div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+          <div style="font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; color: #fff;" data-i18n="youtubeChannelName">zero to code</div>
+          <div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25); border-radius: 20px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#ef4444"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#fff"/></svg>
+            <span style="font-size: 0.75rem; font-weight: 600; color: #f87171;" data-i18n="youtubeChannelBadge">YouTube Creator</span>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="text-gradient" style="font-size: 2.5rem; margin-bottom: 16px;" data-i18n="youtubeTitle">YouTube Content Creator</h2>
+      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto; margin-bottom: 28px;" data-i18n="youtubeSubtitle">Educating developers worldwide through structured programming tutorials, full-stack walkthroughs, and software engineering deep-dives.</p>
+
+      <!-- Channel Stats Banner -->
+      <div class="youtube-stats-bar" id="youtube-stats-bar">
+        <div class="yt-stat">
+          <div class="yt-stat-num text-accent-cyan">100K+</div>
+          <div class="yt-stat-label" data-i18n="ytStatStudents">Students</div>
+        </div>
+        <div class="yt-stat-divider"></div>
+        <div class="yt-stat">
+          <div class="yt-stat-num text-accent-purple">150+</div>
+          <div class="yt-stat-label" data-i18n="ytStatVideos">Tutorials Published</div>
+        </div>
+        <div class="yt-stat-divider"></div>
+        <div class="yt-stat">
+          <div class="yt-stat-num text-gradient-neon">5M+</div>
+          <div class="yt-stat-label" data-i18n="ytStatViews">Total Views</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="youtube-grid" id="youtube-grid">
+      <!-- YouTube video cards render here -->
+    </div>
+
+    <div style="text-align: center; margin-top: 48px;">
+      <a href="#" id="yt-channel-link" target="_blank" class="btn btn-primary" style="font-size: 0.95rem; padding: 14px 36px; display:inline-flex; align-items:center; gap:8px;">
+        <span>▶</span> <span data-i18n="youtubeChannelBtn">Visit YouTube Channel</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Section 7: Resume Timeline -->
+  <section id="experience" class="section" style="border-top: 1px solid rgba(255,255,255,0.02);">
+    <div style="text-align: center; margin-bottom: 60px;">
+      <h2 class="text-gradient" style="font-size: 2.5rem; margin-bottom: 16px;" data-i18n="resumeTitle">Career Milestones</h2>
+      <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;" data-i18n="resumeSubtitle">A professional timeline of engineering leadership, instructional excellence, and academic achievements.</p>
+    </div>
+
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+      <div id="timeline-list">
+        <!-- Dynamically rendered timeline items -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Certificates & Achievements -->
+  <section id="certificates" class="section" style="border-top: 1px solid rgba(255,255,255,0.02);">
+    <div style="text-align: center; margin-bottom: 60px;">
+      <h2 class="text-gradient" style="font-size: 2.5rem; margin-bottom: 16px;" data-i18n="certsTitle">Certifications & Honors</h2>
+      <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;" data-i18n="certsSubtitle">Professional certifications from leading technology organizations validating engineering excellence.</p>
+    </div>
+
+    <!-- Horizontal Carousel -->
+    <div class="cert-carousel" id="certificates-grid">
+      <!-- Certificate carousel cards render here -->
+    </div>
+
+    <!-- Achievements Grid -->
+    <div style="margin-top: 64px; text-align: center; margin-bottom: 40px;">
+      <h3 class="text-gradient" style="font-size: 1.8rem; margin-bottom: 8px;" data-i18n="honorsTitle">Career Honors</h3>
+      <p style="color: var(--text-secondary); max-width: 400px; margin: 0 auto;" data-i18n="honorsSubtitle">Recognition and awards for software engineering and educational impact.</p>
+    </div>
+    <div class="projects-grid" id="achievements-grid" style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));">
+      <!-- Achievements Dynamic Cards -->
+    </div>
+  </section>
+
+  <!-- Section 9: Testimonials -->
+  <section id="testimonials" class="section" style="border-top: 1px solid rgba(255,255,255,0.02);">
+    <div style="text-align: center; margin-bottom: 60px;">
+      <h2 class="text-gradient" style="font-size: 2.5rem; margin-bottom: 16px;" data-i18n="testimonialsTitle">Industry Endorsements</h2>
+      <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;" data-i18n="testimonialsSubtitle">Verified feedback from senior engineers, technical directors, and students around the world.</p>
+    </div>
+
+    <!-- Testimonials Slider -->
+    <div class="testimonials-slider">
+      <div class="slider-wrapper" id="testimonials-wrapper">
+        <!-- Testimonial cards render here -->
+      </div>
+
+      <!-- Arrows -->
+      <div class="slider-controls">
+        <button onclick="slideTestimonials(-1)" class="slider-btn">←</button>
+        <button onclick="slideTestimonials(1)" class="slider-btn">→</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 10: Contact & Form -->
+  <section id="contact" class="section" style="border-top: 1px solid rgba(255,255,255,0.02); padding-bottom: 120px;">
+    <div style="text-align: center; margin-bottom: 60px;">
+      <h2 class="text-gradient" style="font-size: 2.5rem; margin-bottom: 16px;" data-i18n="contactTitle">Let's Build Together</h2>
+      <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;" data-i18n="contactSubtitle">Open to collaborations, consulting, workshops, and corporate training. Submit your inquiry below.</p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Info Column -->
+      <div class="contact-info-card">
+        <div class="glass-card">
+          <div class="info-item" style="margin-bottom: 32px;">
+            <div class="info-icon">✉</div>
+            <div>
+              <div class="info-title" data-i18n="contactEmailTitle">Direct Email</div>
+              <a href="mailto:ahmed.khaled@devstudio.com" id="contact-email-val" class="info-val">ahmed.khaled@devstudio.com</a>
+            </div>
+          </div>
+
+          <div class="info-item" style="margin-bottom: 32px;">
+            <div class="info-icon">📱</div>
+            <div>
+              <div class="info-title" data-i18n="contactWhatsappTitle">WhatsApp</div>
+              <a href="#" id="contact-whatsapp-val" class="info-val" target="_blank" data-i18n="contactWhatsappVal">Open Chat on WhatsApp</a>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">⚲</div>
+            <div>
+              <div class="info-title" data-i18n="contactLocTitle">Location</div>
+              <div id="contact-loc-val" class="info-val">Cairo, Egypt</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card" style="padding: 24px;">
+          <h4 style="margin-bottom: 16px; font-family:var(--font-heading); font-size:1.1rem;" data-i18n="contactSocialTitle">Connect Online</h4>
+          <div class="social-links">
+            <!-- Dynamic social icons loaded on start -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Column -->
+      <div class="glass-card">
+        <!-- Notification Status box -->
+        <div class="status-msg" id="status-msg"></div>
+
+        <form id="contact-form">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="form-group">
+              <label class="form-label" for="form-name" data-i18n="formLabelName">Your Name</label>
+              <input type="text" id="form-name" placeholder="John Doe" data-i18n="formPlaceholderName" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="form-email" data-i18n="formLabelEmail">Email Address</label>
+              <input type="email" id="form-email" placeholder="john@company.com" data-i18n="formPlaceholderEmail" class="form-input" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="form-subject" data-i18n="formLabelSubject">Subject</label>
+            <input type="text" id="form-subject" placeholder="Project Collaboration / Training Request" data-i18n="formPlaceholderSubject" class="form-input">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="form-message" data-i18n="formLabelMessage">Message</label>
+            <textarea id="form-message" placeholder="Describe your project, training need, or collaboration idea..." data-i18n="formPlaceholderMessage" class="form-input" rows="5" required></textarea>
+          </div>
+
+          <button type="submit" id="form-submit-btn" class="btn btn-primary" style="width: 100%; justify-content:center;" data-i18n="formBtnSend">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Detail Overlay Modal Dialog -->
+  <div class="modal-overlay" id="project-modal">
+    <div class="glass-card modal-content">
+      <button onclick="closeProjectModal()" class="modal-close">×</button>
+      <h3 class="text-gradient-neon" id="modal-title" style="font-size:1.75rem; margin-bottom:24px; padding-right:48px;">Project Title</h3>
+      <div class="modal-body" id="modal-body">
+        <!-- Dynamic overlay info builds here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logo">Ahmed Khaled Anwar <span></span></div>
+    <p class="footer-copy">© 2026 Ahmed Khaled Anwar. All Rights Reserved. | Software Engineer & Educational Content Creator</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>
