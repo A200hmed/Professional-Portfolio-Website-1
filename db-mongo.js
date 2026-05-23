@@ -6,16 +6,25 @@ const DB_PATH = path.join(__dirname, 'db.json');
 
 // Mongoose Connection Setup
 async function connectDB() {
-    if (!process.env.MONGODB_URI) {
+    const uri = process.env.MONGODB_URI;
+    if (!uri) {
         console.log('⚠️  No MONGODB_URI environment variable detected. Falling back to local db.json file.');
         return false;
     }
+
+    // Clean URI if it has any invisible characters
+    const cleanUri = uri.trim();
+
     try {
-        await mongoose.connect(process.env.MONGODB_URI);
+        // Increase timeout and other options for better stability on serverless
+        await mongoose.connect(cleanUri, {
+            serverSelectionTimeoutMS: 5000,
+            socketTimeoutMS: 45000,
+        });
         console.log('🚀 Successfully connected to MongoDB Atlas!');
         return true;
     } catch (err) {
-        console.error('❌ MongoDB connection error:', err.message);
+        console.error('❌ MongoDB connection error details:', err.message);
         console.log('⚠️  Falling back to local db.json file.');
         return false;
     }

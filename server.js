@@ -10,8 +10,22 @@ const mailer = require('./mailer');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Initialize Database Connection (MongoDB with Local JSON fallback)
-dbMongo.initConnection();
+// Initialize Database Connection and ensure it waits
+let dbInitialized = false;
+async function startDB() {
+    await dbMongo.initConnection();
+    dbInitialized = true;
+}
+startDB();
+
+// Middleware to ensure DB is connected before any request
+app.use(async(req, res, next) => {
+    if (!dbInitialized) {
+        await dbMongo.initConnection();
+        dbInitialized = true;
+    }
+    next();
+});
 
 // ── Security Middleware ────────────────────────────────────────────────────────
 app.use(helmet({
