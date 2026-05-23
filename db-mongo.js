@@ -276,11 +276,18 @@ async function updatePersonalInfo(infoData) {
                 Object.assign(info, infoData);
             }
             await info.save();
+            console.log('✅ PersonalInfo updated in MongoDB');
             return info.toObject();
         } catch (err) {
-            console.error('Failed to update PersonalInfo on MongoDB. Fallback JSON.', err);
+            console.error('❌ Failed to update PersonalInfo on MongoDB:', err.message);
+            throw err; // Stop here if MongoDB is supposed to work but fails
         }
     }
+
+    if (process.env.NODE_ENV === 'production') {
+        throw new Error('Database not connected in production mode.');
+    }
+
     const db = await readLocalJSON();
     db.personalInfo = {...db.personalInfo, ...infoData };
     await writeLocalJSON(db);
@@ -314,11 +321,18 @@ async function saveArrayField(fieldName, arrayData) {
             if (arrayData && arrayData.length > 0) {
                 await Model.insertMany(arrayData);
             }
+            console.log(`✅ ${fieldName} updated in MongoDB`);
             return true;
         } catch (err) {
-            console.error(`Failed to update ${fieldName} in MongoDB. Fallback JSON.`, err);
+            console.error(`❌ Failed to update ${fieldName} in MongoDB:`, err.message);
+            throw err;
         }
     }
+
+    if (process.env.NODE_ENV === 'production') {
+        throw new Error('Database not connected in production mode.');
+    }
+
     const db = await readLocalJSON();
     db[fieldName] = arrayData;
     await writeLocalJSON(db);
@@ -331,21 +345,24 @@ async function getCertificates() {
         try {
             return await Certificate.find();
         } catch (e) {
-            console.error(e);
+            console.error('❌ Error getting certificates from MongoDB:', e.message);
         }
     }
-    const db = await readLocalJSON();
-    return db.certificates || [];
+    return (await readLocalJSON()).certificates || [];
 }
 
 async function addCertificate(cert) {
     if (isConnected) {
         try {
-            return await Certificate.create(cert);
+            const res = await Certificate.create(cert);
+            console.log('✅ Certificate added to MongoDB');
+            return res;
         } catch (e) {
-            console.error(e);
+            console.error('❌ Failed to add certificate to MongoDB:', e.message);
+            throw e;
         }
     }
+    if (process.env.NODE_ENV === 'production') throw new Error('DB not connected');
     const db = await readLocalJSON();
     if (!db.certificates) db.certificates = [];
     db.certificates.push(cert);
@@ -356,11 +373,15 @@ async function addCertificate(cert) {
 async function updateCertificate(id, updateData) {
     if (isConnected) {
         try {
-            return await Certificate.findOneAndUpdate({ id }, updateData, { new: true });
+            const res = await Certificate.findOneAndUpdate({ id }, updateData, { new: true });
+            console.log('✅ Certificate updated in MongoDB');
+            return res;
         } catch (e) {
-            console.error(e);
+            console.error('❌ Failed to update certificate in MongoDB:', e.message);
+            throw e;
         }
     }
+    if (process.env.NODE_ENV === 'production') throw new Error('DB not connected');
     const db = await readLocalJSON();
     const idx = db.certificates.findIndex(c => c.id === id);
     if (idx !== -1) {
@@ -375,11 +396,14 @@ async function deleteCertificate(id) {
     if (isConnected) {
         try {
             const res = await Certificate.deleteOne({ id });
+            console.log('✅ Certificate deleted from MongoDB');
             return res.deletedCount > 0;
         } catch (e) {
-            console.error(e);
+            console.error('❌ Failed to delete certificate from MongoDB:', e.message);
+            throw e;
         }
     }
+    if (process.env.NODE_ENV === 'production') throw new Error('DB not connected');
     const db = await readLocalJSON();
     const originalLen = db.certificates.length;
     db.certificates = db.certificates.filter(c => c.id !== id);
@@ -393,21 +417,24 @@ async function getYoutubeVideos() {
         try {
             return await YoutubeVideo.find();
         } catch (e) {
-            console.error(e);
+            console.error('❌ Error getting videos from MongoDB:', e.message);
         }
     }
-    const db = await readLocalJSON();
-    return db.youtubeVideos || [];
+    return (await readLocalJSON()).youtubeVideos || [];
 }
 
 async function addYoutubeVideo(video) {
     if (isConnected) {
         try {
-            return await YoutubeVideo.create(video);
+            const res = await YoutubeVideo.create(video);
+            console.log('✅ Video added to MongoDB');
+            return res;
         } catch (e) {
-            console.error(e);
+            console.error('❌ Failed to add video to MongoDB:', e.message);
+            throw e;
         }
     }
+    if (process.env.NODE_ENV === 'production') throw new Error('DB not connected');
     const db = await readLocalJSON();
     if (!db.youtubeVideos) db.youtubeVideos = [];
     db.youtubeVideos.push(video);
@@ -418,11 +445,15 @@ async function addYoutubeVideo(video) {
 async function updateYoutubeVideo(id, updateData) {
     if (isConnected) {
         try {
-            return await YoutubeVideo.findOneAndUpdate({ id }, updateData, { new: true });
+            const res = await YoutubeVideo.findOneAndUpdate({ id }, updateData, { new: true });
+            console.log('✅ Video updated in MongoDB');
+            return res;
         } catch (e) {
-            console.error(e);
+            console.error('❌ Failed to update video in MongoDB:', e.message);
+            throw e;
         }
     }
+    if (process.env.NODE_ENV === 'production') throw new Error('DB not connected');
     const db = await readLocalJSON();
     const idx = db.youtubeVideos.findIndex(v => v.id === id);
     if (idx !== -1) {
@@ -437,11 +468,14 @@ async function deleteYoutubeVideo(id) {
     if (isConnected) {
         try {
             const res = await YoutubeVideo.deleteOne({ id });
+            console.log('✅ Video deleted from MongoDB');
             return res.deletedCount > 0;
         } catch (e) {
-            console.error(e);
+            console.error('❌ Failed to delete video from MongoDB:', e.message);
+            throw e;
         }
     }
+    if (process.env.NODE_ENV === 'production') throw new Error('DB not connected');
     const db = await readLocalJSON();
     const originalLen = db.youtubeVideos.length;
     db.youtubeVideos = db.youtubeVideos.filter(v => v.id !== id);
@@ -455,21 +489,24 @@ async function getProjects() {
         try {
             return await Project.find();
         } catch (e) {
-            console.error(e);
+            console.error('❌ Error getting projects from MongoDB:', e.message);
         }
     }
-    const db = await readLocalJSON();
-    return db.projects || [];
+    return (await readLocalJSON()).projects || [];
 }
 
 async function addProject(project) {
     if (isConnected) {
         try {
-            return await Project.create(project);
+            const res = await Project.create(project);
+            console.log('✅ Project added to MongoDB');
+            return res;
         } catch (e) {
-            console.error(e);
+            console.error('❌ Failed to add project to MongoDB:', e.message);
+            throw e;
         }
     }
+    if (process.env.NODE_ENV === 'production') throw new Error('DB not connected');
     const db = await readLocalJSON();
     if (!db.projects) db.projects = [];
     db.projects.push(project);
@@ -480,11 +517,15 @@ async function addProject(project) {
 async function updateProject(id, updateData) {
     if (isConnected) {
         try {
-            return await Project.findOneAndUpdate({ id }, updateData, { new: true });
+            const res = await Project.findOneAndUpdate({ id }, updateData, { new: true });
+            console.log('✅ Project updated in MongoDB');
+            return res;
         } catch (e) {
-            console.error(e);
+            console.error('❌ Failed to update project in MongoDB:', e.message);
+            throw e;
         }
     }
+    if (process.env.NODE_ENV === 'production') throw new Error('DB not connected');
     const db = await readLocalJSON();
     const idx = db.projects.findIndex(p => p.id === id);
     if (idx !== -1) {
@@ -499,11 +540,14 @@ async function deleteProject(id) {
     if (isConnected) {
         try {
             const res = await Project.deleteOne({ id });
+            console.log('✅ Project deleted from MongoDB');
             return res.deletedCount > 0;
         } catch (e) {
-            console.error(e);
+            console.error('❌ Failed to delete project from MongoDB:', e.message);
+            throw e;
         }
     }
+    if (process.env.NODE_ENV === 'production') throw new Error('DB not connected');
     const db = await readLocalJSON();
     const originalLen = db.projects.length;
     db.projects = db.projects.filter(p => p.id !== id);
@@ -515,9 +559,12 @@ async function deleteProject(id) {
 async function addMessage(msg) {
     if (isConnected) {
         try {
-            return await Message.create(msg);
+            const res = await Message.create(msg);
+            console.log('✅ Message saved to MongoDB');
+            return res;
         } catch (e) {
-            console.error(e);
+            console.error('❌ Failed to save message to MongoDB:', e.message);
+            // Don't throw for messages to allow email to proceed
         }
     }
     const db = await readLocalJSON();
@@ -530,13 +577,12 @@ async function addMessage(msg) {
 async function getMessages() {
     if (isConnected) {
         try {
-            return await Message.find();
+            return await Message.find().sort({ timestamp: -1 });
         } catch (e) {
-            console.error(e);
+            console.error('❌ Error getting messages from MongoDB:', e.message);
         }
     }
-    const db = await readLocalJSON();
-    return db.messages || [];
+    return (await readLocalJSON()).messages || [];
 }
 
 async function markMessageRead(id) {
@@ -544,7 +590,7 @@ async function markMessageRead(id) {
         try {
             return await Message.findOneAndUpdate({ id }, { read: true }, { new: true });
         } catch (e) {
-            console.error(e);
+            console.error('❌ Failed to mark message as read in MongoDB:', e.message);
         }
     }
     const db = await readLocalJSON();
@@ -563,7 +609,7 @@ async function deleteMessage(id) {
             const res = await Message.deleteOne({ id });
             return res.deletedCount > 0;
         } catch (e) {
-            console.error(e);
+            console.error('❌ Failed to delete message from MongoDB:', e.message);
         }
     }
     const db = await readLocalJSON();
