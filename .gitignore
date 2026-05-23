@@ -18,6 +18,7 @@ Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
+.claude-code-history/
 *.sln
 
 # Build artifacts

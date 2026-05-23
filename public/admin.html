@@ -1,482 +1,591 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Suite | Ahmed Khaled Anwar</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Suite | Ahmed Khaled Anwar</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body style="min-height: 100vh;">
 
-  <!-- Floating Background Mesh -->
-  <div class="background-grid"></div>
-  <div class="mesh-glow-1" style="opacity: 0.04;"></div>
-  <div class="mesh-glow-2" style="opacity: 0.03;"></div>
+    <!-- Floating Background Mesh -->
+    <div class="background-grid"></div>
+    <div class="mesh-glow-1" style="opacity: 0.04;"></div>
+    <div class="mesh-glow-2" style="opacity: 0.03;"></div>
 
-  <div class="admin-container">
+    <div class="admin-container">
 
-    <!-- ── Sidebar ──────────────────────────────────────────────────────────── -->
-    <aside class="admin-sidebar">
-      <div class="admin-logo">AKA <span style="font-size:0.7rem; color:var(--text-muted); font-weight:400;">Admin Suite</span></div>
+        <!-- ── Sidebar ──────────────────────────────────────────────────────────── -->
+        <aside class="admin-sidebar">
+            <div class="admin-logo">AKA <span style="font-size:0.7rem; color:var(--text-muted); font-weight:400;">Admin Suite</span></div>
 
-      <ul class="admin-nav">
-        <li><div class="admin-nav-item active" data-tab="overview">   <span>📊</span> Overview &amp; Inbox</div></li>
-        <li><div class="admin-nav-item"         data-tab="projects">  <span>💻</span> Projects</div></li>
-        <li><div class="admin-nav-item"         data-tab="youtube">   <span>▶</span>  YouTube Videos</div></li>
-        <li><div class="admin-nav-item"         data-tab="certs">     <span>🎓</span> Certificates</div></li>
-        <li><div class="admin-nav-item"         data-tab="settings">  <span>⚙️</span> Settings</div></li>
-      </ul>
+            <ul class="admin-nav">
+                <li>
+                    <div class="admin-nav-item active" data-tab="overview"> <span>📊</span> Overview &amp; Inbox</div>
+                </li>
+                <li>
+                    <div class="admin-nav-item" data-tab="projects"> <span>💻</span> Projects</div>
+                </li>
+                <li>
+                    <div class="admin-nav-item" data-tab="youtube"> <span>▶</span> YouTube Videos</div>
+                </li>
+                <li>
+                    <div class="admin-nav-item" data-tab="certs"> <span>🎓</span> Certificates</div>
+                </li>
+                <li>
+                    <div class="admin-nav-item" data-tab="settings"> <span>⚙️</span> Settings</div>
+                </li>
+            </ul>
 
-      <button id="admin-logout-btn" class="btn admin-nav-item admin-logout">
+            <button id="admin-logout-btn" class="btn admin-nav-item admin-logout">
         <span>⎋</span> Sign Out
       </button>
-    </aside>
+        </aside>
 
-    <!-- ── Main Workspace ─────────────────────────────────────────────────── -->
-    <main class="admin-main">
+        <!-- ── Main Workspace ─────────────────────────────────────────────────── -->
+        <main class="admin-main">
 
-      <!-- ── TAB 1: OVERVIEW ────────────────────────────────────────────────── -->
-      <section id="overview-tab" class="admin-tab-content">
-        <div class="admin-header">
-          <div>
-            <h1 class="admin-title text-gradient">System Overview</h1>
-            <p style="color:var(--text-secondary); font-size:0.9rem;">Real-time telemetry and received inquiries</p>
-          </div>
-          <a href="index.html" class="btn btn-secondary" style="font-size:0.85rem; padding:10px 20px;">↗ View Live Site</a>
-        </div>
-
-        <!-- Analytics Cards -->
-        <div class="admin-analytics-grid">
-          <div class="glass-card anal-card">
-            <div class="anal-label">Total Projects</div>
-            <div class="anal-value text-accent-cyan" id="anal-projects">0</div>
-          </div>
-          <div class="glass-card anal-card">
-            <div class="anal-label">Skills Listed</div>
-            <div class="anal-value text-accent-purple" id="anal-skills">0</div>
-          </div>
-          <div class="glass-card anal-card">
-            <div class="anal-label">YouTube Videos</div>
-            <div class="anal-value text-gradient-neon" id="anal-youtube">0</div>
-          </div>
-          <div class="glass-card anal-card">
-            <div class="anal-label">Certificates</div>
-            <div class="anal-value text-gradient" id="anal-certs">0</div>
-          </div>
-          <div class="glass-card anal-card" style="border-color:rgba(56,189,248,0.15); background:rgba(56,189,248,0.02);">
-            <div class="anal-label" style="color:var(--accent-cyan);">Unread Inquiries</div>
-            <div class="anal-value text-accent-cyan" id="anal-unread">0</div>
-          </div>
-          <div class="glass-card anal-card">
-            <div class="anal-label">Total Messages</div>
-            <div class="anal-value text-gradient" id="anal-messages">0</div>
-          </div>
-        </div>
-
-        <!-- Inbox -->
-        <h2 class="text-gradient" style="font-size:1.5rem; margin-bottom:24px;">Received Inquiries</h2>
-        <div class="message-inbox" id="message-inbox-list"></div>
-      </section>
-
-      <!-- ── TAB 2: PROJECTS ────────────────────────────────────────────────── -->
-      <section id="projects-tab" class="admin-tab-content" style="display:none;">
-        <div class="admin-header">
-          <div>
-            <h1 class="admin-title text-gradient">Projects Catalog</h1>
-            <p style="color:var(--text-secondary); font-size:0.9rem;">Full CRUD management for showcase projects</p>
-          </div>
-        </div>
-
-        <!-- List View -->
-        <div id="project-list-panel">
-          <div style="display:flex; justify-content:flex-end; margin-bottom:24px;">
-            <button onclick="openCreateProjectForm()" class="btn btn-primary" style="padding:10px 24px; font-size:0.85rem;">+ New Project</button>
-          </div>
-          <div class="glass-card" style="padding:0; overflow-x:auto;">
-            <table class="admin-table">
-              <thead>
-                <tr>
-                  <th style="width:50px;">#</th>
-                  <th>Project</th>
-                  <th>Tags</th>
-                  <th>Featured</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="projects-crud-tbody"></tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Form View -->
-        <div id="project-form-panel" style="display:none;">
-          <div class="glass-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:32px;">
-              <h2 id="project-form-heading" class="text-gradient-neon" style="font-size:1.4rem;">New Project</h2>
-              <button onclick="closeProjectForm()" class="crud-btn delete" style="padding:8px 20px;">Cancel</button>
-            </div>
-            <form id="project-crud-form">
-              <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
-                <div class="form-group">
-                  <label class="form-label" for="proj-title">Project Title (English)</label>
-                  <input type="text" id="proj-title" placeholder="My Awesome Platform" class="form-input" required>
+            <!-- ── TAB 1: OVERVIEW ────────────────────────────────────────────────── -->
+            <section id="overview-tab" class="admin-tab-content">
+                <div class="admin-header">
+                    <div>
+                        <h1 class="admin-title text-gradient">System Overview</h1>
+                        <p style="color:var(--text-secondary); font-size:0.9rem;">Real-time telemetry and received inquiries</p>
+                    </div>
+                    <a href="index.html" class="btn btn-secondary" style="font-size:0.85rem; padding:10px 20px;">↗ View Live Site</a>
                 </div>
-                <div class="form-group">
-                  <label class="form-label" for="proj-title-ar">Project Title (Arabic)</label>
-                  <input type="text" id="proj-title-ar" placeholder="منصتي الرائعة" class="form-input" required>
+
+                <!-- Analytics Cards -->
+                <div class="admin-analytics-grid">
+                    <div class="glass-card anal-card">
+                        <div class="anal-label">Total Projects</div>
+                        <div class="anal-value text-accent-cyan" id="anal-projects">0</div>
+                    </div>
+                    <div class="glass-card anal-card">
+                        <div class="anal-label">Skills Listed</div>
+                        <div class="anal-value text-accent-purple" id="anal-skills">0</div>
+                    </div>
+                    <div class="glass-card anal-card">
+                        <div class="anal-label">YouTube Videos</div>
+                        <div class="anal-value text-gradient-neon" id="anal-youtube">0</div>
+                    </div>
+                    <div class="glass-card anal-card">
+                        <div class="anal-label">Certificates</div>
+                        <div class="anal-value text-gradient" id="anal-certs">0</div>
+                    </div>
+                    <div class="glass-card anal-card" style="border-color:rgba(56,189,248,0.15); background:rgba(56,189,248,0.02);">
+                        <div class="anal-label" style="color:var(--accent-cyan);">Unread Inquiries</div>
+                        <div class="anal-value text-accent-cyan" id="anal-unread">0</div>
+                    </div>
+                    <div class="glass-card anal-card">
+                        <div class="anal-label">Total Messages</div>
+                        <div class="anal-value text-gradient" id="anal-messages">0</div>
+                    </div>
                 </div>
-                <div class="form-group">
-                  <label class="form-label" for="proj-category">Category</label>
-                  <select id="proj-category" class="form-input">
+
+                <!-- Inbox -->
+                <h2 class="text-gradient" style="font-size:1.5rem; margin-bottom:24px;">Received Inquiries</h2>
+                <div class="message-inbox" id="message-inbox-list"></div>
+            </section>
+
+            <!-- ── TAB 2: PROJECTS ────────────────────────────────────────────────── -->
+            <section id="projects-tab" class="admin-tab-content" style="display:none;">
+                <div class="admin-header">
+                    <div>
+                        <h1 class="admin-title text-gradient">Projects Catalog</h1>
+                        <p style="color:var(--text-secondary); font-size:0.9rem;">Full CRUD management for showcase projects</p>
+                    </div>
+                </div>
+
+                <!-- List View -->
+                <div id="project-list-panel">
+                    <div style="display:flex; justify-content:flex-end; margin-bottom:24px;">
+                        <button onclick="openCreateProjectForm()" class="btn btn-primary" style="padding:10px 24px; font-size:0.85rem;">+ New Project</button>
+                    </div>
+                    <div class="glass-card" style="padding:0; overflow-x:auto;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th style="width:50px;">#</th>
+                                    <th>Project</th>
+                                    <th>Tags</th>
+                                    <th>Featured</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="projects-crud-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Form View -->
+                <div id="project-form-panel" style="display:none;">
+                    <div class="glass-card">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:32px;">
+                            <h2 id="project-form-heading" class="text-gradient-neon" style="font-size:1.4rem;">New Project</h2>
+                            <button onclick="closeProjectForm()" class="crud-btn delete" style="padding:8px 20px;">Cancel</button>
+                        </div>
+                        <form id="project-crud-form">
+                            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
+                                <div class="form-group">
+                                    <label class="form-label" for="proj-title">Project Title (English)</label>
+                                    <input type="text" id="proj-title" placeholder="My Awesome Platform" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="proj-title-ar">Project Title (Arabic)</label>
+                                    <input type="text" id="proj-title-ar" placeholder="منصتي الرائعة" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="proj-category">Category</label>
+                                    <select id="proj-category" class="form-input">
                     <option value="fullstack">Full-Stack</option>
                     <option value="frontend">Frontend / UI</option>
                     <option value="backend">Backend</option>
                     <option value="tools">Dev Tools</option>
                   </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="proj-image">Banner Image URL</label>
+                                <input type="text" id="proj-image" placeholder="https://images.unsplash.com/..." class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="proj-image-file">أو ارفع صورة المشروع من جهازك</label>
+                                <input type="file" id="proj-image-file" accept="image/*" class="form-input" style="padding:8px;">
+                            </div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                                <div class="form-group">
+                                    <label class="form-label" for="proj-demo">Live Demo URL</label>
+                                    <input type="text" id="proj-demo" placeholder="https://example.com" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="proj-github">GitHub Repository URL</label>
+                                    <input type="text" id="proj-github" placeholder="https://github.com/..." class="form-input">
+                                </div>
+                            </div>
+                            <div class="form-group" style="display:flex; align-items:center; gap:12px; margin-bottom:24px;">
+                                <input type="checkbox" id="proj-featured" style="width:20px; height:20px; accent-color:var(--accent-purple);">
+                                <label class="form-label" for="proj-featured" style="margin-bottom:0; cursor:pointer;">Mark as Featured (highlighted on homepage)</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="proj-tags">Technology Tags (comma separated)</label>
+                                <input type="text" id="proj-tags" placeholder="React.js, Node.js, MongoDB" class="form-input" required>
+                            </div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                                <div class="form-group">
+                                    <label class="form-label" for="proj-desc">Short Description (English)</label>
+                                    <input type="text" id="proj-desc" placeholder="A short compelling summary..." class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="proj-desc-ar">Short Description (Arabic)</label>
+                                    <input type="text" id="proj-desc-ar" placeholder="ملخص قصير للمشروع..." class="form-input" required>
+                                </div>
+                            </div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                                <div class="form-group">
+                                    <label class="form-label" for="proj-long-desc">Full Description (English)</label>
+                                    <textarea id="proj-long-desc" placeholder="Full technical description..." class="form-input" rows="5" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="proj-long-desc-ar">Full Description (Arabic)</label>
+                                    <textarea id="proj-long-desc-ar" placeholder="الوصف التقني الكامل للمشروع..." class="form-input" rows="5" required></textarea>
+                                </div>
+                            </div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                                <div class="form-group">
+                                    <label class="form-label" for="proj-features">Key Features (English - one per line)</label>
+                                    <textarea id="proj-features" placeholder="Live code execution environment&#10;Automated certificate generation" class="form-input" rows="4"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="proj-features-ar">Key Features (Arabic - one per line)</label>
+                                    <textarea id="proj-features-ar" placeholder="بيئة تشغيل أكواد تفاعلية&#10;توليد تلقائي للشهادات" class="form-input" rows="4"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; height:50px;">Save Project</button>
+                        </form>
+                    </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="proj-image">Banner Image URL</label>
-                <input type="text" id="proj-image" placeholder="https://images.unsplash.com/..." class="form-input" required>
-              </div>
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-                <div class="form-group">
-                  <label class="form-label" for="proj-demo">Live Demo URL</label>
-                  <input type="text" id="proj-demo" placeholder="https://example.com" class="form-input">
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="proj-github">GitHub Repository URL</label>
-                  <input type="text" id="proj-github" placeholder="https://github.com/..." class="form-input">
-                </div>
-              </div>
-              <div class="form-group" style="display:flex; align-items:center; gap:12px; margin-bottom:24px;">
-                <input type="checkbox" id="proj-featured" style="width:20px; height:20px; accent-color:var(--accent-purple);">
-                <label class="form-label" for="proj-featured" style="margin-bottom:0; cursor:pointer;">Mark as Featured (highlighted on homepage)</label>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="proj-tags">Technology Tags (comma separated)</label>
-                <input type="text" id="proj-tags" placeholder="React.js, Node.js, MongoDB" class="form-input" required>
-              </div>
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-                <div class="form-group">
-                  <label class="form-label" for="proj-desc">Short Description (English)</label>
-                  <input type="text" id="proj-desc" placeholder="A short compelling summary..." class="form-input" required>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="proj-desc-ar">Short Description (Arabic)</label>
-                  <input type="text" id="proj-desc-ar" placeholder="ملخص قصير للمشروع..." class="form-input" required>
-                </div>
-              </div>
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-                <div class="form-group">
-                  <label class="form-label" for="proj-long-desc">Full Description (English)</label>
-                  <textarea id="proj-long-desc" placeholder="Full technical description..." class="form-input" rows="5" required></textarea>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="proj-long-desc-ar">Full Description (Arabic)</label>
-                  <textarea id="proj-long-desc-ar" placeholder="الوصف التقني الكامل للمشروع..." class="form-input" rows="5" required></textarea>
-                </div>
-              </div>
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-                <div class="form-group">
-                  <label class="form-label" for="proj-features">Key Features (English - one per line)</label>
-                  <textarea id="proj-features" placeholder="Live code execution environment&#10;Automated certificate generation" class="form-input" rows="4"></textarea>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="proj-features-ar">Key Features (Arabic - one per line)</label>
-                  <textarea id="proj-features-ar" placeholder="بيئة تشغيل أكواد تفاعلية&#10;توليد تلقائي للشهادات" class="form-input" rows="4"></textarea>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; height:50px;">Save Project</button>
-            </form>
-          </div>
-        </div>
-      </section>
+            </section>
 
-      <!-- ── TAB 3: YOUTUBE VIDEOS ──────────────────────────────────────────── -->
-      <section id="youtube-tab" class="admin-tab-content" style="display:none;">
-        <div class="admin-header">
-          <div>
-            <h1 class="admin-title text-gradient">YouTube Videos</h1>
-            <p style="color:var(--text-secondary); font-size:0.9rem;">Manage your featured tutorial videos</p>
-          </div>
-          <button onclick="openYTForm()" class="btn btn-primary" style="padding:10px 24px; font-size:0.85rem;">+ Add Video</button>
-        </div>
-
-        <!-- Video List -->
-        <div id="yt-list-panel">
-          <div id="yt-list-items"></div>
-        </div>
-
-        <!-- Video Form -->
-        <div id="yt-form-panel" style="display:none;">
-          <div class="glass-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:28px;">
-              <h2 id="yt-form-heading" class="text-gradient-neon" style="font-size:1.3rem;">Add YouTube Video</h2>
-              <button onclick="closeYTForm()" class="crud-btn delete" style="padding:8px 20px;">Cancel</button>
-            </div>
-            <form id="yt-crud-form">
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-                <div class="form-group">
-                  <label class="form-label" for="yt-title">Video Title (English)</label>
-                  <input type="text" id="yt-title" placeholder="Learn Node.js - Complete Beginner Guide" class="form-input" required>
+            <!-- ── TAB 3: YOUTUBE VIDEOS ──────────────────────────────────────────── -->
+            <section id="youtube-tab" class="admin-tab-content" style="display:none;">
+                <div class="admin-header">
+                    <div>
+                        <h1 class="admin-title text-gradient">YouTube Videos</h1>
+                        <p style="color:var(--text-secondary); font-size:0.9rem;">Manage your featured tutorial videos</p>
+                    </div>
+                    <button onclick="openYTForm()" class="btn btn-primary" style="padding:10px 24px; font-size:0.85rem;">+ Add Video</button>
                 </div>
-                <div class="form-group">
-                  <label class="form-label" for="yt-title-ar">Video Title (Arabic)</label>
-                  <input type="text" id="yt-title-ar" placeholder="تعلم Node.js - دليل المبتدئين الكامل" class="form-input" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="yt-url">YouTube Video URL</label>
-                <input type="url" id="yt-url" placeholder="https://youtube.com/watch?v=..." class="form-input" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="yt-thumbnail">Thumbnail Image URL</label>
-                <input type="text" id="yt-thumbnail" placeholder="https://i.ytimg.com/vi/..." class="form-input" required>
-              </div>
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-                <div class="form-group">
-                  <label class="form-label" for="yt-views">View Count (display text)</label>
-                  <input type="text" id="yt-views" placeholder="120K Views" class="form-input">
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="yt-category">Category</label>
-                  <input type="text" id="yt-category" placeholder="Frontend / Backend / Full-Stack" class="form-input">
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; height:50px;">Save Video</button>
-            </form>
-          </div>
-        </div>
-      </section>
 
-      <!-- ── TAB 4: CERTIFICATES ────────────────────────────────────────────── -->
-      <section id="certs-tab" class="admin-tab-content" style="display:none;">
-        <div class="admin-header">
-          <div>
-            <h1 class="admin-title text-gradient">Certifications</h1>
-            <p style="color:var(--text-secondary); font-size:0.9rem;">Manage professional certificates and honors</p>
-          </div>
-          <button onclick="openCertForm()" class="btn btn-primary" style="padding:10px 24px; font-size:0.85rem;">+ Add Certificate</button>
-        </div>
-
-        <!-- Cert List -->
-        <div id="cert-list-panel">
-          <div id="cert-list-items"></div>
-        </div>
-
-        <!-- Cert Form -->
-        <div id="cert-form-panel" style="display:none;">
-          <div class="glass-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:28px;">
-              <h2 id="cert-form-heading" class="text-gradient-neon" style="font-size:1.3rem;">Add Certificate</h2>
-              <button onclick="closeCertForm()" class="crud-btn delete" style="padding:8px 20px;">Cancel</button>
-            </div>
-            <form id="cert-crud-form">
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-                <div class="form-group">
-                  <label class="form-label" for="cert-title">Certificate Title (English)</label>
-                  <input type="text" id="cert-title" placeholder="AWS Certified Solutions Architect" class="form-input" required>
+                <!-- Video List -->
+                <div id="yt-list-panel">
+                    <div id="yt-list-items"></div>
                 </div>
-                <div class="form-group">
-                  <label class="form-label" for="cert-title-ar">Certificate Title (Arabic)</label>
-                  <input type="text" id="cert-title-ar" placeholder="مهندس حلول معتمد من AWS" class="form-input" required>
+
+                <!-- Video Form -->
+                <div id="yt-form-panel" style="display:none;">
+                    <div class="glass-card">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:28px;">
+                            <h2 id="yt-form-heading" class="text-gradient-neon" style="font-size:1.3rem;">Add YouTube Video</h2>
+                            <button onclick="closeYTForm()" class="crud-btn delete" style="padding:8px 20px;">Cancel</button>
+                        </div>
+                        <form id="yt-crud-form">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                                <div class="form-group">
+                                    <label class="form-label" for="yt-title">Video Title (English)</label>
+                                    <input type="text" id="yt-title" placeholder="Learn Node.js - Complete Beginner Guide" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="yt-title-ar">Video Title (Arabic)</label>
+                                    <input type="text" id="yt-title-ar" placeholder="تعلم Node.js - دليل المبتدئين الكامل" class="form-input" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="yt-url">YouTube Video URL</label>
+                                <input type="url" id="yt-url" placeholder="https://youtube.com/watch?v=..." class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="yt-thumbnail">Thumbnail Image URL</label>
+                                <input type="text" id="yt-thumbnail" placeholder="https://i.ytimg.com/vi/..." class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="yt-thumbnail-file">أو ارفع صورة مصغرة من جهازك</label>
+                                <input type="file" id="yt-thumbnail-file" accept="image/*" class="form-input" style="padding:8px;">
+                            </div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                                <div class="form-group">
+                                    <label class="form-label" for="yt-views">View Count (display text)</label>
+                                    <input type="text" id="yt-views" placeholder="120K Views" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="yt-category">Category</label>
+                                    <input type="text" id="yt-category" placeholder="Frontend / Backend / Full-Stack" class="form-input">
+                                </div>
+                            </div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                                <div class="form-group">
+                                    <label class="form-label" for="yt-desc">Description (English)</label>
+                                    <textarea id="yt-desc" placeholder="Brief description of the video content..." class="form-input" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="yt-desc-ar">Description (Arabic)</label>
+                                    <textarea id="yt-desc-ar" placeholder="وصف قصير لمحتوى الفيديو..." class="form-input" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; height:50px;">Save Video</button>
+                        </form>
+                    </div>
                 </div>
-              </div>
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-                <div class="form-group">
-                  <label class="form-label" for="cert-issuer">Issuing Organization (English)</label>
-                  <input type="text" id="cert-issuer" placeholder="Amazon Web Services" class="form-input" required>
+            </section>
+
+            <!-- ── TAB 4: CERTIFICATES ────────────────────────────────────────────── -->
+            <section id="certs-tab" class="admin-tab-content" style="display:none;">
+                <div class="admin-header">
+                    <div>
+                        <h1 class="admin-title text-gradient">Certifications</h1>
+                        <p style="color:var(--text-secondary); font-size:0.9rem;">Manage professional certificates and honors</p>
+                    </div>
+                    <button onclick="openCertForm()" class="btn btn-primary" style="padding:10px 24px; font-size:0.85rem;">+ Add Certificate</button>
                 </div>
-                <div class="form-group">
-                  <label class="form-label" for="cert-issuer-ar">Issuing Organization (Arabic)</label>
-                  <input type="text" id="cert-issuer-ar" placeholder="أمازون ويب سيرفيسز (AWS)" class="form-input" required>
+
+                <!-- Cert List -->
+                <div id="cert-list-panel">
+                    <div id="cert-list-items"></div>
                 </div>
-              </div>
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-                <div class="form-group">
-                  <label class="form-label" for="cert-year">Year Issued</label>
-                  <input type="text" id="cert-year" placeholder="2024" class="form-input" required>
+
+                <!-- Cert Form -->
+                <div id="cert-form-panel" style="display:none;">
+                    <div class="glass-card">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:28px;">
+                            <h2 id="cert-form-heading" class="text-gradient-neon" style="font-size:1.3rem;">Add Certificate</h2>
+                            <button onclick="closeCertForm()" class="crud-btn delete" style="padding:8px 20px;">Cancel</button>
+                        </div>
+                        <form id="cert-crud-form">
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                                <div class="form-group">
+                                    <label class="form-label" for="cert-title">Certificate Title (English)</label>
+                                    <input type="text" id="cert-title" placeholder="AWS Certified Solutions Architect" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="cert-title-ar">Certificate Title (Arabic)</label>
+                                    <input type="text" id="cert-title-ar" placeholder="مهندس حلول معتمد من AWS" class="form-input" required>
+                                </div>
+                            </div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                                <div class="form-group">
+                                    <label class="form-label" for="cert-issuer">Issuing Organization (English)</label>
+                                    <input type="text" id="cert-issuer" placeholder="Amazon Web Services" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="cert-issuer-ar">Issuing Organization (Arabic)</label>
+                                    <input type="text" id="cert-issuer-ar" placeholder="أمازون ويب سيرفيسز (AWS)" class="form-input" required>
+                                </div>
+                            </div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                                <div class="form-group">
+                                    <label class="form-label" for="cert-year">Year Issued</label>
+                                    <input type="text" id="cert-year" placeholder="2024" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="cert-image">Certificate Image URL</label>
+                                    <input type="text" id="cert-image" placeholder="https://images.unsplash.com/..." class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="cert-image-file">أو ارفع صورة الشهادة من جهازك</label>
+                                    <input type="file" id="cert-image-file" accept="image/*" class="form-input" style="padding:8px;">
+                                </div>
+                            </div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                                <div class="form-group">
+                                    <label class="form-label" for="cert-desc">Description (English)</label>
+                                    <textarea id="cert-desc" placeholder="Brief description of what this certification validates..." class="form-input" rows="4"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="cert-desc-ar">Description (Arabic)</label>
+                                    <textarea id="cert-desc-ar" placeholder="وصف قصير للشهادة..." class="form-input" rows="4"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; height:50px;">Save Certificate</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group">
-                  <label class="form-label" for="cert-image">Certificate Image URL</label>
-                  <input type="text" id="cert-image" placeholder="https://images.unsplash.com/..." class="form-input">
+            </section>
+
+            <!-- ── TAB 5: PERSONAL SETTINGS ──────────────────────────────────────── -->
+            <section id="settings-tab" class="admin-tab-content" style="display:none;">
+                <div class="admin-header">
+                    <div>
+                        <h1 class="admin-title text-gradient">Personal Settings</h1>
+                        <p style="color:var(--text-secondary); font-size:0.9rem;">Configure profile, social links, skills, timeline, and achievements</p>
+                    </div>
                 </div>
-              </div>
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-                <div class="form-group">
-                  <label class="form-label" for="cert-desc">Description (English)</label>
-                  <textarea id="cert-desc" placeholder="Brief description of what this certification validates..." class="form-input" rows="4"></textarea>
+
+                <!-- 1. Profile Info -->
+                <div class="glass-card" style="margin-bottom:40px;">
+                    <h2 class="text-gradient-neon" style="font-size:1.3rem; margin-bottom:24px;">1. Profile &amp; Social Links</h2>
+                    <form id="personal-settings-form">
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                            <div class="form-group">
+                                <label class="form-label" for="set-name">Full Name (English)</label>
+                                <input type="text" id="set-name" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="set-name-ar">Full Name (Arabic)</label>
+                                <input type="text" id="set-name-ar" class="form-input" required>
+                            </div>
+                        </div>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                            <div class="form-group">
+                                <label class="form-label" for="set-title">Professional Title (English)</label>
+                                <input type="text" id="set-title" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="set-title-ar">Professional Title (Arabic)</label>
+                                <input type="text" id="set-title-ar" class="form-input" required>
+                            </div>
+                        </div>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                            <div class="form-group">
+                                <label class="form-label" for="set-avatar">Profile Avatar URL</label>
+                                <input type="text" id="set-avatar" class="form-input" placeholder="https://example.com/image.jpg">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="set-avatar-file">أو ارفع صورة من جهازك</label>
+                                <input type="file" id="set-avatar-file" accept="image/*" class="form-input" style="padding:8px;">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="set-resume">Resume / CV URL</label>
+                            <input type="text" id="set-resume" class="form-input">
+                        </div>
+                        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
+                            <div class="form-group">
+                                <label class="form-label" for="set-location">Location (English)</label>
+                                <input type="text" id="set-location" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="set-location-ar">Location (Arabic)</label>
+                                <input type="text" id="set-location-ar" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="set-email">Email Address</label>
+                                <input type="email" id="set-email" class="form-input">
+                            </div>
+                        </div>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                            <div class="form-group">
+                                <label class="form-label" for="set-whatsapp">WhatsApp Link</label>
+                                <input type="text" id="set-whatsapp" placeholder="https://wa.me/201..." class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="set-github">GitHub URL</label>
+                                <input type="text" id="set-github" class="form-input">
+                            </div>
+                        </div>
+                        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px;">
+                            <div class="form-group">
+                                <label class="form-label" for="set-linkedin">LinkedIn URL</label>
+                                <input type="text" id="set-linkedin" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="set-youtube">YouTube URL</label>
+                                <input type="text" id="set-youtube" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="set-facebook">Facebook URL</label>
+                                <input type="text" id="set-facebook" class="form-input">
+                            </div>
+                        </div>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                            <div class="form-group">
+                                <label class="form-label" for="set-instagram">Instagram URL</label>
+                                <input type="text" id="set-instagram" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="set-telegram">Telegram URL</label>
+                                <input type="text" id="set-telegram" class="form-input">
+                            </div>
+                        </div>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                            <div class="form-group">
+                                <label class="form-label" for="set-bio">Biography (English)</label>
+                                <textarea id="set-bio" class="form-input" rows="4" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="set-bio-ar">Biography (Arabic)</label>
+                                <textarea id="set-bio-ar" class="form-input" rows="4" required></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="padding:12px 32px;">Save Profile</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                  <label class="form-label" for="cert-desc-ar">Description (Arabic)</label>
-                  <textarea id="cert-desc-ar" placeholder="وصف قصير للشهادة..." class="form-input" rows="4"></textarea>
+
+                <!-- 2. YouTube Stats -->
+                <div class="glass-card" style="margin-bottom:40px;">
+                    <h2 class="text-gradient-neon" style="font-size:1.3rem; margin-bottom:24px;">2. YouTube Statistics</h2>
+                    <form id="stats-settings-form">
+                        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
+                            <div class="form-group">
+                                <label class="form-label" for="stats-students">Students Count</label>
+                                <input type="text" id="stats-students" class="form-input" placeholder="100K+">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="stats-tutorials">Tutorials Count</label>
+                                <input type="text" id="stats-tutorials" class="form-input" placeholder="150+">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="stats-views">Total Views</label>
+                                <input type="text" id="stats-views" class="form-input" placeholder="5M+">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="padding:12px 32px;">Update Stats</button>
+                    </form>
                 </div>
-              </div>
-              <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; height:50px;">Save Certificate</button>
-            </form>
-          </div>
-        </div>
-      </section>
 
-      <!-- ── TAB 5: PERSONAL SETTINGS ──────────────────────────────────────── -->
-      <section id="settings-tab" class="admin-tab-content" style="display:none;">
-        <div class="admin-header">
-          <div>
-            <h1 class="admin-title text-gradient">Personal Settings</h1>
-            <p style="color:var(--text-secondary); font-size:0.9rem;">Configure profile, social links, skills, timeline, and achievements</p>
-          </div>
-        </div>
+                <!-- 3. YouTube Section -->
+                <div class="glass-card" style="margin-bottom:40px;">
+                    <h2 class="text-gradient-neon" style="font-size:1.3rem; margin-bottom:24px;">3. YouTube Section</h2>
+                    <form id="youtube-settings-form">
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                            <div class="form-group">
+                                <label class="form-label" for="yt-section-title">Section Title (English)</label>
+                                <input type="text" id="yt-section-title" class="form-input" placeholder="YouTube Content Creator">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="yt-section-title-ar">Section Title (Arabic)</label>
+                                <input type="text" id="yt-section-title-ar" class="form-input" placeholder="صانع محتوى يوتيوب">
+                            </div>
+                        </div>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                            <div class="form-group">
+                                <label class="form-label" for="yt-section-desc">Description (English)</label>
+                                <textarea id="yt-section-desc" class="form-input" rows="3" placeholder="Educating developers worldwide..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="yt-section-desc-ar">Description (Arabic)</label>
+                                <textarea id="yt-section-desc-ar" class="form-input" rows="3" placeholder="تعليم المطورين حول العالم..."></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="yt-badge-image">Badge Image URL</label>
+                            <input type="text" id="yt-badge-image" class="form-input" placeholder="/zero_to_code_badge.png">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="yt-badge-image-file">أو ارفع صورة الشارة من جهازك</label>
+                            <input type="file" id="yt-badge-image-file" accept="image/*" class="form-input" style="padding:8px;">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="padding:12px 32px;">Update YouTube Section</button>
+                    </form>
+                </div>
 
-        <!-- 1. Profile Info -->
-        <div class="glass-card" style="margin-bottom:40px;">
-          <h2 class="text-gradient-neon" style="font-size:1.3rem; margin-bottom:24px;">1. Profile &amp; Social Links</h2>
-          <form id="personal-settings-form">
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-              <div class="form-group">
-                <label class="form-label" for="set-name">Full Name (English)</label>
-                <input type="text" id="set-name" class="form-input" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="set-name-ar">Full Name (Arabic)</label>
-                <input type="text" id="set-name-ar" class="form-input" required>
-              </div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-              <div class="form-group">
-                <label class="form-label" for="set-title">Professional Title (English)</label>
-                <input type="text" id="set-title" class="form-input" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="set-title-ar">Professional Title (Arabic)</label>
-                <input type="text" id="set-title-ar" class="form-input" required>
-              </div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-              <div class="form-group">
-                <label class="form-label" for="set-avatar">Profile Avatar URL</label>
-                <input type="text" id="set-avatar" class="form-input">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="set-resume">Resume / CV URL</label>
-                <input type="text" id="set-resume" class="form-input">
-              </div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
-              <div class="form-group">
-                <label class="form-label" for="set-location">Location (English)</label>
-                <input type="text" id="set-location" class="form-input">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="set-location-ar">Location (Arabic)</label>
-                <input type="text" id="set-location-ar" class="form-input">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="set-email">Email Address</label>
-                <input type="email" id="set-email" class="form-input">
-              </div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-              <div class="form-group">
-                <label class="form-label" for="set-whatsapp">WhatsApp Link</label>
-                <input type="text" id="set-whatsapp" placeholder="https://wa.me/201..." class="form-input">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="set-github">GitHub URL</label>
-                <input type="text" id="set-github" class="form-input">
-              </div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px;">
-              <div class="form-group">
-                <label class="form-label" for="set-linkedin">LinkedIn URL</label>
-                <input type="text" id="set-linkedin" class="form-input">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="set-youtube">YouTube URL</label>
-                <input type="text" id="set-youtube" class="form-input">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="set-facebook">Facebook URL</label>
-                <input type="text" id="set-facebook" class="form-input">
-              </div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-              <div class="form-group">
-                <label class="form-label" for="set-instagram">Instagram URL</label>
-                <input type="text" id="set-instagram" class="form-input">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="set-telegram">Telegram URL</label>
-                <input type="text" id="set-telegram" class="form-input">
-              </div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-              <div class="form-group">
-                <label class="form-label" for="set-bio">Biography (English)</label>
-                <textarea id="set-bio" class="form-input" rows="4" required></textarea>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="set-bio-ar">Biography (Arabic)</label>
-                <textarea id="set-bio-ar" class="form-input" rows="4" required></textarea>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary" style="padding:12px 32px;">Save Profile</button>
-          </form>
-        </div>
+                <!-- 4. Skills -->
+                <div class="glass-card" style="margin-bottom:40px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+                        <h2 class="text-gradient-neon" style="font-size:1.3rem;">2. Core Skills</h2>
+                        <button type="button" onclick="addSkillRow()" class="btn btn-secondary" style="padding:6px 14px; font-size:0.8rem;">+ Add Skill</button>
+                    </div>
+                    <form id="skills-settings-form">
+                        <div id="skills-editor-list"></div>
+                        <button type="submit" class="btn btn-primary" style="padding:12px 32px; margin-top:16px;">Update Skills</button>
+                    </form>
+                </div>
 
-        <!-- 2. Skills -->
-        <div class="glass-card" style="margin-bottom:40px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
-            <h2 class="text-gradient-neon" style="font-size:1.3rem;">2. Core Skills</h2>
-            <button type="button" onclick="addSkillRow()" class="btn btn-secondary" style="padding:6px 14px; font-size:0.8rem;">+ Add Skill</button>
-          </div>
-          <form id="skills-settings-form">
-            <div id="skills-editor-list"></div>
-            <button type="submit" class="btn btn-primary" style="padding:12px 32px; margin-top:16px;">Update Skills</button>
-          </form>
-        </div>
+                <!-- 3. Achievements -->
+                <div class="glass-card" style="margin-bottom:40px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+                        <h2 class="text-gradient-neon" style="font-size:1.3rem;">3. Career Honors</h2>
+                        <button type="button" onclick="addAchRow()" class="btn btn-secondary" style="padding:6px 14px; font-size:0.8rem;">+ Add Honor</button>
+                    </div>
+                    <form id="ach-settings-form">
+                        <div id="achievements-editor-list"></div>
+                        <button type="submit" class="btn btn-primary" style="padding:12px 32px; margin-top:16px;">Update Honors</button>
+                    </form>
+                </div>
 
-        <!-- 3. Achievements -->
-        <div class="glass-card" style="margin-bottom:40px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
-            <h2 class="text-gradient-neon" style="font-size:1.3rem;">3. Career Honors</h2>
-            <button type="button" onclick="addAchRow()" class="btn btn-secondary" style="padding:6px 14px; font-size:0.8rem;">+ Add Honor</button>
-          </div>
-          <form id="ach-settings-form">
-            <div id="achievements-editor-list"></div>
-            <button type="submit" class="btn btn-primary" style="padding:12px 32px; margin-top:16px;">Update Honors</button>
-          </form>
-        </div>
+                <!-- 4. Timeline -->
+                <div class="glass-card" style="margin-bottom:40px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+                        <h2 class="text-gradient-neon" style="font-size:1.3rem;">4. Career Timeline</h2>
+                        <button type="button" onclick="addTimelineRow()" class="btn btn-secondary" style="padding:6px 14px; font-size:0.8rem;">+ Add Entry</button>
+                    </div>
+                    <form id="timeline-settings-form">
+                        <div id="timeline-editor-list"></div>
+                        <button type="submit" class="btn btn-primary" style="padding:12px 32px; margin-top:20px;">Update Timeline</button>
+                    </form>
+                </div>
 
-        <!-- 4. Timeline -->
-        <div class="glass-card" style="margin-bottom:40px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
-            <h2 class="text-gradient-neon" style="font-size:1.3rem;">4. Career Timeline</h2>
-            <button type="button" onclick="addTimelineRow()" class="btn btn-secondary" style="padding:6px 14px; font-size:0.8rem;">+ Add Entry</button>
-          </div>
-          <form id="timeline-settings-form">
-            <div id="timeline-editor-list"></div>
-            <button type="submit" class="btn btn-primary" style="padding:12px 32px; margin-top:20px;">Update Timeline</button>
-          </form>
-        </div>
+                <!-- 5. Programming Languages -->
+                <div class="glass-card" style="margin-bottom:40px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+                        <h2 class="text-gradient-neon" style="font-size:1.3rem;">5. Programming Languages</h2>
+                        <button type="button" onclick="addLangRow()" class="btn btn-secondary" style="padding:6px 14px; font-size:0.8rem;">+ Add Language</button>
+                    </div>
+                    <form id="languages-settings-form">
+                        <div id="languages-editor-list"></div>
+                        <button type="submit" class="btn btn-primary" style="padding:12px 32px; margin-top:16px;">Update Languages</button>
+                    </form>
+                </div>
 
-        <!-- 5. Programming Languages -->
-        <div class="glass-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
-            <h2 class="text-gradient-neon" style="font-size:1.3rem;">5. Programming Languages</h2>
-            <button type="button" onclick="addLangRow()" class="btn btn-secondary" style="padding:6px 14px; font-size:0.8rem;">+ Add Language</button>
-          </div>
-          <form id="languages-settings-form">
-            <div id="languages-editor-list"></div>
-            <button type="submit" class="btn btn-primary" style="padding:12px 32px; margin-top:16px;">Update Languages</button>
-          </form>
-        </div>
-      </section>
+                <!-- 6. Testimonials -->
+                <div class="glass-card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+                        <h2 class="text-gradient-neon" style="font-size:1.3rem;">6. Testimonials & Endorsements</h2>
+                        <button type="button" onclick="addTestimonialRow()" class="btn btn-secondary" style="padding:6px 14px; font-size:0.8rem;">+ Add Testimonial</button>
+                    </div>
+                    <form id="testimonials-settings-form">
+                        <div id="testimonials-editor-list"></div>
+                        <button type="submit" class="btn btn-primary" style="padding:12px 32px; margin-top:16px;">Update Testimonials</button>
+                    </form>
+                </div>
+            </section>
 
-    </main>
-  </div>
+        </main>
+    </div>
 
-  <script src="js/admin.js"></script>
+    <script src="js/admin.js"></script>
 </body>
+
 </html>

@@ -136,7 +136,7 @@
             <div class="metric-label" data-i18n="metricAwards">Certifications</div>
           </div>
           <div class="metric-card">
-            <div class="metric-num text-gradient-neon">100K+</div>
+            <div class="metric-num text-gradient-neon" id="stat-students">100K+</div>
             <div class="metric-label" data-i18n="metricStudents">Students Reached</div>
           </div>
         </div>
@@ -297,7 +297,7 @@
             position: absolute; inset: 2px; border-radius: 50%;
             background: var(--bg-primary, #0a0a0f);
           "></div>
-          <img src="/zero_to_code_badge.png" alt="zero to code YouTube channel"
+          <img id="yt-badge-img" src="/zero_to_code_badge.png" alt="zero to code YouTube channel"
             style="
               position: absolute; inset: 6px; border-radius: 50%;
               width: calc(100% - 12px); height: calc(100% - 12px);
@@ -323,23 +323,23 @@
         </div>
       </div>
 
-      <h2 class="text-gradient" style="font-size: 2.5rem; margin-bottom: 16px;" data-i18n="youtubeTitle">YouTube Content Creator</h2>
-      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto; margin-bottom: 28px;" data-i18n="youtubeSubtitle">Educating developers worldwide through structured programming tutorials, full-stack walkthroughs, and software engineering deep-dives.</p>
+      <h2 class="text-gradient" style="font-size: 2.5rem; margin-bottom: 16px;" data-i18n="youtubeTitle" id="yt-section-title">YouTube Content Creator</h2>
+      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto; margin-bottom: 28px;" data-i18n="youtubeSubtitle" id="yt-section-desc">Educating developers worldwide through structured programming tutorials, full-stack walkthroughs, and software engineering deep-dives.</p>
 
       <!-- Channel Stats Banner -->
       <div class="youtube-stats-bar" id="youtube-stats-bar">
         <div class="yt-stat">
-          <div class="yt-stat-num text-accent-cyan">100K+</div>
+          <div class="yt-stat-num text-accent-cyan" id="yt-stat-students">100K+</div>
           <div class="yt-stat-label" data-i18n="ytStatStudents">Students</div>
         </div>
         <div class="yt-stat-divider"></div>
         <div class="yt-stat">
-          <div class="yt-stat-num text-accent-purple">150+</div>
+          <div class="yt-stat-num text-accent-purple" id="yt-stat-tutorials">150+</div>
           <div class="yt-stat-label" data-i18n="ytStatVideos">Tutorials Published</div>
         </div>
         <div class="yt-stat-divider"></div>
         <div class="yt-stat">
-          <div class="yt-stat-num text-gradient-neon">5M+</div>
+          <div class="yt-stat-num text-gradient-neon" id="yt-stat-views">5M+</div>
           <div class="yt-stat-label" data-i18n="ytStatViews">Total Views</div>
         </div>
       </div>

@@ -1,145 +1,154 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const API_URL = '';
-  const token   = localStorage.getItem('admin_token');
+            const API_URL = '';
+            const token = localStorage.getItem('admin_token');
 
-  // ── Auth Guard ─────────────────────────────────────────────────────────────
-  const isLoginPage = window.location.pathname.includes('admin-login.html');
+            // ── Auth Guard ─────────────────────────────────────────────────────────────
+            const isLoginPage = window.location.pathname.includes('admin-login.html');
 
-  if (!token && !isLoginPage) { window.location.href = 'admin-login.html'; return; }
-  if (token  &&  isLoginPage) { window.location.href = 'admin.html'; return; }
+            if (!token && !isLoginPage) { window.location.href = 'admin-login.html'; return; }
+            if (token && isLoginPage) { window.location.href = 'admin.html'; return; }
 
-  // ── Login Page Handler ─────────────────────────────────────────────────────
-  const loginForm   = document.getElementById('login-form');
-  const loginStatus = document.getElementById('login-status');
+            // ── Login Page Handler ─────────────────────────────────────────────────────
+            const loginForm = document.getElementById('login-form');
+            const loginStatus = document.getElementById('login-status');
 
-  if (loginForm) {
-    loginForm.addEventListener('submit', async e => {
-      e.preventDefault();
-      const username = document.getElementById('login-username').value.trim();
-      const password = document.getElementById('login-password').value.trim();
+            if (loginForm) {
+                loginForm.addEventListener('submit', async e => {
+                    e.preventDefault();
+                    const username = document.getElementById('login-username').value.trim();
+                    const password = document.getElementById('login-password').value.trim();
 
-      if (loginStatus) {
-        loginStatus.className = 'status-msg';
-        loginStatus.style.display = 'block';
-        loginStatus.textContent = 'Authenticating...';
-      }
+                    if (loginStatus) {
+                        loginStatus.className = 'status-msg';
+                        loginStatus.style.display = 'block';
+                        loginStatus.textContent = 'Authenticating...';
+                    }
 
-      try {
-        const res  = await fetch(`${API_URL}/api/auth/login`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username, password })
-        });
-        const data = await res.json();
+                    try {
+                        const res = await fetch(`${API_URL}/api/auth/login`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ username, password })
+                        });
+                        const data = await res.json();
 
-        if (res.ok && data.success) {
-          localStorage.setItem('admin_token', data.token);
-          if (loginStatus) { loginStatus.className = 'status-msg success'; loginStatus.textContent = 'Access granted. Redirecting...'; }
-          setTimeout(() => window.location.href = 'admin.html', 900);
-        } else {
-          if (loginStatus) { loginStatus.className = 'status-msg error'; loginStatus.textContent = data.error || 'Access denied.'; }
-        }
-      } catch {
-        if (loginStatus) { loginStatus.className = 'status-msg error'; loginStatus.textContent = 'Could not reach authentication server.'; }
-      }
-    });
-  }
+                        if (res.ok && data.success) {
+                            localStorage.setItem('admin_token', data.token);
+                            if (loginStatus) {
+                                loginStatus.className = 'status-msg success';
+                                loginStatus.textContent = 'Access granted. Redirecting...';
+                            }
+                            setTimeout(() => window.location.href = 'admin.html', 900);
+                        } else {
+                            if (loginStatus) {
+                                loginStatus.className = 'status-msg error';
+                                loginStatus.textContent = data.error || 'Access denied.';
+                            }
+                        }
+                    } catch {
+                        if (loginStatus) {
+                            loginStatus.className = 'status-msg error';
+                            loginStatus.textContent = 'Could not reach authentication server.';
+                        }
+                    }
+                });
+            }
 
-  if (isLoginPage) return;
+            if (isLoginPage) return;
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // DASHBOARD STATE
-  // ══════════════════════════════════════════════════════════════════════════
-  let currentProjects  = [];
-  let currentSettings  = {};
-  let currentMessages  = [];
-  let currentYT        = [];
-  let currentCerts     = [];
-  let editingProjectId = null;
-  let editingYTId      = null;
-  let editingCertId    = null;
+            // ══════════════════════════════════════════════════════════════════════════
+            // DASHBOARD STATE
+            // ══════════════════════════════════════════════════════════════════════════
+            let currentProjects = [];
+            let currentSettings = {};
+            let currentMessages = [];
+            let currentYT = [];
+            let currentCerts = [];
+            let editingProjectId = null;
+            let editingYTId = null;
+            let editingCertId = null;
 
-  const authHeader = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
+            const authHeader = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
 
-  // ── Tab Switching ──────────────────────────────────────────────────────────
-  const navItems = document.querySelectorAll('.admin-nav-item[data-tab]');
-  const tabs     = document.querySelectorAll('.admin-tab-content');
+            // ── Tab Switching ──────────────────────────────────────────────────────────
+            const navItems = document.querySelectorAll('.admin-nav-item[data-tab]');
+            const tabs = document.querySelectorAll('.admin-tab-content');
 
-  navItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const tabId = item.getAttribute('data-tab');
-      navItems.forEach(n => n.classList.remove('active'));
-      item.classList.add('active');
-      tabs.forEach(t => t.style.display = t.id === `${tabId}-tab` ? 'block' : 'none');
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const tabId = item.getAttribute('data-tab');
+                    navItems.forEach(n => n.classList.remove('active'));
+                    item.classList.add('active');
+                    tabs.forEach(t => t.style.display = t.id === `${tabId}-tab` ? 'block' : 'none');
 
-      if      (tabId === 'overview') loadOverviewData();
-      else if (tabId === 'projects') loadProjectsCRUD();
-      else if (tabId === 'youtube')  loadYTCRUD();
-      else if (tabId === 'certs')    loadCertsCRUD();
-      else if (tabId === 'settings') loadSettingsEditor();
-    });
-  });
+                    if (tabId === 'overview') loadOverviewData();
+                    else if (tabId === 'projects') loadProjectsCRUD();
+                    else if (tabId === 'youtube') loadYTCRUD();
+                    else if (tabId === 'certs') loadCertsCRUD();
+                    else if (tabId === 'settings') loadSettingsEditor();
+                });
+            });
 
-  // ── Logout ─────────────────────────────────────────────────────────────────
-  const logoutBtn = document.getElementById('admin-logout-btn');
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', e => {
-      e.preventDefault();
-      localStorage.removeItem('admin_token');
-      window.location.href = 'admin-login.html';
-    });
-  }
+            // ── Logout ─────────────────────────────────────────────────────────────────
+            const logoutBtn = document.getElementById('admin-logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', e => {
+                    e.preventDefault();
+                    localStorage.removeItem('admin_token');
+                    window.location.href = 'admin-login.html';
+                });
+            }
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // TAB 1: OVERVIEW
-  // ══════════════════════════════════════════════════════════════════════════
-  async function loadOverviewData() {
-    try {
-      const [rSettings, rProjects, rMessages, rYT, rCerts] = await Promise.all([
-        fetch(`${API_URL}/api/settings`),
-        fetch(`${API_URL}/api/projects`),
-        fetch(`${API_URL}/api/contact/messages`, { headers: authHeader }),
-        fetch(`${API_URL}/api/youtube`),
-        fetch(`${API_URL}/api/certificates`)
-      ]);
+            // ══════════════════════════════════════════════════════════════════════════
+            // TAB 1: OVERVIEW
+            // ══════════════════════════════════════════════════════════════════════════
+            async function loadOverviewData() {
+                try {
+                    const [rSettings, rProjects, rMessages, rYT, rCerts] = await Promise.all([
+                        fetch(`${API_URL}/api/settings`),
+                        fetch(`${API_URL}/api/projects`),
+                        fetch(`${API_URL}/api/contact/messages`, { headers: authHeader }),
+                        fetch(`${API_URL}/api/youtube`),
+                        fetch(`${API_URL}/api/certificates`)
+                    ]);
 
-      currentSettings  = await rSettings.json();
-      currentProjects  = await rProjects.json();
-      currentMessages  = await rMessages.json();
-      currentYT        = await rYT.json();
-      currentCerts     = await rCerts.json();
+                    currentSettings = await rSettings.json();
+                    currentProjects = await rProjects.json();
+                    currentMessages = await rMessages.json();
+                    currentYT = await rYT.json();
+                    currentCerts = await rCerts.json();
 
-      document.getElementById('anal-projects').textContent  = currentProjects.length;
-      document.getElementById('anal-skills').textContent    = (currentSettings.skills || []).length;
-      document.getElementById('anal-youtube').textContent   = currentYT.length;
-      document.getElementById('anal-certs').textContent     = currentCerts.length;
-      document.getElementById('anal-messages').textContent  = currentMessages.length;
-      document.getElementById('anal-unread').textContent    = currentMessages.filter(m => !m.read).length;
+                    document.getElementById('anal-projects').textContent = currentProjects.length;
+                    document.getElementById('anal-skills').textContent = (currentSettings.skills || []).length;
+                    document.getElementById('anal-youtube').textContent = currentYT.length;
+                    document.getElementById('anal-certs').textContent = currentCerts.length;
+                    document.getElementById('anal-messages').textContent = currentMessages.length;
+                    document.getElementById('anal-unread').textContent = currentMessages.filter(m => !m.read).length;
 
-      renderMessagesInbox();
-    } catch (err) {
-      console.error('Overview load error:', err);
-    }
-  }
+                    renderMessagesInbox();
+                } catch (err) {
+                    console.error('Overview load error:', err);
+                }
+            }
 
-  function renderMessagesInbox() {
-    const container = document.getElementById('message-inbox-list');
-    if (!container) return;
-    container.innerHTML = '';
+            function renderMessagesInbox() {
+                const container = document.getElementById('message-inbox-list');
+                if (!container) return;
+                container.innerHTML = '';
 
-    if (currentMessages.length === 0) {
-      container.innerHTML = `<div style="text-align:center; padding:32px; color:var(--text-muted);">No messages yet.</div>`;
-      return;
-    }
+                if (currentMessages.length === 0) {
+                    container.innerHTML = `<div style="text-align:center; padding:32px; color:var(--text-muted);">No messages yet.</div>`;
+                    return;
+                }
 
-    const sorted = [...currentMessages].sort((a, b) => {
-      if (a.read === b.read) return new Date(b.timestamp) - new Date(a.timestamp);
-      return a.read ? 1 : -1;
-    });
+                const sorted = [...currentMessages].sort((a, b) => {
+                    if (a.read === b.read) return new Date(b.timestamp) - new Date(a.timestamp);
+                    return a.read ? 1 : -1;
+                });
 
-    sorted.forEach(msg => {
-      const date = new Date(msg.timestamp).toLocaleString();
-      container.insertAdjacentHTML('beforeend', `
+                sorted.forEach(msg => {
+                            const date = new Date(msg.timestamp).toLocaleString();
+                            container.insertAdjacentHTML('beforeend', `
         <div class="glass-card message-item ${msg.read ? '' : 'unread'}">
           <div class="message-header">
             <div>
@@ -261,11 +270,31 @@ document.addEventListener('DOMContentLoaded', () => {
   if (projForm) {
     projForm.addEventListener('submit', async e => {
       e.preventDefault();
+
+      // Handle image file upload
+      let imageUrl = document.getElementById('proj-image').value.trim();
+      const imageFile = document.getElementById('proj-image-file').files[0];
+
+      if (imageFile) {
+        const reader = new FileReader();
+        const base64Promise = new Promise((resolve, reject) => {
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(imageFile);
+        });
+        try {
+          imageUrl = await base64Promise;
+        } catch (err) {
+          alert('فشل في تحويل الصورة');
+          return;
+        }
+      }
+
       const payload = {
         title:              document.getElementById('proj-title').value.trim(),
         title_ar:           document.getElementById('proj-title-ar').value.trim(),
         category:           document.getElementById('proj-category').value,
-        image:              document.getElementById('proj-image').value.trim(),
+        image:              imageUrl,
         tags:               document.getElementById('proj-tags').value.split(',').map(t => t.trim()).filter(Boolean),
         demoUrl:            document.getElementById('proj-demo').value.trim(),
         githubUrl:          document.getElementById('proj-github').value.trim(),
@@ -359,6 +388,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('yt-thumbnail').value = v.thumbnail;
     document.getElementById('yt-views').value     = v.views;
     document.getElementById('yt-category').value  = v.category;
+    document.getElementById('yt-desc').value      = v.description || '';
+    document.getElementById('yt-desc-ar').value   = v.description_ar || '';
     ytListPanel.style.display = 'none';
     ytFormPanel.style.display = 'block';
   };
@@ -366,13 +397,36 @@ document.addEventListener('DOMContentLoaded', () => {
   if (ytForm) {
     ytForm.addEventListener('submit', async e => {
       e.preventDefault();
+
+      // Handle thumbnail file upload
+      let thumbnailUrl = document.getElementById('yt-thumbnail').value.trim();
+      const thumbnailFile = document.getElementById('yt-thumbnail-file').files[0];
+
+      if (thumbnailFile) {
+        // Convert file to base64
+        const reader = new FileReader();
+        const base64Promise = new Promise((resolve, reject) => {
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(thumbnailFile);
+        });
+        try {
+          thumbnailUrl = await base64Promise;
+        } catch (err) {
+          alert('فشل في تحويل الصورة');
+          return;
+        }
+      }
+
       const payload = {
-        title:     document.getElementById('yt-title').value.trim(),
-        title_ar:  document.getElementById('yt-title-ar').value.trim(),
-        url:       document.getElementById('yt-url').value.trim(),
-        thumbnail: document.getElementById('yt-thumbnail').value.trim(),
-        views:     document.getElementById('yt-views').value.trim(),
-        category:  document.getElementById('yt-category').value.trim()
+        title:          document.getElementById('yt-title').value.trim(),
+        title_ar:       document.getElementById('yt-title-ar').value.trim(),
+        url:            document.getElementById('yt-url').value.trim(),
+        thumbnail:      thumbnailUrl,
+        views:          document.getElementById('yt-views').value.trim(),
+        category:       document.getElementById('yt-category').value.trim(),
+        description:    document.getElementById('yt-desc').value.trim(),
+        description_ar: document.getElementById('yt-desc-ar').value.trim()
       };
       const url    = editingYTId ? `${API_URL}/api/youtube/${editingYTId}` : `${API_URL}/api/youtube`;
       const method = editingYTId ? 'PUT' : 'POST';
@@ -465,13 +519,33 @@ document.addEventListener('DOMContentLoaded', () => {
   if (certForm) {
     certForm.addEventListener('submit', async e => {
       e.preventDefault();
+
+      // Handle certificate image file upload
+      let certImageUrl = document.getElementById('cert-image').value.trim();
+      const certImageFile = document.getElementById('cert-image-file').files[0];
+
+      if (certImageFile) {
+        const reader = new FileReader();
+        const base64Promise = new Promise((resolve, reject) => {
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(certImageFile);
+        });
+        try {
+          certImageUrl = await base64Promise;
+        } catch (err) {
+          alert('فشل في تحويل الصورة');
+          return;
+        }
+      }
+
       const payload = {
         title:          document.getElementById('cert-title').value.trim(),
         title_ar:       document.getElementById('cert-title-ar').value.trim(),
         issuer:         document.getElementById('cert-issuer').value.trim(),
         issuer_ar:      document.getElementById('cert-issuer-ar').value.trim(),
         year:           document.getElementById('cert-year').value.trim(),
-        image:          document.getElementById('cert-image').value.trim(),
+        image:          certImageUrl,
         description:    document.getElementById('cert-desc').value.trim(),
         description_ar: document.getElementById('cert-desc-ar').value.trim()
       };
@@ -518,10 +592,25 @@ document.addEventListener('DOMContentLoaded', () => {
     setVal('set-bio',         info.bio);
     setVal('set-bio-ar',      info.bio_ar);
 
+    // Load stats
+    const stats = info.stats || {};
+    setVal('stats-students',  stats.students);
+    setVal('stats-tutorials', stats.tutorials);
+    setVal('stats-views',     stats.views);
+
+    // Load YouTube section
+    const yt = info.youtube || {};
+    setVal('yt-section-title',     yt.title);
+    setVal('yt-section-title-ar',  yt.title_ar);
+    setVal('yt-section-desc',      yt.description);
+    setVal('yt-section-desc-ar',   yt.description_ar);
+    setVal('yt-badge-image',       yt.badgeImage);
+
     renderSkillsEditor();
     renderAchievementsEditor();
     renderTimelineEditor();
     renderLanguagesEditor();
+    renderTestimonialsEditor();
   }
 
   // ── Personal Info Save ─────────────────────────────────────────────────────
@@ -529,12 +618,33 @@ document.addEventListener('DOMContentLoaded', () => {
   if (settingsForm) {
     settingsForm.addEventListener('submit', async e => {
       e.preventDefault();
+
+      // Handle avatar file upload
+      let avatarUrl = document.getElementById('set-avatar').value.trim();
+      const avatarFile = document.getElementById('set-avatar-file').files[0];
+
+      if (avatarFile) {
+        // Convert file to base64
+        const reader = new FileReader();
+        const base64Promise = new Promise((resolve, reject) => {
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(avatarFile);
+        });
+        try {
+          avatarUrl = await base64Promise;
+        } catch (err) {
+          alert('فشل في تحويل الصورة');
+          return;
+        }
+      }
+
       const payload = {
         name:         document.getElementById('set-name').value.trim(),
         name_ar:      document.getElementById('set-name-ar').value.trim(),
         title:        document.getElementById('set-title').value.trim(),
         title_ar:     document.getElementById('set-title-ar').value.trim(),
-        avatar:       document.getElementById('set-avatar').value.trim(),
+        avatar:       avatarUrl,
         resumeUrl:    document.getElementById('set-resume').value.trim(),
         location:     document.getElementById('set-location').value.trim(),
         location_ar:  document.getElementById('set-location-ar').value.trim(),
@@ -547,11 +657,118 @@ document.addEventListener('DOMContentLoaded', () => {
         instagramUrl: document.getElementById('set-instagram').value.trim(),
         telegramUrl:  document.getElementById('set-telegram').value.trim(),
         bio:          document.getElementById('set-bio').value.trim(),
-        bio_ar:       document.getElementById('set-bio-ar').value.trim()
+        bio_ar:       document.getElementById('set-bio-ar').value.trim(),
+        stats: {
+          students:  document.getElementById('stats-students').value.trim(),
+          tutorials: document.getElementById('stats-tutorials').value.trim(),
+          views:     document.getElementById('stats-views').value.trim()
+        }
       };
       const res = await fetch(`${API_URL}/api/settings`, { method: 'POST', headers: authHeader, body: JSON.stringify(payload) });
-      if (res.ok) alert('✓ Profile saved successfully!');
-      else        alert('Failed to save profile.');
+      if (res.ok) {
+        alert('✓ Profile saved successfully!');
+        // Reload the page to show the updated avatar
+        window.location.reload();
+      }
+      else alert('Failed to save profile.');
+    });
+  }
+
+  // ── Stats Save ─────────────────────────────────────────────────────────────
+  const statsForm = document.getElementById('stats-settings-form');
+  if (statsForm) {
+    statsForm.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      const info = currentSettings.personalInfo || {};
+      const payload = {
+        name:         info.name,
+        name_ar:      info.name_ar,
+        title:        info.title,
+        title_ar:     info.title_ar,
+        avatar:       info.avatar,
+        resumeUrl:    info.resumeUrl,
+        location:     info.location,
+        location_ar:  info.location_ar,
+        email:        info.email,
+        whatsapp:     info.whatsapp,
+        githubUrl:    info.githubUrl,
+        linkedinUrl:  info.linkedinUrl,
+        youtubeUrl:   info.youtubeUrl,
+        facebookUrl:  info.facebookUrl,
+        instagramUrl: info.instagramUrl,
+        telegramUrl:  info.telegramUrl,
+        bio:          info.bio,
+        bio_ar:       info.bio_ar,
+        stats: {
+          students:  document.getElementById('stats-students').value.trim(),
+          tutorials: document.getElementById('stats-tutorials').value.trim(),
+          views:     document.getElementById('stats-views').value.trim()
+        }
+      };
+      const res = await fetch(`${API_URL}/api/settings`, { method: 'POST', headers: authHeader, body: JSON.stringify(payload) });
+      if (res.ok) alert('✓ Stats updated successfully!');
+      else        alert('Failed to update stats.');
+    });
+  }
+
+  // ── YouTube Section Save ─────────────────────────────────────────────────────
+  const ytSectionForm = document.getElementById('youtube-settings-form');
+  if (ytSectionForm) {
+    ytSectionForm.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      // Handle badge image file upload
+      let badgeImageUrl = document.getElementById('yt-badge-image').value.trim();
+      const badgeImageFile = document.getElementById('yt-badge-image-file').files[0];
+
+      if (badgeImageFile) {
+        const reader = new FileReader();
+        const base64Promise = new Promise((resolve, reject) => {
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(badgeImageFile);
+        });
+        try {
+          badgeImageUrl = await base64Promise;
+        } catch (err) {
+          alert('فشل في تحويل الصورة');
+          return;
+        }
+      }
+
+      const info = currentSettings.personalInfo || {};
+      const payload = {
+        name:         info.name,
+        name_ar:      info.name_ar,
+        title:        info.title,
+        title_ar:     info.title_ar,
+        avatar:       info.avatar,
+        resumeUrl:    info.resumeUrl,
+        location:     info.location,
+        location_ar:  info.location_ar,
+        email:        info.email,
+        whatsapp:     info.whatsapp,
+        githubUrl:    info.githubUrl,
+        linkedinUrl:  info.linkedinUrl,
+        youtubeUrl:   info.youtubeUrl,
+        facebookUrl:  info.facebookUrl,
+        instagramUrl: info.instagramUrl,
+        telegramUrl:  info.telegramUrl,
+        bio:          info.bio,
+        bio_ar:       info.bio_ar,
+        stats:        info.stats || {},
+        youtube: {
+          title:          document.getElementById('yt-section-title').value.trim(),
+          title_ar:       document.getElementById('yt-section-title-ar').value.trim(),
+          description:    document.getElementById('yt-section-desc').value.trim(),
+          description_ar: document.getElementById('yt-section-desc-ar').value.trim(),
+          badgeImage:     badgeImageUrl
+        }
+      };
+      const res = await fetch(`${API_URL}/api/settings`, { method: 'POST', headers: authHeader, body: JSON.stringify(payload) });
+      if (res.ok) alert('✓ YouTube section updated successfully!');
+      else        alert('Failed to update YouTube section.');
     });
   }
 
@@ -821,9 +1038,9 @@ document.addEventListener('DOMContentLoaded', () => {
     renderLanguagesEditor();
   };
 
-  const languagesForm = document.getElementById('languages-settings-form');
-  if (languagesForm) {
-    languagesForm.addEventListener('submit', async e => {
+  const langsForm = document.getElementById('languages-settings-form');
+  if (langsForm) {
+    langsForm.addEventListener('submit', async e => {
       e.preventDefault();
       syncLanguagesFromDOM();
       const res = await fetch(`${API_URL}/api/settings/languages`, { method: 'POST', headers: authHeader, body: JSON.stringify({ languages: currentSettings.languages }) });
@@ -832,6 +1049,71 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ── Testimonials Editor ────────────────────────────────────────────────────
+  function syncTestimonialsFromDOM() {
+    if (!currentSettings.testimonials) currentSettings.testimonials = [];
+    const names      = [...document.querySelectorAll('.tst-name-inp')];
+    const roles      = [...document.querySelectorAll('.tst-role-inp')];
+    const companies  = [...document.querySelectorAll('.tst-company-inp')];
+    const avatars    = [...document.querySelectorAll('.tst-avatar-inp')];
+    const messages   = [...document.querySelectorAll('.tst-message-inp')];
+    const messagesAr = [...document.querySelectorAll('.tst-message-ar-inp')];
+
+    currentSettings.testimonials = names.map((n, i) => ({
+      id:         (currentSettings.testimonials[i] && currentSettings.testimonials[i].id) || 'tst_' + Date.now() + '_' + i,
+      name:       n.value.trim(),
+      role:       roles[i].value.trim(),
+      company:    companies[i].value.trim(),
+      avatar:     avatars[i].value.trim(),
+      message:    messages[i].value.trim(),
+      message_ar: messagesAr[i].value.trim()
+    }));
+  }
+
+  function renderTestimonialsEditor() {
+    const listEl = document.getElementById('testimonials-editor-list');
+    if (!listEl) return;
+    listEl.innerHTML = '';
+    (currentSettings.testimonials || []).forEach((tst, idx) => {
+      listEl.innerHTML += `
+        <div class="list-editor-item" style="flex-direction: column; gap: 12px; margin-bottom: 24px; padding: 20px; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px;">
+          <div style="display: flex; gap: 12px;">
+            <input type="text" value="${tst.name}" placeholder="Name" class="form-input tst-name-inp" style="flex:1;" required>
+            <input type="text" value="${tst.role}" placeholder="Role" class="form-input tst-role-inp" style="flex:1;">
+            <input type="text" value="${tst.company}" placeholder="Company" class="form-input tst-company-inp" style="flex:1;">
+            <button type="button" onclick="removeTestimonialRow(${idx})" class="crud-btn delete" style="padding:10px 14px;">✕</button>
+          </div>
+          <input type="text" value="${tst.avatar}" placeholder="Avatar URL" class="form-input tst-avatar-inp">
+          <textarea placeholder="Message (EN)" class="form-input tst-message-inp" rows="2" required>${tst.message}</textarea>
+          <textarea placeholder="الرسالة (AR)" class="form-input tst-message-ar-inp" rows="2" required>${tst.message_ar || ''}</textarea>
+        </div>
+      `;
+    });
+  }
+
+  window.addTestimonialRow = () => {
+    syncTestimonialsFromDOM();
+    if (!currentSettings.testimonials) currentSettings.testimonials = [];
+    currentSettings.testimonials.push({ name: '', role: '', company: '', avatar: '', message: '', message_ar: '' });
+    renderTestimonialsEditor();
+  };
+
+  window.removeTestimonialRow = idx => {
+    syncTestimonialsFromDOM();
+    currentSettings.testimonials.splice(idx, 1);
+    renderTestimonialsEditor();
+  };
+
+  const tstForm = document.getElementById('testimonials-settings-form');
+  if (tstForm) {
+    tstForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      syncTestimonialsFromDOM();
+      const res = await fetch(`${API_URL}/api/settings/testimonials`, { method: 'POST', headers: authHeader, body: JSON.stringify({ testimonials: currentSettings.testimonials }) });
+      if (res.ok) { alert('✓ Testimonials updated!'); loadSettingsEditor(); }
+      else        alert('Failed to update testimonials.');
+    });
+  }
 
   // ── Boot ───────────────────────────────────────────────────────────────────
   loadOverviewData();

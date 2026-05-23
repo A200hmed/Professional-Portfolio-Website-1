@@ -308,6 +308,47 @@ document.addEventListener('DOMContentLoaded', () => {
       const res = await fetch(`${API_URL}/api/settings`);
       portfolioData = await res.json();
 
+      // Update stats from database
+      const stats = portfolioData.personalInfo?.stats || {};
+      if (stats.students) {
+        const el = document.getElementById('stat-students');
+        if (el) el.textContent = stats.students;
+      }
+      if (stats.tutorials) {
+        const el = document.getElementById('yt-stat-tutorials');
+        if (el) el.textContent = stats.tutorials;
+      }
+      if (stats.views) {
+        const el = document.getElementById('yt-stat-views');
+        if (el) el.textContent = stats.views;
+      }
+      if (stats.students) {
+        const el = document.getElementById('yt-stat-students');
+        if (el) el.textContent = stats.students;
+      }
+
+      // Update YouTube section from database
+      const yt = portfolioData.personalInfo?.youtube || {};
+      if (yt.title) {
+        const el = document.getElementById('yt-section-title');
+        if (el) el.textContent = yt.title;
+      }
+      if (yt.description) {
+        const el = document.getElementById('yt-section-desc');
+        if (el) el.textContent = yt.description;
+      }
+      if (yt.badgeImage) {
+        const el = document.getElementById('yt-badge-img');
+        if (el) el.src = yt.badgeImage;
+      }
+
+      // Update avatar from database
+      const info = portfolioData.personalInfo || {};
+      if (info.avatar) {
+        const el = document.getElementById('dev-avatar');
+        if (el) el.src = info.avatar;
+      }
+
       // Fetch projects
       await loadProjects();
 

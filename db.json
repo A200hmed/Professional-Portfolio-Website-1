@@ -6,7 +6,7 @@
     "title_ar": "مهندس برمجيات وصانع محتوى تعليمي",
     "bio": "I build modern web applications and create educational programming content. Highly passionate about teaching advanced system design, clean coding architectures, and modern cloud technologies to the next generation of engineers.",
     "bio_ar": "أقوم ببناء تطبيقات الويب الحديثة وصناعة المحتوى البرمجي التعليمي. لدي شغف كبير بتدريس تصميم النظم المتقدمة، وبنيات الأكواد النظيفة، وتقنيات السحاب الحديثة للجيل القادم من المهندسين.",
-    "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400",
+    "avatar": "/me.jpeg",
     "resumeUrl": "/mycv.pdf",
     "location": "Cairo, Egypt",
     "location_ar": "القاهرة، مصر",
@@ -18,7 +18,19 @@
     "facebookUrl": "https://facebook.com",
     "instagramUrl": "https://instagram.com",
     "telegramUrl": "https://telegram.me",
-    "twitterUrl": ""
+    "twitterUrl": "",
+    "stats": {
+      "students": "100K+",
+      "tutorials": "150+",
+      "views": "5M+"
+    },
+    "youtube": {
+      "title": "YouTube Content Creator",
+      "title_ar": "صانع محتوى يوتيوب",
+      "description": "Educating developers worldwide through structured programming tutorials, full-stack walkthroughs, and software engineering deep-dives.",
+      "description_ar": "تعليم المطورين حول العالم من خلال شروحات برمجية منظمة، وشرح شامل للمشاريع الكاملة، واستعراض عميق لهندسة البرمجيات.",
+      "badgeImage": ""
+    }
   },
   "skills": [
     {
@@ -258,7 +270,9 @@
       "url": "https://youtube.com",
       "thumbnail": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=300",
       "views": "120K Views",
-      "category": "Backend"
+      "category": "Backend",
+      "description": "Complete beginner guide to Node.js and Express framework",
+      "description_ar": "دليل كامل للمبتدئين في Node.js وإطار Express"
     },
     {
       "id": "y2",
@@ -267,7 +281,9 @@
       "url": "https://youtube.com",
       "thumbnail": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=300",
       "views": "85K Views",
-      "category": "Frontend"
+      "category": "Frontend",
+      "description": "Master Next.js 14 with App Router and Server Components",
+      "description_ar": "احتراف Next.js 14 مع App Router ومكونات الخادم"
     },
     {
       "id": "y3",
@@ -276,10 +292,49 @@
       "url": "https://youtube.com",
       "thumbnail": "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&q=80&w=300",
       "views": "64K Views",
-      "category": "Software Design"
+      "category": "Software Design",
+      "description": "Learn clean code principles and professional software architecture",
+      "description_ar": "تعلم مبادئ الأكواد النظيفة وبنية البرمجيات الاحترافية"
     }
   ],
-  "messages": [],
+  "messages": [
+    {
+      "id": "msg_1779570076366",
+      "name": "ع",
+      "email": "ahmedkhalad679@gmail.com",
+      "subject": "ت",
+      "message": "نخمةمةم",
+      "timestamp": "2026-05-23T21:01:16.366Z",
+      "read": false
+    },
+    {
+      "id": "msg_1779573297968",
+      "name": "ثث",
+      "email": "ahmed.khaled@devstudio.com",
+      "subject": "ت",
+      "message": "ىلهح3رصثحس",
+      "timestamp": "2026-05-23T21:54:57.968Z",
+      "read": false
+    },
+    {
+      "id": "msg_1779573377858",
+      "name": "عمر",
+      "email": "ahmedkhalad679@gmail.com",
+      "subject": "j",
+      "message": "jjio",
+      "timestamp": "2026-05-23T21:56:17.858Z",
+      "read": false
+    },
+    {
+      "id": "msg_1779573422703",
+      "name": "غريب",
+      "email": "ahmedkhalad679@gmail.com",
+      "subject": "اريد عمل",
+      "message": "شغل موقع ويب عالمي",
+      "timestamp": "2026-05-23T21:57:02.703Z",
+      "read": false
+    }
+  ],
   "achievements": [
     {
       "id": "a1",
