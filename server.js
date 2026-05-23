@@ -387,10 +387,15 @@ app.use((req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT, () => {
-    console.log('═════════════════════════════════════════════════');
-    console.log('  ✔  AHMED KHALED ANWAR — PORTFOLIO SERVER');
-    console.log(`  ✔  http://localhost:${PORT}`);
-    console.log('  ✔  Database layer initialized.');
-    console.log('═════════════════════════════════════════════════');
-});
+// Export the app for Vercel
+module.exports = app;
+
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log('═════════════════════════════════════════════════');
+        console.log('  ✔  AHMED KHALED ANWAR — PORTFOLIO SERVER');
+        console.log(`  ✔  http://localhost:${PORT}`);
+        console.log('  ✔  Database layer initialized.');
+        console.log('═════════════════════════════════════════════════');
+    });
+}

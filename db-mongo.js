@@ -201,7 +201,13 @@ async function readLocalJSON() {
 }
 
 async function writeLocalJSON(data) {
-    await fs.writeFile(DB_PATH, JSON.stringify(data, null, 2), 'utf8');
+    try {
+        await fs.writeFile(DB_PATH, JSON.stringify(data, null, 2), 'utf8');
+    } catch (err) {
+        // If we are on Vercel, the filesystem is read-only.
+        // We log it but don't throw error to allow the request to continue (sending email)
+        console.warn('⚠️ Local DB write skipped (likely read-only filesystem).');
+    }
 }
 
 // Global variable representing connected state
