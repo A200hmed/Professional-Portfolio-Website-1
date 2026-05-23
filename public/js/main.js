@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let testimonialsData = [];
   let currentLang = localStorage.getItem('portfolio-lang') || 'en';
 
-  const API_URL = '';
+  const API_URL = window.location.origin;
 
   // Element Refs
   const titleEl = document.getElementById('dev-title');
