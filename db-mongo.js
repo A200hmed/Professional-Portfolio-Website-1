@@ -222,6 +222,10 @@ async function writeLocalJSON(data) {
 // Global variable representing connected state
 let isConnected = false;
 
+function getIsConnected() {
+    return isConnected;
+}
+
 // Initialize connection and sets state
 async function initConnection() {
     isConnected = await connectDB();
@@ -621,6 +625,7 @@ async function deleteMessage(id) {
 
 module.exports = {
     initConnection,
+    getIsConnected,
     readDB,
     updatePersonalInfo,
     saveArrayField,

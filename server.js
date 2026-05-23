@@ -11,19 +11,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Initialize Database Connection and ensure it waits
-let dbInitialized = false;
-async function startDB() {
-    await dbMongo.initConnection();
-    dbInitialized = true;
+async function ensureDB() {
+    if (!dbMongo.getIsConnected()) {
+        await dbMongo.initConnection();
+    }
 }
-startDB();
+ensureDB();
 
 // Middleware to ensure DB is connected before any request
 app.use(async(req, res, next) => {
-    if (!dbInitialized) {
-        await dbMongo.initConnection();
-        dbInitialized = true;
-    }
+    await ensureDB();
     next();
 });
 
