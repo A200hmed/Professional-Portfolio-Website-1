@@ -52,10 +52,13 @@ ${message}
 
   try {
     const info = await transporter.sendMail(mailOptions);
-    console.log('📧 Contact email sent: ' + info.messageId);
+    console.log('📧 Contact email sent successfully: ' + info.messageId);
     return true;
   } catch (error) {
-    console.error('❌ Error sending contact email:', error);
+    console.error('❌ Nodemailer Error:', error.message);
+    if (error.code === 'EAUTH') {
+      console.error('🔒 Authentication failed. Please check your EMAIL_USER and EMAIL_PASS (App Password).');
+    }
     return false;
   }
 }

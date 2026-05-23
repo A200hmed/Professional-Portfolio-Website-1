@@ -333,8 +333,12 @@ app.post('/api/contact', contactLimiter, async(req, res) => {
     };
     await dbMongo.addMessage(msg);
 
-    // Send email notification (asynchronously, don't block the response)
-    mailer.sendContactEmail(msg).catch(err => console.error('Background email error:', err));
+    // Send email notification (Wait for it to finish on serverless environments like Vercel)
+    try {
+        await mailer.sendContactEmail(msg);
+    } catch (err) {
+        console.error('Email sending failed:', err);
+    }
 
     res.status(201).json({ success: true });
 });
