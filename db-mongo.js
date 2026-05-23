@@ -219,16 +219,16 @@ async function writeLocalJSON(data) {
     }
 }
 
-// Global variable representing connected state
-let isConnected = false;
-
-function getIsConnected() {
+// Initialize connection and sets state
+async function initConnection() {
+    if (mongoose.connection.readyState === 1) return true;
+    isConnected = await connectDB();
     return isConnected;
 }
 
-// Initialize connection and sets state
-async function initConnection() {
-    isConnected = await connectDB();
+function getIsConnected() {
+    // 1 = connected, 2 = connecting
+    return mongoose.connection.readyState === 1 || mongoose.connection.readyState === 2;
 }
 
 // ── CRUD Functions with fallback ───────────────────────────────────────
