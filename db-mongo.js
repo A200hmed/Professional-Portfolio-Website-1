@@ -274,25 +274,29 @@ async function initConnection() {
 
 // ── CRUD Functions with fallback ───────────────────────────────────────
 async function readDB() {
-    await initConnection();
-    if (mongoose.connection.readyState === 1) {
+    // Attempt connection but don't wait forever
+    const connected = await Promise.race([
+        initConnection(),
+        new Promise(resolve => setTimeout(() => resolve(false), 3000))
+    ]);
+
+    if (connected && mongoose.connection.readyState === 1) {
         try {
-            let info = await PersonalInfo.findOne();
-            if (!info) {
-                info = await PersonalInfo.create(JSON_DEFAULT.personalInfo);
-            }
-            const skills = await Skill.find();
-            const languages = await Language.find();
-            const timeline = await Timeline.find();
-            const achievements = await Achievement.find();
-            const testimonials = await Testimonial.find();
-            const certificates = await Certificate.find();
-            const youtubeVideos = await YoutubeVideo.find();
-            const projects = await Project.find();
-            const messages = await Message.find();
+            const [info, skills, languages, timeline, achievements, testimonials, certificates, youtubeVideos, projects, messages] = await Promise.all([
+                PersonalInfo.findOne(),
+                Skill.find(),
+                Language.find(),
+                Timeline.find(),
+                Achievement.find(),
+                Testimonial.find(),
+                Certificate.find(),
+                YoutubeVideo.find(),
+                Project.find(),
+                Message.find()
+            ]);
 
             return {
-                personalInfo: info.toObject(),
+                personalInfo: info ? info.toObject() : JSON_DEFAULT.personalInfo,
                 skills: skills.map(s => s.toObject()),
                 languages: languages.map(l => l.toObject()),
                 timeline: timeline.map(t => t.toObject()),
@@ -304,11 +308,12 @@ async function readDB() {
                 messages: messages.map(m => m.toObject())
             };
         } catch (err) {
-            console.error('❌ MongoDB Read Error:', err.message);
-            return JSON_DEFAULT; // Safe fallback
+            console.error('❌ MongoDB Read Error, using local JSON:', err.message);
         }
     }
-    return JSON_DEFAULT; // Safe fallback if not connected
+    
+    // Ultimate fallback: Always return local data to ensure website works
+    return readLocalJSON();
 }
 
 async function updatePersonalInfo(infoData) {
