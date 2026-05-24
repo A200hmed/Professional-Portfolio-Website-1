@@ -4,10 +4,6 @@
     {
       "src": "server.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -16,16 +12,12 @@
       "dest": "server.js"
     },
     {
+      "src": "/(.*\\.[a-zA-Z0-9]+)",
+      "dest": "server.js"
+    },
+    {
       "src": "/(.*)",
-      "dest": "public/$1",
-      "continue": true
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/.*",
-      "dest": "public/index.html"
+      "dest": "server.js"
     }
   ]
 }

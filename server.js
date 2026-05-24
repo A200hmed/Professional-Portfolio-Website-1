@@ -175,33 +175,58 @@ app.post('/api/settings', requireAuth, async(req, res) => {
 
 // ── Array Settings ─────────────────────────────────────────────────────────────
 app.post('/api/settings/skills', requireAuth, async(req, res) => {
-    const list = Array.isArray(req.body.skills) ? req.body.skills : [];
-    await dbMongo.saveArrayField('skills', list);
-    res.json({ success: true, skills: list });
+    try {
+        const list = Array.isArray(req.body.skills) ? req.body.skills : [];
+        await dbMongo.saveArrayField('skills', list);
+        res.json({ success: true, skills: list });
+    } catch (err) {
+        console.error('❌ Error in POST /api/settings/skills:', err.message);
+        res.status(500).json({ error: 'Failed to update skills: ' + err.message });
+    }
 });
 
 app.post('/api/settings/languages', requireAuth, async(req, res) => {
-    const list = Array.isArray(req.body.languages) ? req.body.languages : [];
-    await dbMongo.saveArrayField('languages', list);
-    res.json({ success: true, languages: list });
+    try {
+        const list = Array.isArray(req.body.languages) ? req.body.languages : [];
+        await dbMongo.saveArrayField('languages', list);
+        res.json({ success: true, languages: list });
+    } catch (err) {
+        console.error('❌ Error in POST /api/settings/languages:', err.message);
+        res.status(500).json({ error: 'Failed to update languages: ' + err.message });
+    }
 });
 
 app.post('/api/settings/timeline', requireAuth, async(req, res) => {
-    const list = Array.isArray(req.body.timeline) ? req.body.timeline : [];
-    await dbMongo.saveArrayField('timeline', list);
-    res.json({ success: true, timeline: list });
+    try {
+        const list = Array.isArray(req.body.timeline) ? req.body.timeline : [];
+        await dbMongo.saveArrayField('timeline', list);
+        res.json({ success: true, timeline: list });
+    } catch (err) {
+        console.error('❌ Error in POST /api/settings/timeline:', err.message);
+        res.status(500).json({ error: 'Failed to update timeline: ' + err.message });
+    }
 });
 
 app.post('/api/settings/achievements', requireAuth, async(req, res) => {
-    const list = Array.isArray(req.body.achievements) ? req.body.achievements : [];
-    await dbMongo.saveArrayField('achievements', list);
-    res.json({ success: true, achievements: list });
+    try {
+        const list = Array.isArray(req.body.achievements) ? req.body.achievements : [];
+        await dbMongo.saveArrayField('achievements', list);
+        res.json({ success: true, achievements: list });
+    } catch (err) {
+        console.error('❌ Error in POST /api/settings/achievements:', err.message);
+        res.status(500).json({ error: 'Failed to update achievements: ' + err.message });
+    }
 });
 
 app.post('/api/settings/testimonials', requireAuth, async(req, res) => {
-    const list = Array.isArray(req.body.testimonials) ? req.body.testimonials : [];
-    await dbMongo.saveArrayField('testimonials', list);
-    res.json({ success: true, testimonials: list });
+    try {
+        const list = Array.isArray(req.body.testimonials) ? req.body.testimonials : [];
+        await dbMongo.saveArrayField('testimonials', list);
+        res.json({ success: true, testimonials: list });
+    } catch (err) {
+        console.error('❌ Error in POST /api/settings/testimonials:', err.message);
+        res.status(500).json({ error: 'Failed to update testimonials: ' + err.message });
+    }
 });
 
 // ── Certificates ────────────────────────────────────────────────────────────────
@@ -437,7 +462,8 @@ app.use((req, res) => {
 // Export the app for Vercel
 module.exports = app;
 
-if (process.env.NODE_ENV !== 'production') {
+// Start local server only when NOT running on Vercel (Vercel sets process.env.VERCEL=1)
+if (!process.env.VERCEL) {
     app.listen(PORT, () => {
         console.log('═════════════════════════════════════════════════');
         console.log('  ✔  AHMED KHALED ANWAR — PORTFOLIO SERVER');

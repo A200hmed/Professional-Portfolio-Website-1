@@ -111,7 +111,9 @@ const YoutubeVideoSchema = new mongoose.Schema({
     url: String,
     thumbnail: String,
     views: String,
-    category: String
+    category: String,
+    description: String,
+    description_ar: String
 });
 
 const ProjectSchema = new mongoose.Schema({
@@ -303,7 +305,13 @@ async function updatePersonalInfo(infoData) {
             if (!info) {
                 info = new PersonalInfo(infoData);
             } else {
-                Object.assign(info, infoData);
+                // Use set() for top-level fields
+                Object.keys(infoData).forEach(key => {
+                    info.set(key, infoData[key]);
+                });
+                // Explicitly mark nested objects as modified so Mongoose detects the change
+                if (infoData.stats) info.markModified('stats');
+                if (infoData.youtube) info.markModified('youtube');
             }
             await info.save();
             console.log('✅ PersonalInfo updated successfully in MongoDB Atlas');
@@ -350,7 +358,12 @@ async function saveArrayField(fieldName, arrayData) {
             }
             await Model.deleteMany({});
             if (arrayData && arrayData.length > 0) {
-                await Model.insertMany(arrayData);
+                // Strip Mongoose _id and __v fields to avoid immutable field errors on re-insert
+                const cleanData = arrayData.map(item => {
+                    const { _id, __v, ...rest } = (item.toObject ? item.toObject() : item);
+                    return rest;
+                });
+                await Model.insertMany(cleanData);
             }
             console.log(`✅ Array field [${fieldName}] updated successfully in MongoDB Atlas (${arrayData.length} items)`);
             return true;

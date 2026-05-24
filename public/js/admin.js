@@ -310,7 +310,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const method = editingProjectId ? 'PUT' : 'POST';
       const res    = await fetch(url, { method, headers: authHeader, body: JSON.stringify(payload) });
       if (res.ok) { closeProjectForm(); loadProjectsCRUD(); }
-      else alert('Failed to save project.');
+      else {
+        const err = await res.json().catch(() => ({}));
+        alert('❌ Failed to save project: ' + (err.error || res.statusText));
+      }
     });
   }
 
@@ -432,7 +435,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const method = editingYTId ? 'PUT' : 'POST';
       const res    = await fetch(url, { method, headers: authHeader, body: JSON.stringify(payload) });
       if (res.ok) { closeYTForm(); loadYTCRUD(); }
-      else alert('Failed to save video.');
+      else {
+        const err = await res.json().catch(() => ({}));
+        alert('❌ Failed to save video: ' + (err.error || res.statusText));
+      }
     });
   }
 
@@ -553,7 +559,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const method = editingCertId ? 'PUT' : 'POST';
       const res    = await fetch(url, { method, headers: authHeader, body: JSON.stringify(payload) });
       if (res.ok) { closeCertForm(); loadCertsCRUD(); }
-      else alert('Failed to save certificate.');
+      else {
+        const err = await res.json().catch(() => ({}));
+        alert('❌ Failed to save certificate: ' + (err.error || res.statusText));
+      }
     });
   }
 
@@ -832,7 +841,10 @@ document.addEventListener('DOMContentLoaded', () => {
       syncSkillsFromDOM();
       const res = await fetch(`${API_URL}/api/settings/skills`, { method: 'POST', headers: authHeader, body: JSON.stringify({ skills: currentSettings.skills }) });
       if (res.ok) { alert('✓ Skills updated!'); loadSettingsEditor(); }
-      else        alert('Failed to update skills.');
+      else {
+        const err = await res.json().catch(() => ({}));
+        alert('❌ Failed to update skills: ' + (err.error || res.statusText));
+      }
     });
   }
 
@@ -899,7 +911,10 @@ document.addEventListener('DOMContentLoaded', () => {
       syncAchievementsFromDOM();
       const res = await fetch(`${API_URL}/api/settings/achievements`, { method: 'POST', headers: authHeader, body: JSON.stringify({ achievements: currentSettings.achievements }) });
       if (res.ok) { alert('✓ Honors updated!'); loadSettingsEditor(); }
-      else        alert('Failed to update honors.');
+      else {
+        const err = await res.json().catch(() => ({}));
+        alert('❌ Failed to update honors: ' + (err.error || res.statusText));
+      }
     });
   }
 
@@ -979,7 +994,10 @@ document.addEventListener('DOMContentLoaded', () => {
       syncTimelineFromDOM();
       const res = await fetch(`${API_URL}/api/settings/timeline`, { method: 'POST', headers: authHeader, body: JSON.stringify({ timeline: currentSettings.timeline }) });
       if (res.ok) { alert('✓ Timeline updated!'); loadSettingsEditor(); }
-      else        alert('Failed to update timeline.');
+      else {
+        const err = await res.json().catch(() => ({}));
+        alert('❌ Failed to update timeline: ' + (err.error || res.statusText));
+      }
     });
   }
 
@@ -1047,7 +1065,10 @@ document.addEventListener('DOMContentLoaded', () => {
       syncLanguagesFromDOM();
       const res = await fetch(`${API_URL}/api/settings/languages`, { method: 'POST', headers: authHeader, body: JSON.stringify({ languages: currentSettings.languages }) });
       if (res.ok) { alert('✓ Languages updated!'); loadSettingsEditor(); }
-      else        alert('Failed to update languages.');
+      else {
+        const err = await res.json().catch(() => ({}));
+        alert('❌ Failed to update languages: ' + (err.error || res.statusText));
+      }
     });
   }
 
@@ -1113,7 +1134,10 @@ document.addEventListener('DOMContentLoaded', () => {
       syncTestimonialsFromDOM();
       const res = await fetch(`${API_URL}/api/settings/testimonials`, { method: 'POST', headers: authHeader, body: JSON.stringify({ testimonials: currentSettings.testimonials }) });
       if (res.ok) { alert('✓ Testimonials updated!'); loadSettingsEditor(); }
-      else        alert('Failed to update testimonials.');
+      else {
+        const err = await res.json().catch(() => ({}));
+        alert('❌ Failed to update testimonials: ' + (err.error || res.statusText));
+      }
     });
   }
 
