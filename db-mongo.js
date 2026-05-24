@@ -240,7 +240,7 @@ async function initConnection() {
 // ── CRUD Functions with fallback ───────────────────────────────────────
 async function readDB() {
     await initConnection();
-    if (getIsConnected()) {
+    if (mongoose.connection.readyState === 1) {
         try {
             let info = await PersonalInfo.findOne();
             if (!info) {
@@ -269,12 +269,11 @@ async function readDB() {
                 messages: messages.map(m => m.toObject())
             };
         } catch (err) {
-            console.error('Failed to read from MongoDB. Falling back to local JSON.', err);
-            return readLocalJSON();
+            console.error('❌ MongoDB Read Error:', err.message);
+            return JSON_DEFAULT; // Safe fallback
         }
-    } else {
-        return readLocalJSON();
     }
+    return JSON_DEFAULT; // Safe fallback if not connected
 }
 
 async function updatePersonalInfo(infoData) {
