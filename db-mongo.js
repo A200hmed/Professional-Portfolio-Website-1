@@ -156,34 +156,63 @@ const YoutubeVideo = mongoose.models.YoutubeVideo || mongoose.model('YoutubeVide
 const Project = mongoose.models.Project || mongoose.model('Project', ProjectSchema);
 const Message = mongoose.models.Message || mongoose.model('Message', MessageSchema);
 
-// JSON default empty structure
+// JSON default structure WITH YOUR REAL DATA as emergency fallback
 const JSON_DEFAULT = {
     personalInfo: {
-        name: 'Ahmed Khaled Anwar',
-        title: 'Software Engineer & Educational Content Creator',
-        bio: '',
-        avatar: '',
-        resumeUrl: '',
-        location: 'Cairo, Egypt',
-        email: '',
-        whatsapp: '',
-        githubUrl: '',
-        linkedinUrl: '',
-        youtubeUrl: '',
-        facebookUrl: '',
-        instagramUrl: '',
-        telegramUrl: '',
-        twitterUrl: ''
+        name: "Ahmed Khaled Anwar",
+        name_ar: "أحمد خالد أنور",
+        title: "Software Engineer & Educational Content Creator",
+        title_ar: "مهندس برمجيات وصانع محتوى تعليمي",
+        bio: "I build modern web applications and create educational programming content.",
+        bio_ar: "أقوم ببناء تطبيقات الويب الحديثة وصناعة المحتوى البرمجي التعليمي.",
+        avatar: "/me.jpeg",
+        resumeUrl: "/mycv.pdf",
+        location: "Cairo, Egypt",
+        location_ar: "القاهرة، مصر",
+        email: "ahmedkhalad679@gmail.com",
+        whatsapp: "https://wa.me/201123313248",
+        githubUrl: "https://github.com/A200hmed",
+        linkedinUrl: "https://www.linkedin.com/in/ahmed-khaled-ba87742b0?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+        youtubeUrl: "https://youtube.com/@zerotocode-c4o?si=pIeefGHqTA4dn4dR",
+        facebookUrl: "https://www.facebook.com/share/1EGhxW6v3a/",
+        instagramUrl: "https://www.tiktok.com/@ahmedkhalad26?_r=1&_t=ZS-96dB7dWFo1d",
+        telegramUrl: "https://t.me/A1KAAB",
+        twitterUrl: "",
+        stats: { students: "100K+", tutorials: "150+", views: "5M+" },
+        youtube: {
+            title: "YouTube Content Creator",
+            title_ar: "صانع محتوى يوتيوب",
+            description: "Educating developers worldwide.",
+            description_ar: "تعليم المطورين حول العالم.",
+            badgeImage: ""
+        }
     },
-    skills: [],
-    languages: [],
-    timeline: [],
-    achievements: [],
+    skills: [
+        { id: "s1", name: "Mobile App Development", name_ar: "تطوير تطبيقات الموبايل", category: "dev", level: 90 },
+        { id: "s2", name: "Web Development (HTML, PHP)", name_ar: "تطوير الويب (HTML, PHP)", category: "dev", level: 85 },
+        { id: "s4", name: "Cisco Networking", name_ar: "Cisco Networking", category: "networking", level: 88 },
+        { id: "s9", name: "Cyber Security", name_ar: "الأمن السيبراني", category: "cybersecurity", level: 87 }
+    ],
+    languages: [
+        { id: "l1", name: "JavaScript", name_ar: "جافا سكريبت", level: 92, color: "#f59e0b", icon: "⚡", category: "frontend" },
+        { id: "l5", name: "Node.js", name_ar: "نود جي إس", level: 90, color: "#22c55e", icon: "🟢", category: "backend" }
+    ],
+    timeline: [
+        { id: "t1", type: "experience", role: "Principal Tech Instructor", role_ar: "المدرب والمطور الرئيسي", company: "YouTube", company_ar: "يوتيوب", duration: "2021 - Present", description: "100K+ developers", description_ar: "تعليم أكثر من 100 ألف مطور" }
+    ],
+    achievements: [
+        { id: "a1", title: "MVP Instructor", title_ar: "أفضل مدرب برمجيات", issuer: "Dev Academy", issuer_ar: "أكاديمية المطورين", year: "2025", icon: "award" }
+    ],
+    certificates: [
+        { id: "cert_ccna_enterprise", title: "CCNA: Enterprise Networking", title_ar: "CCNA: شبكات المؤسسات", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/CCNA-_Enterprise_Networking-_Security-_and_Automation.pdf" },
+        { id: "cert_ccna_intro", title: "CCNA: Introduction to Networks", title_ar: "CCNA: مقدمة في الشبكات", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/CCNA-_Introduction_to_Networks.pdf" }
+    ],
+    projects: [
+        { id: "p1", title: "CodeCamp LMS", title_ar: "كود كامب", description: "LMS platform", description_ar: "منصة تعليمية", category: "fullstack", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3", tags: ["React", "Node.js"], featured: true }
+    ],
     testimonials: [],
-    certificates: [],
     youtubeVideos: [],
-    messages: [],
-    projects: []
+    messages: []
 };
 
 // Load local data as a module to ensure Vercel bundles it
@@ -196,15 +225,11 @@ try {
 
 // JSON Helper functions
 async function readLocalJSON() {
-    // Priority 1: Try to read fresh file (local dev only)
-    if (!process.env.VERCEL) {
-        try {
-            const data = await fs.readFile(DB_PATH, 'utf8');
-            return JSON.parse(data);
-        } catch (e) { /* fallback */ }
+    // If we have a bundled module with data, use it (it has certificates/social links)
+    if (LOCAL_DATA_MODULE && LOCAL_DATA_MODULE.personalInfo) {
+        return LOCAL_DATA_MODULE;
     }
-    // Priority 2: Use bundled module data (Vercel production)
-    return LOCAL_DATA_MODULE || JSON_DEFAULT;
+    return JSON_DEFAULT;
 }
 
 async function writeLocalJSON(data) {
