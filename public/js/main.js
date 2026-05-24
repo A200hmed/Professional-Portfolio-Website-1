@@ -592,23 +592,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     certificates.forEach(cert => {
       const displayTitle = currentLang === 'ar' ? (cert.title_ar || cert.title) : cert.title;
-      const isPdf = cert.image.toLowerCase().endsWith('.pdf');
       
-      // Use Google Docs Viewer to preview PDF as an image
-      const previewUrl = isPdf 
-        ? `https://docs.google.com/viewer?url=${encodeURIComponent(window.location.origin + cert.image)}&embedded=true`
-        : cert.image;
-
-      const previewHtml = isPdf 
-        ? `<iframe src="${previewUrl}" class="cert-carousel-img" style="border: none; pointer-events: none;"></iframe>`
-        : `<img src="${cert.image}" alt="${displayTitle}" class="cert-carousel-img" loading="lazy">`;
+      // Professional Icon based on certificate type
+      let icon = '📜';
+      if (displayTitle.toLowerCase().includes('ccna')) icon = '🌐';
+      if (displayTitle.toLowerCase().includes('security')) icon = '🛡️';
+      if (displayTitle.toLowerCase().includes('enterprise')) icon = '🏢';
 
       container.insertAdjacentHTML('beforeend', `
         <a href="${cert.image}" target="_blank" class="cert-carousel-card" style="text-decoration: none; cursor: pointer;">
-          <div class="cert-img-container">
-            ${previewHtml}
+          <div class="cert-img-container" style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(56,189,248,0.1), rgba(59,130,246,0.1));">
+            <div style="font-size: 4rem; filter: drop-shadow(0 0 10px rgba(56,189,248,0.3));">${icon}</div>
             <div class="cert-overlay">
-              <span>🔍 View Full PDF</span>
+              <span>📄 Open Certificate</span>
             </div>
           </div>
           <div class="cert-carousel-label">
