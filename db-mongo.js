@@ -213,108 +213,44 @@ function getIsConnected() {
 }
 
 // Global variable to cache the connection
-let cachedConnection = null;
-let lastError = null;
+let cachedPromise = null;
 
-function getLastError() {
-    return lastError;
-}
-
-// Initialize connection and sets state (Singleton Pattern for Vercel)
+// Initialize connection (Standard Singleton for Vercel)
 async function initConnection() {
     if (mongoose.connection.readyState === 1) return true;
-    if (cachedConnection) {
+
+    if (cachedPromise) {
         try {
-            await cachedConnection;
+            await cachedPromise;
             return true;
         } catch (e) {
-            cachedConnection = null; // Reset if failed
+            cachedPromise = null;
         }
     }
 
-    let uri = process.env.MONGODB_URI;
+    const uri = (process.env.MONGODB_URI || '').trim().replace(/^["'](.+)["']$/, '$1');
     
-    // Check if the URI is a placeholder or missing
-    const isPlaceholder = !uri || uri.includes('<db_password>') || uri.trim() === '';
-    if (isPlaceholder) {
-        console.log('⚠️ MONGODB_URI is missing or contains placeholder. Using secure fallback connection...');
-        uri = 'mongodb+srv://ahmedkhalad679_db_user:AhmedKhaled2026@cluster0.tikaf2t.mongodb.net/?appName=Cluster0';
+    if (!uri || uri.includes('<')) {
+        throw new Error('MONGODB_URI is missing or not configured correctly in Vercel Environment Variables.');
     }
 
-    uri = uri.trim().replace(/^["'](.+)["']$/, '$1');
-
-    // Helper to safely encode username and password in connection string
-    const formatUri = (rawUri) => {
-        try {
-            const protocolMatch = rawUri.match(/^(mongodb(?:\+srv)?:\/\/)/i);
-            if (protocolMatch) {
-                const protocol = protocolMatch[1];
-                const rest = rawUri.slice(protocol.length);
-                const lastAtIndex = rest.lastIndexOf('@');
-                if (lastAtIndex !== -1) {
-                    const credentials = rest.substring(0, lastAtIndex);
-                    const hostAndQuery = rest.substring(lastAtIndex + 1);
-                    const firstColonIndex = credentials.indexOf(':');
-                    if (firstColonIndex !== -1) {
-                        const username = credentials.substring(0, firstColonIndex);
-                        const password = credentials.substring(firstColonIndex + 1);
-                        const safeEncode = (str) => {
-                            if (/%[0-9a-fA-F]{2}/.test(str)) return str;
-                            return encodeURIComponent(str);
-                        };
-                        return `${protocol}${safeEncode(username)}:${safeEncode(password)}@${hostAndQuery}`;
-                    }
-                }
-            }
-        } catch (e) {
-            console.warn('⚠️ MongoDB URI auto-encode failed:', e.message);
-        }
-        return rawUri;
+    const opts = {
+        serverSelectionTimeoutMS: 10000,
+        socketTimeoutMS: 45000,
+        connectTimeoutMS: 10000,
+        maxPoolSize: 1
     };
-
-    uri = formatUri(uri);
 
     try {
         console.log('🔌 Connecting to MongoDB Atlas...');
-        cachedConnection = mongoose.connect(uri, {
-            serverSelectionTimeoutMS: 10000,
-            socketTimeoutMS: 45000,
-            connectTimeoutMS: 10000,
-            maxPoolSize: 1
-        });
-
-        await cachedConnection;
+        cachedPromise = mongoose.connect(uri, opts);
+        await cachedPromise;
         console.log('🚀 MongoDB Connected successfully!');
-        lastError = null;
         return true;
     } catch (err) {
-        cachedConnection = null;
-        lastError = err.message;
+        cachedPromise = null;
         console.error('❌ MongoDB Connection Error:', err.message);
-        
-        // If it failed and we didn't try the fallback yet, retry with the verified fallback!
-        const fallbackUri = 'mongodb+srv://ahmedkhalad679_db_user:AhmedKhaled2026@cluster0.tikaf2t.mongodb.net/?appName=Cluster0';
-        if (uri !== formatUri(fallbackUri)) {
-            console.log('🔄 Retrying with secure hardcoded connection fallback...');
-            try {
-                uri = formatUri(fallbackUri);
-                cachedConnection = mongoose.connect(uri, {
-                    serverSelectionTimeoutMS: 10000,
-                    socketTimeoutMS: 45000,
-                    connectTimeoutMS: 10000,
-                    maxPoolSize: 1
-                });
-                await cachedConnection;
-                console.log('🚀 MongoDB Connected successfully via secure fallback!');
-                lastError = null;
-                return true;
-            } catch (fallbackErr) {
-                cachedConnection = null;
-                lastError = fallbackErr.message;
-                console.error('❌ Fallback Connection failed too:', fallbackErr.message);
-            }
-        }
-        return false;
+        throw new Error(`Database connection failed: ${err.message}`);
     }
 }
 

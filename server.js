@@ -80,21 +80,6 @@ function requireAuth(req, res, next) {
     }
 }
 
-// ── Debug Route (Only for diagnosis) ──────────────────────────────────────────
-app.get('/api/debug-status', async(req, res) => {
-    const uri = process.env.MONGODB_URI || '';
-    const maskedUri = uri.replace(/:([^@]+)@/, ':****@');
-    res.json({
-        connected: dbMongo.getIsConnected(),
-        last_error: dbMongo.getLastError(),
-        node_env: process.env.NODE_ENV,
-        uri_detected: !!uri,
-        uri_length: uri.length,
-        uri_preview: maskedUri,
-        mongoose_state: require('mongoose').connection.readyState
-    });
-});
-
 // ══════════════════════════════════════════════════════════════════════════════
 // AUTH
 // ══════════════════════════════════════════════════════════════════════════════
