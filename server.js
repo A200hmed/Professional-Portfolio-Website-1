@@ -43,18 +43,6 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Middleware to ensure DB is connected for API requests
-app.use(async(req, res, next) => {
-    if (req.path.startsWith('/api/')) {
-        try {
-            await dbMongo.initConnection();
-        } catch (e) {
-            console.error('DB Init Error:', e.message);
-        }
-    }
-    next();
-});
-
 // Rate Limiter for contact form submissions
 const contactLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes

@@ -213,22 +213,33 @@ function getIsConnected() {
     return mongoose.connection.readyState === 1;
 }
 
-// Initialize connection (Standard Serverless Pattern)
+// Global promise to cache the connection
+let cachedPromise = null;
+
+// Initialize connection (Standard & Optimized for Vercel)
 async function initConnection() {
-    if (mongoose.connection.readyState >= 1) return true;
+    if (mongoose.connection.readyState === 1) return true;
+    
+    if (!cachedPromise) {
+        const uri = (process.env.MONGODB_URI || '').trim().replace(/^["'](.+)["']$/, '$1').replace(/[\r\n\t]/g, '');
+        if (!uri) return false;
 
-    const uri = (process.env.MONGODB_URI || '').trim().replace(/^["'](.+)["']$/, '$1').replace(/[\r\n\t]/g, '');
-    if (!uri) return false;
-
-    try {
-        await mongoose.connect(uri, {
+        cachedPromise = mongoose.connect(uri, {
             serverSelectionTimeoutMS: 5000,
             maxPoolSize: 1,
-            bufferCommands: false
+            bufferCommands: false,
+            connectTimeoutMS: 10000
+        }).catch(err => {
+            cachedPromise = null;
+            console.error('❌ MongoDB Connection Error:', err.message);
+            return null;
         });
-        return true;
+    }
+
+    try {
+        const conn = await cachedPromise;
+        return !!conn;
     } catch (err) {
-        console.error('❌ MongoDB Connection Error:', err.message);
         return false;
     }
 }
