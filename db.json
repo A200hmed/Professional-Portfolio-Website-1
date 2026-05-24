@@ -235,7 +235,8 @@
             "description_ar": "تخرجت بمرتبة الشرف. تخصصت في هندسة البرمجيات، وأنظمة قواعد البيانات، وبنية الشبكات."
         }
     ],
-    "certificates": [{
+    "certificates": [
+        {
             "id": "cert_ccna_enterprise",
             "title": "CCNA: Enterprise Networking, Security, and Automation",
             "title_ar": "CCNA: شبكات المؤسسات والأمن والأتمتة",
@@ -276,17 +277,6 @@
             "issuer_ar": "أكاديمية سيسكو للشبكات",
             "year": "2024",
             "image": "/certificates/Cisco-Certificate-1.pdf",
-            "description": "Professional certificate in networking.",
-            "description_ar": "شهادة احترافية في مجال الشبكات."
-        },
-        {
-            "id": "cert_cisco_2",
-            "title": "Cisco Networking Academy Certificate",
-            "title_ar": "شهادة أكاديمية سيسكو للشبكات",
-            "issuer": "Cisco Networking Academy",
-            "issuer_ar": "أكاديمية سيسكو للشبكات",
-            "year": "2024",
-            "image": "/certificates/Cisco-Certificate-2.pdf",
             "description": "Professional certificate in networking.",
             "description_ar": "شهادة احترافية في مجال الشبكات."
         },
