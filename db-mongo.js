@@ -261,7 +261,8 @@ async function initConnection() {
 
 // ── CRUD Functions with fallback ───────────────────────────────────────
 async function readDB() {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             let info = await PersonalInfo.findOne();
             if (!info) {
@@ -407,7 +408,8 @@ async function addCertificate(cert) {
 }
 
 async function updateCertificate(id, updateData) {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             const res = await Certificate.findOneAndUpdate({ id }, updateData, { new: true });
             console.log('✅ Certificate updated in MongoDB');
@@ -429,7 +431,8 @@ async function updateCertificate(id, updateData) {
 }
 
 async function deleteCertificate(id) {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             const res = await Certificate.deleteOne({ id });
             console.log('✅ Certificate deleted from MongoDB');
@@ -449,7 +452,8 @@ async function deleteCertificate(id) {
 
 // Youtube Videos CRUD
 async function getYoutubeVideos() {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             return await YoutubeVideo.find();
         } catch (e) {
@@ -460,7 +464,8 @@ async function getYoutubeVideos() {
 }
 
 async function addYoutubeVideo(video) {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             const res = await YoutubeVideo.create(video);
             console.log('✅ Video added to MongoDB');
@@ -479,7 +484,8 @@ async function addYoutubeVideo(video) {
 }
 
 async function updateYoutubeVideo(id, updateData) {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             const res = await YoutubeVideo.findOneAndUpdate({ id }, updateData, { new: true });
             console.log('✅ Video updated in MongoDB');
@@ -501,7 +507,8 @@ async function updateYoutubeVideo(id, updateData) {
 }
 
 async function deleteYoutubeVideo(id) {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             const res = await YoutubeVideo.deleteOne({ id });
             console.log('✅ Video deleted from MongoDB');
@@ -553,7 +560,8 @@ async function addProject(project) {
 }
 
 async function updateProject(id, updateData) {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             const res = await Project.findOneAndUpdate({ id }, updateData, { new: true });
             console.log('✅ Project updated in MongoDB');
@@ -575,7 +583,8 @@ async function updateProject(id, updateData) {
 }
 
 async function deleteProject(id) {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             const res = await Project.deleteOne({ id });
             console.log('✅ Project deleted from MongoDB');
@@ -595,7 +604,8 @@ async function deleteProject(id) {
 
 // Messages CRUD
 async function addMessage(msg) {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             const res = await Message.create(msg);
             console.log('✅ Message saved to MongoDB');
@@ -613,7 +623,8 @@ async function addMessage(msg) {
 }
 
 async function getMessages() {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             return await Message.find().sort({ timestamp: -1 });
         } catch (e) {
@@ -624,7 +635,8 @@ async function getMessages() {
 }
 
 async function markMessageRead(id) {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             return await Message.findOneAndUpdate({ id }, { read: true }, { new: true });
         } catch (e) {
@@ -642,7 +654,8 @@ async function markMessageRead(id) {
 }
 
 async function deleteMessage(id) {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             const res = await Message.deleteOne({ id });
             return res.deletedCount > 0;
