@@ -425,16 +425,12 @@ app.use((req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Export the app for Vercel
-module.exports = app;
-
-// Start local server only when NOT running on Vercel (Vercel sets process.env.VERCEL=1)
+// Start local server only when NOT running on Vercel
 if (!process.env.VERCEL) {
     app.listen(PORT, () => {
-        console.log('═════════════════════════════════════════════════');
-        console.log('  ✔  AHMED KHALED ANWAR — PORTFOLIO SERVER');
-        console.log(`  ✔  http://localhost:${PORT}`);
-        console.log('  ✔  Database layer initialized.');
-        console.log('═════════════════════════════════════════════════');
+        console.log(`🚀 Server running on http://localhost:${PORT}`);
     });
 }
+
+// Export the app for Vercel
+module.exports = app;
