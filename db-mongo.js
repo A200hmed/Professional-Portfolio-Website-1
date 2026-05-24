@@ -683,7 +683,6 @@ async function deleteMessage(id) {
 module.exports = {
     initConnection,
     getIsConnected,
-    getLastError,
     readDB,
     updatePersonalInfo,
     saveArrayField,
