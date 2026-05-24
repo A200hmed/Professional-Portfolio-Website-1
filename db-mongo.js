@@ -4,32 +4,6 @@ const path = require('path');
 
 const DB_PATH = path.join(__dirname, 'db.json');
 
-// Mongoose Connection Setup
-async function connectDB() {
-    const uri = process.env.MONGODB_URI;
-    if (!uri) {
-        console.log('⚠️  No MONGODB_URI environment variable detected. Falling back to local db.json file.');
-        return false;
-    }
-
-    // Clean URI if it has any invisible characters
-    const cleanUri = uri.trim();
-
-    try {
-        // Increase timeout and other options for better stability on serverless
-        await mongoose.connect(cleanUri, {
-            serverSelectionTimeoutMS: 5000,
-            socketTimeoutMS: 45000,
-        });
-        console.log('🚀 Successfully connected to MongoDB Atlas!');
-        return true;
-    } catch (err) {
-        console.error('❌ MongoDB connection error details:', err.message);
-        console.log('⚠️  Falling back to local db.json file.');
-        return false;
-    }
-}
-
 // ── Schemas ─────────────────────────────────────────────────────────────
 const PersonalInfoSchema = new mongoose.Schema({
     name: { type: String, default: 'Ahmed Khaled Anwar' },
@@ -243,19 +217,23 @@ let lastError = null;
 async function initConnection() {
     if (getIsConnected()) return true;
 
-    const uri = process.env.MONGODB_URI;
+    let uri = process.env.MONGODB_URI;
     if (!uri) {
         lastError = 'MONGODB_URI environment variable is missing';
         console.log('⚠️ No MONGODB_URI. Falling back to JSON.');
         return false;
     }
 
+    // Clean URI: trim whitespace and remove potential surrounding quotes
+    uri = uri.trim().replace(/^["'](.+)["']$/, '$1');
+
     try {
-        await mongoose.connect(uri.trim(), {
-            serverSelectionTimeoutMS: 10000,
+        // We remove forced dbName to allow URI to define it, 
+        // which fixes many "bad auth" issues where the user has specific DB permissions.
+        await mongoose.connect(uri, {
+            serverSelectionTimeoutMS: 15000,
             socketTimeoutMS: 45000,
-            dbName: 'portfolio',
-            connectTimeoutMS: 10000
+            connectTimeoutMS: 15000
         });
         console.log('🚀 MongoDB Connected successfully!');
         lastError = null;
