@@ -23,27 +23,9 @@ if (process.env.MONGODB_URI) {
     console.log('📡 MONGODB_URI not found. Using local JSON fallback.');
 }
 
-// Initialize Database Connection and ensure it waits
-async function ensureDB() {
-    try {
-        await dbMongo.initConnection();
-    } catch (err) {
-        console.error('Database connection failed:', err.message);
-    }
-}
-
-// Middleware to ensure DB is connected before any request
-app.use(async(req, res, next) => {
-    // Only wait for DB if it's an API request
-    if (req.path.startsWith('/api/')) {
-        await ensureDB();
-    }
-    next();
-});
-
 // ── Security Middleware ────────────────────────────────────────────────────────
 app.use(helmet({
-    contentSecurityPolicy: false, // Turn off CSP headers if they interfere with custom CDNs or media embeds
+    contentSecurityPolicy: false, 
 }));
 
 // CORS Configuration
@@ -53,24 +35,25 @@ const allowedOrigins = [
 ];
 app.use(cors({
     origin: function(origin, callback) {
-        // allow requests with no origin (like mobile apps or curl requests)
         if (!origin) return callback(null, true);
-
-        if (process.env.NODE_ENV === 'development') {
-            return callback(null, true);
-        }
-
-        if (allowedOrigins.indexOf(origin) !== -1) {
-            return callback(null, true);
-        }
-
-        // Default to allowing same-origin if origin matches host
         return callback(null, true);
     }
 }));
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Middleware to ensure DB is connected for API requests
+app.use(async(req, res, next) => {
+    if (req.path.startsWith('/api/')) {
+        try {
+            await dbMongo.initConnection();
+        } catch (e) {
+            console.error('DB Init Error:', e.message);
+        }
+    }
+    next();
+});
 
 // Rate Limiter for contact form submissions
 const contactLimiter = rateLimit({

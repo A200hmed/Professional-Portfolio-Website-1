@@ -213,43 +213,19 @@ function getIsConnected() {
     return mongoose.connection.readyState === 1;
 }
 
-// Global variable to cache the connection promise
-let cachedPromise = null;
-
-// Initialize connection (Official MongoDB/Vercel Recommended Pattern)
+// Initialize connection (Standard Serverless Pattern)
 async function initConnection() {
-    // If already connected (readyState 1), return immediately
-    if (mongoose.connection.readyState === 1) return true;
-
-    // If connecting (readyState 2), wait for the existing promise
-    if (mongoose.connection.readyState === 2 && cachedPromise) {
-        await cachedPromise;
-        return true;
-    }
+    if (mongoose.connection.readyState >= 1) return true;
 
     const uri = (process.env.MONGODB_URI || '').trim().replace(/^["'](.+)["']$/, '$1').replace(/[\r\n\t]/g, '');
-    if (!uri) {
-        console.error('❌ MONGODB_URI is missing');
-        return false;
-    }
-
-    // Create a new connection promise if none exists or if the previous one failed
-    if (!cachedPromise) {
-        const opts = {
-            bufferCommands: false, // Disable buffering for serverless
-            serverSelectionTimeoutMS: 5000,
-            maxPoolSize: 1,
-            connectTimeoutMS: 10000,
-        };
-
-        cachedPromise = mongoose.connect(uri, opts).catch(err => {
-            cachedPromise = null; // Reset on failure so we can retry
-            throw err;
-        });
-    }
+    if (!uri) return false;
 
     try {
-        await cachedPromise;
+        await mongoose.connect(uri, {
+            serverSelectionTimeoutMS: 5000,
+            maxPoolSize: 1,
+            bufferCommands: false
+        });
         return true;
     } catch (err) {
         console.error('❌ MongoDB Connection Error:', err.message);
