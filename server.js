@@ -86,6 +86,7 @@ app.get('/api/debug-status', async(req, res) => {
     const maskedUri = uri.replace(/:([^@]+)@/, ':****@');
     res.json({
         connected: dbMongo.getIsConnected(),
+        last_error: dbMongo.getLastError(),
         node_env: process.env.NODE_ENV,
         uri_detected: !!uri,
         uri_length: uri.length,

@@ -216,6 +216,10 @@ function getIsConnected() {
 let cachedConnection = null;
 let lastError = null;
 
+function getLastError() {
+    return lastError;
+}
+
 // Initialize connection and sets state (Singleton Pattern for Vercel)
 async function initConnection() {
     if (mongoose.connection.readyState === 1) return true;
@@ -721,6 +725,7 @@ async function deleteMessage(id) {
 module.exports = {
     initConnection,
     getIsConnected,
+    getLastError,
     readDB,
     updatePersonalInfo,
     saveArrayField,
