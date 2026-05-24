@@ -667,10 +667,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const res = await fetch(`${API_URL}/api/settings`, { method: 'POST', headers: authHeader, body: JSON.stringify(payload) });
       if (res.ok) {
         alert('✓ Profile saved successfully!');
-        // Reload the page to show the updated avatar
         window.location.reload();
       }
-      else alert('Failed to save profile.');
+      else {
+        const errorData = await res.json();
+        alert('❌ Error: ' + (errorData.error || 'Failed to save profile'));
+      }
     });
   }
 

@@ -248,13 +248,14 @@ async function initConnection() {
 
     try {
         await mongoose.connect(uri.trim(), {
-            serverSelectionTimeoutMS: 5000,
+            serverSelectionTimeoutMS: 10000, // Increase to 10s
             socketTimeoutMS: 45000,
+            dbName: 'portfolio' // Explicitly set DB name
         });
-        console.log('🚀 MongoDB Connected!');
+        console.log('🚀 MongoDB Connected successfully!');
         return true;
     } catch (err) {
-        console.error('❌ DB Error:', err.message);
+        console.error('❌ MongoDB Connection Error:', err.message);
         return false;
     }
 }
