@@ -25,11 +25,15 @@ if (process.env.MONGODB_URI) {
 
 // Initialize Database Connection and ensure it waits
 async function ensureDB() {
-    if (!dbMongo.getIsConnected()) {
-        await dbMongo.initConnection();
+    try {
+        if (!dbMongo.getIsConnected()) {
+            await dbMongo.initConnection();
+        }
+    } catch (err) {
+        console.error('Database pre-connection failed:', err.message);
     }
 }
-ensureDB();
+ensureDB(); // This is handled gracefully now
 
 // Middleware to ensure DB is connected before any request
 app.use(async(req, res, next) => {
