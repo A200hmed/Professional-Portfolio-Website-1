@@ -270,103 +270,92 @@
             "description_ar": "أساسيات التبديل والتوجيه واللاسلكي."
         },
         {
-            "id": "cert_cisco_1",
-            "title": "Cisco Networking Academy Certificate",
-            "title_ar": "شهادة أكاديمية سيسكو للشبكات",
+            "id": "cert_data_science",
+            "title": "Introduction to Data Science",
+            "title_ar": "مقدمة في علم البيانات",
             "issuer": "Cisco Networking Academy",
             "issuer_ar": "أكاديمية سيسكو للشبكات",
             "year": "2024",
             "image": "/certificates/Cisco-Certificate-1.pdf",
-            "description": "Professional certificate in networking.",
-            "description_ar": "شهادة احترافية في مجال الشبكات."
+            "description": "Foundational knowledge in data science and analytics.",
+            "description_ar": "المعرفة الأساسية في علم البيانات والتحليلات."
         },
         {
-            "id": "cert_cisco_3",
-            "title": "Cisco Networking Academy Certificate",
-            "title_ar": "شهادة أكاديمية سيسكو للشبكات",
+            "id": "cert_cybersecurity_intro",
+            "title": "Introduction to Cybersecurity",
+            "title_ar": "مقدمة في الأمن السيبراني",
             "issuer": "Cisco Networking Academy",
             "issuer_ar": "أكاديمية سيسكو للشبكات",
             "year": "2024",
             "image": "/certificates/Cisco-Certificate-3.pdf",
-            "description": "Professional certificate in networking.",
-            "description_ar": "شهادة احترافية في مجال الشبكات."
+            "description": "Basic cybersecurity concepts and threats.",
+            "description_ar": "مفاهيم الأمن السيبراني الأساسية والتهديدات."
         },
         {
-            "id": "cert_cisco_4",
-            "title": "Cisco Networking Academy Certificate",
-            "title_ar": "شهادة أكاديمية سيسكو للشبكات",
+            "id": "cert_iot_intro",
+            "title": "Introduction to IoT and Digital Transformation",
+            "title_ar": "مقدمة في إنترنت الأشياء والتحول الرقمي",
             "issuer": "Cisco Networking Academy",
             "issuer_ar": "أكاديمية سيسكو للشبكات",
             "year": "2024",
             "image": "/certificates/Cisco-Certificate-4.pdf",
-            "description": "Professional certificate in networking.",
-            "description_ar": "شهادة احترافية في مجال الشبكات."
+            "description": "Impact of IoT and digital transformation in industry.",
+            "description_ar": "تأثير إنترنت الأشياء والتحول الرقمي في الصناعة."
         },
         {
-            "id": "cert_cisco_5",
-            "title": "Cisco Networking Academy Certificate",
-            "title_ar": "شهادة أكاديمية سيسكو للشبكات",
+            "id": "cert_networking_essentials",
+            "title": "Networking Essentials",
+            "title_ar": "أساسيات الشبكات",
             "issuer": "Cisco Networking Academy",
             "issuer_ar": "أكاديمية سيسكو للشبكات",
             "year": "2024",
             "image": "/certificates/Cisco-Certificate-5.pdf",
-            "description": "Professional certificate in networking.",
-            "description_ar": "شهادة احترافية في مجال الشبكات."
+            "description": "Essential networking skills and knowledge.",
+            "description_ar": "مهارات ومعرفة الشبكات الأساسية."
         },
         {
-            "id": "cert_cisco_6",
-            "title": "Cisco Networking Academy Certificate",
-            "title_ar": "شهادة أكاديمية سيسكو للشبكات",
+            "id": "cert_cybersecurity_essentials",
+            "title": "Cybersecurity Essentials",
+            "title_ar": "أساسيات الأمن السيبراني",
             "issuer": "Cisco Networking Academy",
             "issuer_ar": "أكاديمية سيسكو للشبكات",
             "year": "2024",
             "image": "/certificates/Cisco-Certificate-6.pdf",
-            "description": "Professional certificate in networking.",
-            "description_ar": "شهادة احترافية في مجال الشبكات."
+            "description": "Fundamental cybersecurity tools and procedures.",
+            "description_ar": "أدوات وإجراءات الأمن السيبراني الأساسية."
         },
         {
             "id": "cert_cisco_7",
-            "title": "Cisco Networking Academy Certificate",
-            "title_ar": "شهادة أكاديمية سيسكو للشبكات",
+            "title": "Endpoint Security",
+            "title_ar": "أمن الأجهزة الطرفية",
             "issuer": "Cisco Networking Academy",
             "issuer_ar": "أكاديمية سيسكو للشبكات",
             "year": "2024",
             "image": "/certificates/Cisco-Certificate-7.pdf",
-            "description": "Professional certificate in networking.",
-            "description_ar": "شهادة احترافية في مجال الشبكات."
+            "description": "Securing endpoint devices in a network.",
+            "description_ar": "تأمين الأجهزة الطرفية في الشبكة."
         },
         {
             "id": "cert_cisco_8",
-            "title": "Cisco Networking Academy Certificate",
-            "title_ar": "شهادة أكاديمية سيسكو للشبكات",
+            "title": "Network Defense",
+            "title_ar": "الدفاع عن الشبكات",
             "issuer": "Cisco Networking Academy",
             "issuer_ar": "أكاديمية سيسكو للشبكات",
             "year": "2024",
             "image": "/certificates/Cisco-Certificate-8.pdf",
-            "description": "Professional certificate in networking.",
-            "description_ar": "شهادة احترافية في مجال الشبكات."
+            "description": "Defending networks against cyber attacks.",
+            "description_ar": "الدفاع عن الشبكات ضد الهجمات السيبرانية."
         },
         {
             "id": "cert_cisco_9",
-            "title": "Cisco Networking Academy Certificate",
-            "title_ar": "شهادة أكاديمية سيسكو للشبكات",
+            "title": "Cyber Threat Management",
+            "title_ar": "إدارة التهديدات السيبرانية",
             "issuer": "Cisco Networking Academy",
             "issuer_ar": "أكاديمية سيسكو للشبكات",
             "year": "2024",
             "image": "/certificates/Cisco-Certificate-9.pdf",
-            "description": "Professional certificate in networking.",
-            "description_ar": "شهادة احترافية في مجال الشبكات."
-        },
-        {
-            "id": "cert_cisco_10",
-            "title": "Cisco Networking Academy Certificate",
-            "title_ar": "شهادة أكاديمية سيسكو للشبكات",
-            "issuer": "Cisco Networking Academy",
-            "issuer_ar": "أكاديمية سيسكو للشبكات",
-            "year": "2024",
-            "image": "/certificates/Cisco-Certificate-10.pdf",
-            "description": "Professional certificate in networking.",
-            "description_ar": "شهادة احترافية في مجال الشبكات."
+            "description": "Managing and mitigating cyber threats.",
+            "description_ar": "إدارة وتخفيف التهديدات السيبرانية."
         }
     ],
     "youtubeVideos": [{

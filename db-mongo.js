@@ -207,15 +207,14 @@ const JSON_DEFAULT = {
         { id: "cert_ccna_enterprise", title: "CCNA: Enterprise Networking", title_ar: "CCNA: شبكات المؤسسات", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/CCNA-_Enterprise_Networking-_Security-_and_Automation.pdf" },
         { id: "cert_ccna_intro", title: "CCNA: Introduction to Networks", title_ar: "CCNA: مقدمة في الشبكات", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/CCNA-_Introduction_to_Networks.pdf" },
         { id: "cert_ccna_switching", title: "CCNA: Switching, Routing, and Wireless", title_ar: "CCNA: أساسيات التبديل والتوجيه", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/CCNA-_Switching-_Routing-_and_Wireless_Essentials.pdf" },
-        { id: "cert_cisco_1", title: "Cisco Academy Certificate", title_ar: "شهادة أكاديمية سيسكو", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-1.pdf" },
-        { id: "cert_cisco_3", title: "Cisco Academy Certificate", title_ar: "شهادة أكاديمية سيسكو", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-3.pdf" },
-        { id: "cert_cisco_4", title: "Cisco Academy Certificate", title_ar: "شهادة أكاديمية سيسكو", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-4.pdf" },
-        { id: "cert_cisco_5", title: "Cisco Academy Certificate", title_ar: "شهادة أكاديمية سيسكو", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-5.pdf" },
-        { id: "cert_cisco_6", title: "Cisco Academy Certificate", title_ar: "شهادة أكاديمية سيسكو", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-6.pdf" },
-        { id: "cert_cisco_7", title: "Cisco Academy Certificate", title_ar: "شهادة أكاديمية سيسكو", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-7.pdf" },
-        { id: "cert_cisco_8", title: "Cisco Academy Certificate", title_ar: "شهادة أكاديمية سيسكو", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-8.pdf" },
-        { id: "cert_cisco_9", title: "Cisco Academy Certificate", title_ar: "شهادة أكاديمية سيسكو", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-9.pdf" },
-        { id: "cert_cisco_10", title: "Cisco Academy Certificate", title_ar: "شهادة أكاديمية سيسكو", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-10.pdf" }
+        { id: "cert_data_science", title: "Introduction to Data Science", title_ar: "مقدمة في علم البيانات", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-1.pdf" },
+        { id: "cert_cybersecurity_intro", title: "Introduction to Cybersecurity", title_ar: "مقدمة في الأمن السيبراني", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-3.pdf" },
+        { id: "cert_iot_intro", title: "Introduction to IoT", title_ar: "مقدمة في إنترنت الأشياء", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-4.pdf" },
+        { id: "cert_networking_essentials", title: "Networking Essentials", title_ar: "أساسيات الشبكات", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-5.pdf" },
+        { id: "cert_cybersecurity_essentials", title: "Cybersecurity Essentials", title_ar: "أساسيات الأمن السيبراني", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-6.pdf" },
+        { id: "cert_endpoint_security", title: "Endpoint Security", title_ar: "أمن الأجهزة الطرفية", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-7.pdf" },
+        { id: "cert_network_defense", title: "Network Defense", title_ar: "الدفاع عن الشبكات", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-8.pdf" },
+        { id: "cert_threat_management", title: "Cyber Threat Management", title_ar: "إدارة التهديدات", issuer: "Cisco", issuer_ar: "سيسكو", year: "2024", image: "/certificates/Cisco-Certificate-9.pdf" }
     ],
     projects: [
         { id: "p1", title: "CodeCamp LMS", title_ar: "كود كامب", description: "LMS platform", description_ar: "منصة تعليمية", category: "fullstack", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3", tags: ["React", "Node.js"], featured: true }
