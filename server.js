@@ -41,6 +41,28 @@ app.use(cors({
 }));
 
 app.use(express.json({ limit: '10mb' }));
+// ── HTML Injector (Final Stability Hack) ──────────────────────────────────────
+app.get('/', async (req, res) => {
+    try {
+        const filePath = path.join(__dirname, 'public', 'index.html');
+        let html = await fs.readFile(filePath, 'utf8');
+        
+        // Fetch data once on server side
+        const data = await dbMongo.readDB();
+        const projects = await dbMongo.readProjects();
+        const combinedData = { ...data, projects };
+        
+        // Inject data into HTML before sending
+        const injection = `<script>window.INITIAL_PORTFOLIO_DATA = ${JSON.stringify(combinedData)};</script>`;
+        html = html.replace('<head>', `<head>${injection}`);
+        
+        res.send(html);
+    } catch (err) {
+        console.error('HTML Injection failed:', err.message);
+        res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    }
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Rate Limiter for contact form submissions
