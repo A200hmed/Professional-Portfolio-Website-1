@@ -623,14 +623,9 @@ document.addEventListener('DOMContentLoaded', () => {
       
       container.insertAdjacentHTML('beforeend', `
         <div class="cert-carousel-card" onclick="openCertModal('${cert.image}')" style="cursor: pointer;">
-          <div class="cert-img-container" style="background: #1a1a1a; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; position: relative;">
-            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-               <span style="font-size: 3rem; opacity: 0.5;">📄</span>
-               <div style="position: absolute; bottom: 10px; font-size: 0.6rem; color: #888;">${displayTitle}</div>
-            </div>
-            <div class="cert-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
-              <span style="color: white; font-weight: bold;">VIEW PDF</span>
-            </div>
+          <div class="cert-img-container" style="background: #fff; height: 220px; border-radius: 12px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; position: relative;">
+            <embed src="${cert.image}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="100%" style="pointer-events: none;">
+            <div class="cert-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0); z-index: 10;"></div>
           </div>
           <div class="cert-carousel-label" style="background: #0f172a; border-radius: 8px; padding: 10px 16px; display: flex; align-items: center; gap: 8px; width: 100%;">
             <span class="cert-carousel-emoji">🏆</span>
