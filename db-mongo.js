@@ -228,30 +228,24 @@ async function initConnection() {
         }
     }
 
-    const uri = (process.env.MONGODB_URI || '').trim().replace(/^["'](.+)["']$/, '$1');
-    
-    if (!uri || uri.includes('<')) {
-        throw new Error('MONGODB_URI is missing or not configured correctly in Vercel Environment Variables.');
-    }
+    let uri = process.env.MONGODB_URI;
+    if (!uri) return false;
 
-    const opts = {
-        serverSelectionTimeoutMS: 10000,
-        socketTimeoutMS: 45000,
-        connectTimeoutMS: 10000,
-        maxPoolSize: 1
-    };
+    // Clean URI from any invisible characters or quotes
+    uri = uri.trim().replace(/^["'](.+)["']$/, '$1').replace(/[\r\n\t]/g, '');
 
     try {
-        console.log('🔌 Connecting to MongoDB Atlas...');
-        cachedPromise = mongoose.connect(uri, opts);
+        cachedPromise = mongoose.connect(uri, {
+            serverSelectionTimeoutMS: 5000,
+            socketTimeoutMS: 45000,
+            connectTimeoutMS: 10000,
+            maxPoolSize: 1
+        });
         await cachedPromise;
-        console.log('🚀 MongoDB Connected successfully!');
         return true;
     } catch (err) {
         cachedPromise = null;
         console.error('❌ MongoDB Connection Error:', err.message);
-        // Do NOT throw error to prevent Vercel Function Crash
-        // Instead, we return false and the CRUD functions will handle it
         return false;
     }
 }
