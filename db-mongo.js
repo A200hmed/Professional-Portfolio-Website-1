@@ -198,7 +198,8 @@ const JSON_DEFAULT = {
         { id: "l5", name: "Node.js", name_ar: "نود جي إس", level: 90, color: "#22c55e", icon: "🟢", category: "backend" }
     ],
     timeline: [
-        { id: "t1", type: "experience", role: "Principal Tech Instructor", role_ar: "المدرب والمطور الرئيسي", company: "YouTube", company_ar: "يوتيوب", duration: "2021 - Present", description: "100K+ developers", description_ar: "تعليم أكثر من 100 ألف مطور" }
+        { id: "t1", type: "education", role: "University Journey Beginning", role_ar: "بداية الرحلة الجامعية", company: "Fayoum Technological University (IT Department)", company_ar: "جامعة الفيوم التكنولوجية (قسم IT)", duration: "2023", description: "Enrollment in Fayoum Technological University, IT Department. Beginning of deep diving into programming and modern technology. Developing programming fundamentals and building a strong understanding of computer science and networking.", description_ar: "الالتحاق بجامعة الفيوم التكنولوجية قسم IT. بداية التعمق في مجالات البرمجة والتكنولوجيا الحديثة. تطوير الأساسيات البرمجية وبناء فهم قوي لعلوم الحاسب والشبكات." },
+        { id: "t2", type: "experience", role: "Principal Tech Instructor", role_ar: "المدرب والمطور الرئيسي", company: "YouTube", company_ar: "يوتيوب", duration: "2021 - Present", description: "100K+ developers", description_ar: "تعليم أكثر من 100 ألف مطور" }
     ],
     achievements: [
         { id: "a1", title: "MVP Instructor", title_ar: "أفضل مدرب برمجيات", issuer: "Dev Academy", issuer_ar: "أكاديمية المطورين", year: "2025", icon: "award" }
