@@ -210,57 +210,45 @@ function getIsConnected() {
     return mongoose.connection.readyState === 1;
 }
 
-// Global variable to store last connection error
+// Global variable to cache the connection
+let cachedConnection = null;
 let lastError = null;
 
-// Initialize connection and sets state
+// Initialize connection and sets state (Singleton Pattern for Vercel)
 async function initConnection() {
-    if (getIsConnected()) return true;
+    if (mongoose.connection.readyState === 1) return true;
+    if (cachedConnection) {
+        try {
+            await cachedConnection;
+            return true;
+        } catch (e) {
+            cachedConnection = null; // Reset if failed
+        }
+    }
 
     let uri = process.env.MONGODB_URI;
     if (!uri) {
         lastError = 'MONGODB_URI environment variable is missing';
-        console.log('⚠️ No MONGODB_URI. Falling back to JSON.');
         return false;
     }
 
-    // Clean URI: trim whitespace and remove potential surrounding quotes
     uri = uri.trim().replace(/^["'](.+)["']$/, '$1');
 
-    // Senior Insight: Check if the password contains special characters that aren't encoded
-    // This is a common cause of "bad auth"
-    if (uri.includes('@') && uri.lastIndexOf('@') > uri.indexOf(':')) {
-        const parts = uri.split('@');
-        const connectionPart = parts[0]; // mongodb+srv://user:pass
-        const hostPart = parts.slice(1).join('@');
-        
-        if (connectionPart.includes('://')) {
-            const protocol = connectionPart.split('://')[0];
-            const credentials = connectionPart.split('://')[1];
-            if (credentials.includes(':')) {
-                const [user, pass] = credentials.split(':');
-                // If password has special chars but isn't encoded, this helps
-                // but we must be careful not to double-encode.
-                // For now, we'll just log a warning if we detect suspicious chars
-                if (pass.match(/[#?]/)) {
-                    console.warn('⚠️ Warning: Password contains unencoded special characters (# or ?). This may cause authentication failure.');
-                }
-            }
-        }
-    }
-
     try {
-        console.log(`🔌 Attempting MongoDB connection (URI length: ${uri.length})...`);
-        await mongoose.connect(uri, {
-            serverSelectionTimeoutMS: 20000, // Increased to 20s for slow cold starts
+        console.log('🔌 Connecting to MongoDB Atlas...');
+        cachedConnection = mongoose.connect(uri, {
+            serverSelectionTimeoutMS: 15000,
             socketTimeoutMS: 45000,
-            connectTimeoutMS: 20000,
-            heartbeatFrequencyMS: 10000
+            connectTimeoutMS: 15000,
+            maxPoolSize: 1 // Crucial for Serverless to avoid leaking connections
         });
+
+        await cachedConnection;
         console.log('🚀 MongoDB Connected successfully!');
         lastError = null;
         return true;
     } catch (err) {
+        cachedConnection = null;
         lastError = err.message;
         console.error('❌ MongoDB Connection Error:', err.message);
         return false;
