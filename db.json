@@ -203,36 +203,69 @@
     ],
     "timeline": [{
             "id": "t1",
-            "type": "experience",
-            "role": "Principal Tech Instructor & Creator",
-            "role_ar": "المدرب والمطور الرئيسي",
-            "company": "YouTube & Dev Academy",
-            "company_ar": "يوتيوب وأكاديمية المطورين",
-            "duration": "2021 - Present",
-            "description": "Instructing over 100K+ developers globally. Creating structured tutorials on full-stack architecture, clean coding practices, microservices, and modern UI design. Produced 150+ educational videos with exceptional student review indices.",
-            "description_ar": "أقوم بتعليم أكثر من 100 ألف مطور حول العالم. تقديم شروحات منظمة حول البنيات البرمجية المتكاملة، وممارسات الأكواد النظيفة، والخدمات المصغرة، وتصميم واجهات المستخدم الحديثة. قمت بإنتاج أكثر من 150 فيديو تعليمي."
+            "type": "education",
+            "role": "University Journey Beginning",
+            "role_ar": "بداية الرحلة الجامعية",
+            "company": "Faculty of Technology and Energy",
+            "company_ar": "كلية التكنولوجيا والطاقة",
+            "duration": "2023",
+            "description": "Enrollment in the Faculty of Technology and Energy. Beginning of deep diving into programming and modern technology. Developing programming fundamentals and building a strong understanding of computer science and networking.",
+            "description_ar": "الالتحاق بكلية التكنولوجيا والطاقة. بداية التعمق في مجالات البرمجة والتكنولوجيا الحديثة. تطوير الأساسيات البرمجية وبناء فهم قوي لعلوم الحاسب والشبكات."
         },
         {
             "id": "t2",
             "type": "experience",
-            "role": "Senior Full-Stack Engineer",
-            "role_ar": "مهندس برمجيات أول (Full-Stack)",
-            "company": "Apex System Solutions",
-            "company_ar": "أبيكس لحلول الأنظمة",
-            "duration": "2019 - 2022",
-            "description": "Architected high-throughput data management platforms. Led a developer team of 6 engineers to build e-learning components. Optimized server performance and database queries to reduce AWS costs by 28%.",
-            "description_ar": "تصميم وبناء منصات إدارة البيانات عالية الكفاءة. قيادة فريق من 6 مهندسين لبناء مكونات التعليم الإلكتروني. تحسين أداء الخوادم وقواعد البيانات مما أدى إلى تقليل تكاليف سحابة AWS بنسبة 28%."
+            "role": "Building Technical Foundation",
+            "role_ar": "بناء الأساس التقني",
+            "company": "Self-Development",
+            "company_ar": "تطوير ذاتي",
+            "duration": "2023 — 2024",
+            "description": "Study and application of core programming concepts. Learning Front-End Development (HTML, CSS, JavaScript). Implementing practical projects and applications to develop skills.",
+            "description_ar": "دراسة وتطبيق مفاهيم البرمجة الأساسية. تعلم تطوير الواجهات الأمامية (Front-End Development). اكتساب خبرة عملية في HTML و CSS و JavaScript. تنفيذ مشاريع وتطبيقات عملية لتطوير المهارات."
         },
         {
             "id": "t3",
-            "type": "education",
-            "role": "Bachelor of Science in Computer Science",
-            "role_ar": "بكالوريوس علوم الحاسب",
-            "company": "Cairo University",
-            "company_ar": "جامعة القاهرة",
-            "duration": "2015 - 2019",
-            "description": "Graduated with honors. Specialized in Software Engineering, Database Systems, and Network Architecture.",
-            "description_ar": "تخرجت بمرتبة الشرف. تخصصت في هندسة البرمجيات، وأنظمة قواعد البيانات، وبنية الشبكات."
+            "type": "experience",
+            "role": "Expansion in Programming Fields",
+            "role_ar": "التوسع في مجالات البرمجة",
+            "company": "Specialization",
+            "company_ar": "تخصص تقني",
+            "duration": "2024",
+            "description": "Studying databases and SQL Server. Working on integrated database projects. Deep diving into Networking (OSI Model, VLSM). Using Linux environments for development.",
+            "description_ar": "دراسة قواعد البيانات وSQL Server. العمل على مشاريع Database متكاملة وربط الجداول والعلاقات. التعمق في مفاهيم Networking وOSI Model وVLSM. استخدام بيئات وأنظمة Linux في التطوير والعمل التقني."
+        },
+        {
+            "id": "t4",
+            "type": "experience",
+            "role": "Technical Content Creation",
+            "role_ar": "صناعة المحتوى التقني",
+            "company": "YouTube",
+            "company_ar": "يوتيوب",
+            "duration": "2024 — 2025",
+            "description": "Creating educational technical content on YouTube. Providing educational explanations in programming and computer science. Building a community interested in technical learning.",
+            "description_ar": "إنشاء محتوى تعليمي تقني على يوتيوب. تقديم شروحات تعليمية في البرمجة وعلوم الحاسب. تبسيط المفاهيم البرمجية للطلاب والمبتدئين. بناء مجتمع مهتم بالتعلم والتطوير التقني."
+        },
+        {
+            "id": "t5",
+            "type": "experience",
+            "role": "Professional Identity Development",
+            "role_ar": "تطوير الهوية المهنية",
+            "company": "Portfolio & Brand",
+            "company_ar": "الهوية الشخصية",
+            "duration": "2025",
+            "description": "Building a professional portfolio. Developing advanced programming and database projects. Focusing on UI/UX improvement and modern designs. Preparing for the freelance market.",
+            "description_ar": "العمل على بناء Portfolio احترافي يعرض المهارات والمشاريع. تطوير مشاريع أكثر احترافية في البرمجة وقواعد البيانات. التركيز على تحسين الـ UI/UX والأنيميشن والتصميمات الحديثة. الاستعداد لسوق العمل والعمل الحر في مجال البرمجة."
+        },
+        {
+            "id": "t6",
+            "type": "experience",
+            "role": "Continuous Expansion and Development",
+            "role_ar": "التوسع والتطوير المستمر",
+            "company": "Present Journey",
+            "company_ar": "المسيرة الحالية",
+            "duration": "2025 — Present",
+            "description": "Deepening Software Engineering knowledge. Practical skills in Front-End, Databases, Networking, and Linux. Continuing educational content creation and expertise sharing.",
+            "description_ar": "التعمق في Software Engineering ومفاهيم بناء الأنظمة. تطوير المهارات العملية في Front-End و Databases و Networking و Linux. الاستمرار في صناعة المحتوى التعليمي ومشاركة الخبرات التقنية."
         }
     ],
     "certificates": [
