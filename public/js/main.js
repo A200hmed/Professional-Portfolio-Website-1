@@ -583,38 +583,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── CERTIFICATES ─────────────────────────────────────────────────────────────
   // ── Certificate Modal Functions ───────────────────────────────────────────────
-  window.openCertModal = function(title, title_ar) {
+  window.openCertModal = function(pdfUrl) {
     const modal = document.getElementById('cert-modal');
     const body = document.getElementById('cert-modal-body');
     if (!modal || !body) return;
 
-    const displayTitle = currentLang === 'ar' ? (title_ar || title) : title;
-    
+    // Use iframe to show the ACTUAL PDF file
     body.innerHTML = `
-      <div style="background: #fff; padding: 40px; position: relative; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Tajawal', sans-serif; color: #333;">
-        <div style="width: 100%; border: 12px double #005073; padding: 40px; background: #fff; position: relative; box-sizing: border-box; text-align: center;">
-          <div style="position: absolute; top: 20px; left: 20px; width: 120px;"><img src="https://www.cisco.com/c/dam/cdc/i/logos/cisco-logo-black.png" style="width: 100%; opacity: 0.8;"></div>
-          <div style="margin-top: 40px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-bottom: 20px;">This certificate is awarded to</div>
-          <div style="font-size: 2.5rem; font-weight: 800; color: #005073; margin-bottom: 20px;">Ahmed Khaled Anwar</div>
-          <div style="font-size: 1.1rem; color: #666; margin-bottom: 10px;">for successfully completing</div>
-          <div style="font-size: 2rem; font-weight: 700; color: #005073; margin-bottom: 40px;">${displayTitle}</div>
-          <div style="font-size: 1rem; color: #666;">offered through the Cisco Networking Academy program.</div>
-          <div style="margin-top: 60px; display: flex; justify-content: space-between; align-items: flex-end; width: 100%; padding: 0 40px;">
-            <div style="text-align: left; border-top: 1px solid #ccc; padding-top: 10px; width: 200px;">
-              <div style="font-size: 0.8rem; font-weight: bold;">Cisco Instructor</div>
-              <div style="font-size: 0.7rem; color: #999;">Cisco Networking Academy</div>
-            </div>
-            <div style="text-align: right; border-top: 1px solid #ccc; padding-top: 10px; width: 200px;">
-              <div style="font-size: 0.8rem; font-weight: bold;">2024</div>
-              <div style="font-size: 0.7rem; color: #999;">Completion Date</div>
-            </div>
-          </div>
-        </div>
+      <div style="width: 100%; height: 80vh; background: #333; display: flex; flex-direction: column;">
+        <iframe src="${pdfUrl}" style="width: 100%; height: 100%; border: none;"></iframe>
       </div>
     `;
 
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Ensure clicking outside closes the modal too
+    modal.onclick = function(e) {
+      if (e.target === modal) closeCertModal();
+    };
   };
 
   window.closeCertModal = function() {
@@ -635,14 +622,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const displayTitle = currentLang === 'ar' ? (cert.title_ar || cert.title) : cert.title;
       
       container.insertAdjacentHTML('beforeend', `
-        <div class="cert-carousel-card" onclick="openCertModal('${cert.title.replace(/'/g, "\\'")}', '${(cert.title_ar || '').replace(/'/g, "\\'")}')" style="cursor: pointer;">
-          <div class="cert-img-container" style="background: #fff; padding: 15px; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 12px; border: 1px solid rgba(0,0,0,0.05); overflow: hidden;">
-            <div style="width: 100%; height: 100%; border: 4px double #005073; padding: 10px; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-              <div style="font-size: 0.4rem; font-weight: bold; color: #005073; text-align: center; line-height: 1.2;">
-                <div style="font-size: 0.3rem; color: #999; margin-bottom: 2px;">CERTIFICATE OF COMPLETION</div>
-                <div>${displayTitle}</div>
-                <div style="font-size: 0.3rem; color: #999; margin-top: 4px;">Ahmed Khaled Anwar</div>
-              </div>
+        <div class="cert-carousel-card" onclick="openCertModal('${cert.image}')" style="cursor: pointer;">
+          <div class="cert-img-container" style="background: #1a1a1a; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; position: relative;">
+            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+               <span style="font-size: 3rem; opacity: 0.5;">📄</span>
+               <div style="position: absolute; bottom: 10px; font-size: 0.6rem; color: #888;">${displayTitle}</div>
+            </div>
+            <div class="cert-overlay" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
+              <span style="color: white; font-weight: bold;">VIEW PDF</span>
             </div>
           </div>
           <div class="cert-carousel-label" style="background: #0f172a; border-radius: 8px; padding: 10px 16px; display: flex; align-items: center; gap: 8px; width: 100%;">
