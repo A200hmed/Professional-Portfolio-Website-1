@@ -186,15 +186,25 @@ const JSON_DEFAULT = {
     projects: []
 };
 
+// Load local data as a module to ensure Vercel bundles it
+let LOCAL_DATA_MODULE;
+try {
+    LOCAL_DATA_MODULE = require('./db.json');
+} catch (e) {
+    LOCAL_DATA_MODULE = JSON_DEFAULT;
+}
+
 // JSON Helper functions
 async function readLocalJSON() {
-    try {
-        const data = await fs.readFile(DB_PATH, 'utf8');
-        return JSON.parse(data);
-    } catch {
-        // If on Vercel or local read fails, return defaults without trying to write
-        return JSON_DEFAULT;
+    // Priority 1: Try to read fresh file (local dev only)
+    if (!process.env.VERCEL) {
+        try {
+            const data = await fs.readFile(DB_PATH, 'utf8');
+            return JSON.parse(data);
+        } catch (e) { /* fallback */ }
     }
+    // Priority 2: Use bundled module data (Vercel production)
+    return LOCAL_DATA_MODULE || JSON_DEFAULT;
 }
 
 async function writeLocalJSON(data) {
