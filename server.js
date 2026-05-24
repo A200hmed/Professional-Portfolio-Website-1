@@ -10,6 +10,11 @@ const mailer = require('./mailer');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Global error handler to prevent hard crashes on Vercel
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
 // Database masking for logs
 if (process.env.MONGODB_URI) {
     const masked = process.env.MONGODB_URI.replace(/:([^@]+)@/, ':****@');
