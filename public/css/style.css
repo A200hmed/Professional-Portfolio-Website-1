@@ -1710,25 +1710,42 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
 }
 
-.cert-carousel-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 24px 48px -12px rgba(56,189,248,0.18);
-  border-color: rgba(56,189,248,0.2);
+.cert-img-container {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background: #1a1a1a;
+  overflow: hidden;
 }
 
-.cert-pdf-preview {
-  height: 180px;
-  background: rgba(255, 255, 255, 0.05);
+.cert-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  z-index: 2;
+}
+
+.cert-carousel-card:hover .cert-overlay {
+  opacity: 1;
 }
 
 .cert-carousel-img {
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: cover;
+  border: none;
+  transition: transform 0.45s ease;
 }
 
 .cert-carousel-card:hover .cert-carousel-img {

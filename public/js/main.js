@@ -1,378 +1,378 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Global App State
-  let portfolioData = null;
-  let projectsData = [];
-  let currentFilter = 'all';
-  let searchQuery = '';
-  let testimonialsIndex = 0;
-  let testimonialsData = [];
-  let currentLang = localStorage.getItem('portfolio-lang') || 'en';
+            // Global App State
+            let portfolioData = null;
+            let projectsData = [];
+            let currentFilter = 'all';
+            let searchQuery = '';
+            let testimonialsIndex = 0;
+            let testimonialsData = [];
+            let currentLang = localStorage.getItem('portfolio-lang') || 'en';
 
-  const API_URL = window.location.origin;
+            const API_URL = window.location.origin;
 
-  // Element Refs
-  const titleEl = document.getElementById('dev-title');
-  const bioEl = document.getElementById('dev-bio');
-  const bioheroEl = document.getElementById('dev-bio-hero');
-  const avatarEl = document.getElementById('dev-avatar');
-  const resumeBtn = document.getElementById('dev-resume-btn');
-  const heroResumeBtn = document.getElementById('hero-resume-btn');
-  const contactEmailEl = document.getElementById('contact-email-val');
-  const contactWhatsappEl = document.getElementById('contact-whatsapp-val');
-  const contactLocEl = document.getElementById('contact-loc-val');
-  const ytChannelLink = document.getElementById('yt-channel-link');
-  const langToggleBtn = document.getElementById('lang-toggle-btn');
+            // Element Refs
+            const titleEl = document.getElementById('dev-title');
+            const bioEl = document.getElementById('dev-bio');
+            const bioheroEl = document.getElementById('dev-bio-hero');
+            const avatarEl = document.getElementById('dev-avatar');
+            const resumeBtn = document.getElementById('dev-resume-btn');
+            const heroResumeBtn = document.getElementById('hero-resume-btn');
+            const contactEmailEl = document.getElementById('contact-email-val');
+            const contactWhatsappEl = document.getElementById('contact-whatsapp-val');
+            const contactLocEl = document.getElementById('contact-loc-val');
+            const ytChannelLink = document.getElementById('yt-channel-link');
+            const langToggleBtn = document.getElementById('lang-toggle-btn');
 
-  // Navigation Active Tracking
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.nav-links a');
+            // Navigation Active Tracking
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
 
-  // Translation Dictionary
-  const uiTranslations = {
-    en: {
-      navHome: "Home",
-      navAbout: "About",
-      navSkills: "Skills",
-      navLanguages: "Languages",
-      navProjects: "Projects",
-      navYoutube: "YouTube",
-      navResume: "Resume",
-      navContact: "Contact",
-      btnGetResume: "Get Resume",
-      heroSubtitle: "Portfolio 2026 — Cairo, Egypt",
-      heroTitle: "Building <br> Digital Systems <br> & Teaching Devs.",
-      heroDesc: "Full Stack Developer, Software Engineer, and Educational Content Creator helping thousands of developers worldwide master modern programming.",
-      btnExploreProjects: "Explore Projects",
-      btnLetCollaborate: "Let's Collaborate",
-      btnContactMe: "Contact Me",
-      btnDownloadCv: "Download CV",
-      btnGithub: "GitHub",
-      aboutTitle: "About Me",
-      metricProjects: "Projects Built",
-      metricVideos: "YouTube Tutorials",
-      metricAwards: "Certifications",
-      metricStudents: "Students Reached",
-      skillsTitle: "Core Competencies",
-      skillsSubtitle: "Technical skills built over years of engineering, teaching, and delivering enterprise-grade digital systems.",
-      skillsDev:          "Programming & Development",
-      skillsNetworking:    "Networks & Cloud",
-      skillsAi:            "Artificial Intelligence",
-      skillsCybersecurity: "Cyber Security",
-      projectsTitle: "Selected Showcase",
-      projectsSubtitle: "A curated catalog of high-quality, production-ready digital systems built to elite specifications.",
-      projectsSearchPlaceholder: "Search projects by name or technology...",
-      projectsTabAll: "All Systems",
-      projectsTabFullstack: "Full-Stack",
-      projectsTabFrontend: "Frontend / UI",
-      projectsTabBackend: "Backend",
-      projectsTabTools: "Dev Tools",
-      githubTitle: "Open Source Repositories",
-      githubSubtitle: "Live repository metrics fetched dynamically via secure server proxy.",
-      youtubeChannelName: "zero to code",
-      youtubeChannelBadge: "YouTube Creator",
-      youtubeTitle: "YouTube Content Creator",
-      youtubeSubtitle: "Educating developers worldwide through structured programming tutorials, full-stack walkthroughs, and software engineering deep-dives.",
-      ytStatStudents: "Students",
-      ytStatVideos: "Tutorials Published",
-      ytStatViews: "Total Views",
-      youtubeChannelBtn: "Visit YouTube Channel",
-      resumeTitle: "Career Milestones",
-      resumeSubtitle: "A professional timeline of engineering leadership, instructional excellence, and academic achievements.",
-      certsTitle: "Certifications & Honors",
-      certsSubtitle: "Professional certifications from leading technology organizations validating engineering excellence.",
-      honorsTitle: "Career Honors",
-      honorsSubtitle: "Recognition and awards for software engineering and educational impact.",
-      testimonialsTitle: "Industry Endorsements",
-      testimonialsSubtitle: "Verified feedback from senior engineers, technical directors, and students around the world.",
-      contactTitle: "Let's Build Together",
-      contactSubtitle: "Open to collaborations, consulting, workshops, and corporate training. Submit your inquiry below.",
-      contactEmailTitle: "Direct Email",
-      contactWhatsappTitle: "WhatsApp",
-      contactWhatsappVal: "Open Chat on WhatsApp",
-      contactLocTitle: "Location",
-      contactSocialTitle: "Connect Online",
-      formLabelName: "Your Name",
-      formPlaceholderName: "John Doe",
-      formLabelEmail: "Email Address",
-      formPlaceholderEmail: "john@company.com",
-      formLabelSubject: "Subject",
-      formPlaceholderSubject: "Project Collaboration / Training Request",
-      formLabelMessage: "Message",
-      formPlaceholderMessage: "Describe your project, training need, or collaboration idea...",
-      formBtnSend: "Send Message",
-      noProjectsFound: "No projects found matching your search.",
-      learnMore: "Learn More",
-      liveDemo: "Live Demo",
-      keyFeatures: "Key Features",
-      visitLivePlatform: "Visit Live Platform",
-      viewSourceCode: "View Source Code",
-      viewRepo: "View Repo →",
-      failedRepos: "Could not load repositories.",
-      sendingMsg: "Sending your message...",
-      msgSuccess: "✓ Message sent! Ahmed will get back to you soon.",
-      msgError: "Failed to send message.",
-      connError: "Connection error. Please try again.",
-      langsTitle: "Programming Languages",
-      langsSubtitle: "Languages I write fluently — from systems programming to scripting, backend APIs, and mobile apps.",
-      langsFrontend: "Frontend Development",
-      langsBackend: "Backend Development",
-      langsMobile: "Mobile Applications",
-      langsSystems: "Systems & Tools"
-    },
-    ar: {
-      navHome: "الرئيسية",
-      navAbout: "من أنا",
-      navSkills: "المهارات",
-      navLanguages: "اللغات",
-      navProjects: "المشاريع",
-      navYoutube: "يوتيوب",
-      navResume: "السيرة الذاتية",
-      navContact: "اتصل بي",
-      btnGetResume: "السيرة الذاتية",
-      heroSubtitle: "معرض الأعمال 2026 — القاهرة، مصر",
-      heroTitle: "بناء <br> الأنظمة الرقمية <br> وتدريس المبرمجين.",
-      heroDesc: "مهندس برمجيات ومطور ويب شامل وصانع محتوى تعليمي أساعد آلاف المطورين حول العالم على احتراف البرمجة الحديثة.",
-      btnExploreProjects: "استكشف مشاريعي",
-      btnLetCollaborate: "دعنا نتعاون",
-      btnContactMe: "اتصل بي",
-      btnDownloadCv: "تنزيل الـ CV",
-      btnGithub: "جيت هاب",
-      aboutTitle: "من أنا",
-      metricProjects: "المشاريع المنجزة",
-      metricVideos: "شروحات يوتيوب",
-      metricAwards: "الشهادات التقنية",
-      metricStudents: "الطلاب والمتابعين",
-      skillsTitle: "الكفاءات الأساسية",
-      skillsSubtitle: "المهارات التقنية التي تم بناؤها على مدار سنوات من العمل الهندسي والتعليم وتقديم الأنظمة الرقمية.",
-      skillsDev:          "البرمجة والتطوير",
-      skillsNetworking:    "الشبكات والسحابة",
-      skillsAi:            "الذكاء الاصطناعي",
-      skillsCybersecurity: "الأمن السيبراني",
-      projectsTitle: "مشاريع مختارة",
-      projectsSubtitle: "كتالوج منسق من الأنظمة الرقمية عالية الجودة والجاهزة للإنتاج والمبنية وفقاً لأعلى المعايير.",
-      projectsSearchPlaceholder: "ابحث عن المشاريع بالاسم أو التقنية...",
-      projectsTabAll: "جميع الأنظمة",
-      projectsTabFullstack: "شامل (Full-Stack)",
-      projectsTabFrontend: "الواجهة الأمامية",
-      projectsTabBackend: "الواجهة الخلفية",
-      projectsTabTools: "أدوات التطوير",
-      githubTitle: "مستودعات مفتوحة المصدر",
-      githubSubtitle: "مقاييس المستودعات الحية التي يتم جلبها ديناميكياً عبر وسيط الخادم الآمن.",
-      youtubeChannelName: "زيرو تو كود",
-      youtubeChannelBadge: "صانع محتوى",
-      youtubeTitle: "صانع محتوى على يوتيوب",
-      youtubeSubtitle: "تعليم المطورين في جميع أنحاء العالم من خلال دروس برمجة منظمة وشروحات شاملة وتعمق في هندسة البرمجيات.",
-      ytStatStudents: "طالب ومتابع",
-      ytStatVideos: "درس منشور",
-      ytStatViews: "إجمالي المشاهدات",
-      youtubeChannelBtn: "زيارة قناة يوتيوب",
-      resumeTitle: "محطات المسيرة المهنية",
-      resumeSubtitle: "جدول زمني احترافي للقيادة الهندسية والتميز التعليمي والإنجازات الأكاديمية.",
-      certsTitle: "الشهادات والجوائز",
-      certsSubtitle: "الشهادات المهنية من الشركات التقنية الرائدة التي تثبت التميز الهندسي.",
-      honorsTitle: "جوائز المسيرة المهنية",
-      honorsSubtitle: "التقدير والجوائز الممنوحة لهندسة البرمجيات والتأثير التعليمي.",
-      testimonialsTitle: "توصيات وشهادات",
-      testimonialsSubtitle: "آراء موثقة من كبار المهندسين والمديرين التقنيين والطلاب من جميع أنحاء العالم.",
-      contactTitle: "فلنبنِ معاً",
-      contactSubtitle: "متاح للتعاون البرمجي والاستشارات وورش العمل والتدريب للشركات. أرسل استفسارك أدناه.",
-      contactEmailTitle: "البريد الإلكتروني المباشر",
-      contactWhatsappTitle: "واتساب",
-      contactWhatsappVal: "بدء محادثة على واتساب",
-      contactLocTitle: "الموقع",
-      contactSocialTitle: "تواصل معي عبر الإنترنت",
-      formLabelName: "الاسم",
-      formPlaceholderName: "أدخل اسمك الكريم",
-      formLabelEmail: "البريد الإلكتروني",
-      formPlaceholderEmail: "name@example.com",
-      formLabelSubject: "الموضوع",
-      formPlaceholderSubject: "طلب تعاون في مشروع / طلب تدريب",
-      formLabelMessage: "الرسالة",
-      formPlaceholderMessage: "صف مشروعك، أو احتياجاتك التدريبية، أو فكرة التعاون...",
-      formBtnSend: "إرسال الرسالة",
-      noProjectsFound: "لم يتم العثور على مشاريع تطابق بحثك.",
-      learnMore: "التفاصيل",
-      liveDemo: "العرض الحي",
-      keyFeatures: "الميزات الرئيسية",
-      visitLivePlatform: "زيارة المنصة الحية",
-      viewSourceCode: "عرض الكود المصدر",
-      viewRepo: "عرض المستودع ←",
-      failedRepos: "تعذر تحميل المستودعات.",
-      sendingMsg: "جاري إرسال رسالتك...",
-      msgSuccess: "✓ تم إرسال رسالتك بنجاح! سيتواصل معك أحمد قريباً.",
-      msgError: "فشل إرسال الرسالة.",
-      connError: "خطأ في الاتصال. يرجى المحاولة مرة أخرى.",
-      langsTitle: "لغات البرمجة",
-      langsSubtitle: "اللغات التي أكتبها بطلاقة — من برمجة الأنظمة إلى السكريبتينج وواجهات API والتطبيقات.",
-      langsFrontend: "تطوير الواجهات الأمامية",
-      langsBackend: "تطوير الواجهات الخلفية",
-      langsMobile: "تطبيقات الهاتف المحمول",
-      langsSystems: "الأنظمة والأدوات"
-    }
-  };
+            // Translation Dictionary
+            const uiTranslations = {
+                en: {
+                    navHome: "Home",
+                    navAbout: "About",
+                    navSkills: "Skills",
+                    navLanguages: "Languages",
+                    navProjects: "Projects",
+                    navYoutube: "YouTube",
+                    navResume: "Resume",
+                    navContact: "Contact",
+                    btnGetResume: "Get Resume",
+                    heroSubtitle: "Portfolio 2026 — Cairo, Egypt",
+                    heroTitle: "Building <br> Digital Systems <br> & Teaching Devs.",
+                    heroDesc: "Full Stack Developer, Software Engineer, and Educational Content Creator helping thousands of developers worldwide master modern programming.",
+                    btnExploreProjects: "Explore Projects",
+                    btnLetCollaborate: "Let's Collaborate",
+                    btnContactMe: "Contact Me",
+                    btnDownloadCv: "Download CV",
+                    btnGithub: "GitHub",
+                    aboutTitle: "About Me",
+                    metricProjects: "Projects Built",
+                    metricVideos: "YouTube Tutorials",
+                    metricAwards: "Certifications",
+                    metricStudents: "Students Reached",
+                    skillsTitle: "Core Competencies",
+                    skillsSubtitle: "Technical skills built over years of engineering, teaching, and delivering enterprise-grade digital systems.",
+                    skillsDev: "Programming & Development",
+                    skillsNetworking: "Networks & Cloud",
+                    skillsAi: "Artificial Intelligence",
+                    skillsCybersecurity: "Cyber Security",
+                    projectsTitle: "Selected Showcase",
+                    projectsSubtitle: "A curated catalog of high-quality, production-ready digital systems built to elite specifications.",
+                    projectsSearchPlaceholder: "Search projects by name or technology...",
+                    projectsTabAll: "All Systems",
+                    projectsTabFullstack: "Full-Stack",
+                    projectsTabFrontend: "Frontend / UI",
+                    projectsTabBackend: "Backend",
+                    projectsTabTools: "Dev Tools",
+                    githubTitle: "Open Source Repositories",
+                    githubSubtitle: "Live repository metrics fetched dynamically via secure server proxy.",
+                    youtubeChannelName: "zero to code",
+                    youtubeChannelBadge: "YouTube Creator",
+                    youtubeTitle: "YouTube Content Creator",
+                    youtubeSubtitle: "Educating developers worldwide through structured programming tutorials, full-stack walkthroughs, and software engineering deep-dives.",
+                    ytStatStudents: "Students",
+                    ytStatVideos: "Tutorials Published",
+                    ytStatViews: "Total Views",
+                    youtubeChannelBtn: "Visit YouTube Channel",
+                    resumeTitle: "Career Milestones",
+                    resumeSubtitle: "A professional timeline of engineering leadership, instructional excellence, and academic achievements.",
+                    certsTitle: "Certifications & Honors",
+                    certsSubtitle: "Professional certifications from leading technology organizations validating engineering excellence.",
+                    honorsTitle: "Career Honors",
+                    honorsSubtitle: "Recognition and awards for software engineering and educational impact.",
+                    testimonialsTitle: "Industry Endorsements",
+                    testimonialsSubtitle: "Verified feedback from senior engineers, technical directors, and students around the world.",
+                    contactTitle: "Let's Build Together",
+                    contactSubtitle: "Open to collaborations, consulting, workshops, and corporate training. Submit your inquiry below.",
+                    contactEmailTitle: "Direct Email",
+                    contactWhatsappTitle: "WhatsApp",
+                    contactWhatsappVal: "Open Chat on WhatsApp",
+                    contactLocTitle: "Location",
+                    contactSocialTitle: "Connect Online",
+                    formLabelName: "Your Name",
+                    formPlaceholderName: "John Doe",
+                    formLabelEmail: "Email Address",
+                    formPlaceholderEmail: "john@company.com",
+                    formLabelSubject: "Subject",
+                    formPlaceholderSubject: "Project Collaboration / Training Request",
+                    formLabelMessage: "Message",
+                    formPlaceholderMessage: "Describe your project, training need, or collaboration idea...",
+                    formBtnSend: "Send Message",
+                    noProjectsFound: "No projects found matching your search.",
+                    learnMore: "Learn More",
+                    liveDemo: "Live Demo",
+                    keyFeatures: "Key Features",
+                    visitLivePlatform: "Visit Live Platform",
+                    viewSourceCode: "View Source Code",
+                    viewRepo: "View Repo →",
+                    failedRepos: "Could not load repositories.",
+                    sendingMsg: "Sending your message...",
+                    msgSuccess: "✓ Message sent! Ahmed will get back to you soon.",
+                    msgError: "Failed to send message.",
+                    connError: "Connection error. Please try again.",
+                    langsTitle: "Programming Languages",
+                    langsSubtitle: "Languages I write fluently — from systems programming to scripting, backend APIs, and mobile apps.",
+                    langsFrontend: "Frontend Development",
+                    langsBackend: "Backend Development",
+                    langsMobile: "Mobile Applications",
+                    langsSystems: "Systems & Tools"
+                },
+                ar: {
+                    navHome: "الرئيسية",
+                    navAbout: "من أنا",
+                    navSkills: "المهارات",
+                    navLanguages: "اللغات",
+                    navProjects: "المشاريع",
+                    navYoutube: "يوتيوب",
+                    navResume: "السيرة الذاتية",
+                    navContact: "اتصل بي",
+                    btnGetResume: "السيرة الذاتية",
+                    heroSubtitle: "معرض الأعمال 2026 — القاهرة، مصر",
+                    heroTitle: "بناء <br> الأنظمة الرقمية <br> وتدريس المبرمجين.",
+                    heroDesc: "مهندس برمجيات ومطور ويب شامل وصانع محتوى تعليمي أساعد آلاف المطورين حول العالم على احتراف البرمجة الحديثة.",
+                    btnExploreProjects: "استكشف مشاريعي",
+                    btnLetCollaborate: "دعنا نتعاون",
+                    btnContactMe: "اتصل بي",
+                    btnDownloadCv: "تنزيل الـ CV",
+                    btnGithub: "جيت هاب",
+                    aboutTitle: "من أنا",
+                    metricProjects: "المشاريع المنجزة",
+                    metricVideos: "شروحات يوتيوب",
+                    metricAwards: "الشهادات التقنية",
+                    metricStudents: "الطلاب والمتابعين",
+                    skillsTitle: "الكفاءات الأساسية",
+                    skillsSubtitle: "المهارات التقنية التي تم بناؤها على مدار سنوات من العمل الهندسي والتعليم وتقديم الأنظمة الرقمية.",
+                    skillsDev: "البرمجة والتطوير",
+                    skillsNetworking: "الشبكات والسحابة",
+                    skillsAi: "الذكاء الاصطناعي",
+                    skillsCybersecurity: "الأمن السيبراني",
+                    projectsTitle: "مشاريع مختارة",
+                    projectsSubtitle: "كتالوج منسق من الأنظمة الرقمية عالية الجودة والجاهزة للإنتاج والمبنية وفقاً لأعلى المعايير.",
+                    projectsSearchPlaceholder: "ابحث عن المشاريع بالاسم أو التقنية...",
+                    projectsTabAll: "جميع الأنظمة",
+                    projectsTabFullstack: "شامل (Full-Stack)",
+                    projectsTabFrontend: "الواجهة الأمامية",
+                    projectsTabBackend: "الواجهة الخلفية",
+                    projectsTabTools: "أدوات التطوير",
+                    githubTitle: "مستودعات مفتوحة المصدر",
+                    githubSubtitle: "مقاييس المستودعات الحية التي يتم جلبها ديناميكياً عبر وسيط الخادم الآمن.",
+                    youtubeChannelName: "زيرو تو كود",
+                    youtubeChannelBadge: "صانع محتوى",
+                    youtubeTitle: "صانع محتوى على يوتيوب",
+                    youtubeSubtitle: "تعليم المطورين في جميع أنحاء العالم من خلال دروس برمجة منظمة وشروحات شاملة وتعمق في هندسة البرمجيات.",
+                    ytStatStudents: "طالب ومتابع",
+                    ytStatVideos: "درس منشور",
+                    ytStatViews: "إجمالي المشاهدات",
+                    youtubeChannelBtn: "زيارة قناة يوتيوب",
+                    resumeTitle: "محطات المسيرة المهنية",
+                    resumeSubtitle: "جدول زمني احترافي للقيادة الهندسية والتميز التعليمي والإنجازات الأكاديمية.",
+                    certsTitle: "الشهادات والجوائز",
+                    certsSubtitle: "الشهادات المهنية من الشركات التقنية الرائدة التي تثبت التميز الهندسي.",
+                    honorsTitle: "جوائز المسيرة المهنية",
+                    honorsSubtitle: "التقدير والجوائز الممنوحة لهندسة البرمجيات والتأثير التعليمي.",
+                    testimonialsTitle: "توصيات وشهادات",
+                    testimonialsSubtitle: "آراء موثقة من كبار المهندسين والمديرين التقنيين والطلاب من جميع أنحاء العالم.",
+                    contactTitle: "فلنبنِ معاً",
+                    contactSubtitle: "متاح للتعاون البرمجي والاستشارات وورش العمل والتدريب للشركات. أرسل استفسارك أدناه.",
+                    contactEmailTitle: "البريد الإلكتروني المباشر",
+                    contactWhatsappTitle: "واتساب",
+                    contactWhatsappVal: "بدء محادثة على واتساب",
+                    contactLocTitle: "الموقع",
+                    contactSocialTitle: "تواصل معي عبر الإنترنت",
+                    formLabelName: "الاسم",
+                    formPlaceholderName: "أدخل اسمك الكريم",
+                    formLabelEmail: "البريد الإلكتروني",
+                    formPlaceholderEmail: "name@example.com",
+                    formLabelSubject: "الموضوع",
+                    formPlaceholderSubject: "طلب تعاون في مشروع / طلب تدريب",
+                    formLabelMessage: "الرسالة",
+                    formPlaceholderMessage: "صف مشروعك، أو احتياجاتك التدريبية، أو فكرة التعاون...",
+                    formBtnSend: "إرسال الرسالة",
+                    noProjectsFound: "لم يتم العثور على مشاريع تطابق بحثك.",
+                    learnMore: "التفاصيل",
+                    liveDemo: "العرض الحي",
+                    keyFeatures: "الميزات الرئيسية",
+                    visitLivePlatform: "زيارة المنصة الحية",
+                    viewSourceCode: "عرض الكود المصدر",
+                    viewRepo: "عرض المستودع ←",
+                    failedRepos: "تعذر تحميل المستودعات.",
+                    sendingMsg: "جاري إرسال رسالتك...",
+                    msgSuccess: "✓ تم إرسال رسالتك بنجاح! سيتواصل معك أحمد قريباً.",
+                    msgError: "فشل إرسال الرسالة.",
+                    connError: "خطأ في الاتصال. يرجى المحاولة مرة أخرى.",
+                    langsTitle: "لغات البرمجة",
+                    langsSubtitle: "اللغات التي أكتبها بطلاقة — من برمجة الأنظمة إلى السكريبتينج وواجهات API والتطبيقات.",
+                    langsFrontend: "تطوير الواجهات الأمامية",
+                    langsBackend: "تطوير الواجهات الخلفية",
+                    langsMobile: "تطبيقات الهاتف المحمول",
+                    langsSystems: "الأنظمة والأدوات"
+                }
+            };
 
-  // ─── LANGUAGE SWITCHER ───────────────────────────────────────────────────────
-  function setLanguage(lang) {
-    localStorage.setItem('portfolio-lang', lang);
-    currentLang = lang;
+            // ─── LANGUAGE SWITCHER ───────────────────────────────────────────────────────
+            function setLanguage(lang) {
+                localStorage.setItem('portfolio-lang', lang);
+                currentLang = lang;
 
-    // Set page direction and lang
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    document.documentElement.lang = lang;
+                // Set page direction and lang
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                document.documentElement.lang = lang;
 
-    // Update toggle button text to show the opposite option
-    if (langToggleBtn) {
-      langToggleBtn.textContent = lang === 'en' ? 'العربية' : 'English';
-    }
+                // Update toggle button text to show the opposite option
+                if (langToggleBtn) {
+                    langToggleBtn.textContent = lang === 'en' ? 'العربية' : 'English';
+                }
 
-    // Translate all static nodes
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (uiTranslations[lang] && uiTranslations[lang][key]) {
-        const translation = uiTranslations[lang][key];
-        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-          el.setAttribute('placeholder', translation);
-        } else {
-          if (translation.includes('<br>') || translation.includes('<span>')) {
-            el.innerHTML = translation;
-          } else {
-            el.textContent = translation;
-          }
-        }
-      }
-    });
+                // Translate all static nodes
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (uiTranslations[lang] && uiTranslations[lang][key]) {
+                        const translation = uiTranslations[lang][key];
+                        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                            el.setAttribute('placeholder', translation);
+                        } else {
+                            if (translation.includes('<br>') || translation.includes('<span>')) {
+                                el.innerHTML = translation;
+                            } else {
+                                el.textContent = translation;
+                            }
+                        }
+                    }
+                });
 
-    // Re-render dynamic portfolio elements with active language
-    if (portfolioData) {
-      const info = portfolioData.personalInfo;
-      if (info) {
-        if (titleEl) titleEl.textContent = lang === 'ar' ? (info.title_ar || info.title) : info.title;
-        if (bioEl)   bioEl.textContent   = lang === 'ar' ? (info.bio_ar || info.bio) : info.bio;
-        if (bioheroEl) bioheroEl.textContent = lang === 'ar' ? (info.bio_ar || info.bio) : info.bio;
-        if (contactLocEl) contactLocEl.textContent = lang === 'ar' ? (info.location_ar || info.location) : info.location;
-        if (avatarEl && info.avatar) avatarEl.src = info.avatar;
-        if (resumeBtn && info.resumeUrl && info.resumeUrl !== '#') {
-          resumeBtn.href = info.resumeUrl;
-          resumeBtn.target = "_blank";
-        }
-        if (heroResumeBtn && info.resumeUrl && info.resumeUrl !== '#') {
-          heroResumeBtn.href = info.resumeUrl;
-          heroResumeBtn.target = "_blank";
-        }
+                // Re-render dynamic portfolio elements with active language
+                if (portfolioData) {
+                    const info = portfolioData.personalInfo;
+                    if (info) {
+                        if (titleEl) titleEl.textContent = lang === 'ar' ? (info.title_ar || info.title) : info.title;
+                        if (bioEl) bioEl.textContent = lang === 'ar' ? (info.bio_ar || info.bio) : info.bio;
+                        if (bioheroEl) bioheroEl.textContent = lang === 'ar' ? (info.bio_ar || info.bio) : info.bio;
+                        if (contactLocEl) contactLocEl.textContent = lang === 'ar' ? (info.location_ar || info.location) : info.location;
+                        if (avatarEl && info.avatar) avatarEl.src = info.avatar;
+                        if (resumeBtn && info.resumeUrl && info.resumeUrl !== '#') {
+                            resumeBtn.href = info.resumeUrl;
+                            resumeBtn.target = "_blank";
+                        }
+                        if (heroResumeBtn && info.resumeUrl && info.resumeUrl !== '#') {
+                            heroResumeBtn.href = info.resumeUrl;
+                            heroResumeBtn.target = "_blank";
+                        }
 
-        if (contactEmailEl) {
-          contactEmailEl.textContent = info.email;
-          contactEmailEl.href = `mailto:${info.email}`;
-        }
-        if (contactWhatsappEl && info.whatsapp) {
-          contactWhatsappEl.href = info.whatsapp;
-        }
-        if (ytChannelLink && info.youtubeUrl) {
-          ytChannelLink.href = info.youtubeUrl;
-        }
+                        if (contactEmailEl) {
+                            contactEmailEl.textContent = info.email;
+                            contactEmailEl.href = `mailto:${info.email}`;
+                        }
+                        if (contactWhatsappEl && info.whatsapp) {
+                            contactWhatsappEl.href = info.whatsapp;
+                        }
+                        if (ytChannelLink && info.youtubeUrl) {
+                            ytChannelLink.href = info.youtubeUrl;
+                        }
 
-        // Footer
-        const footerLogo = document.querySelector('.footer-logo');
-        if (footerLogo) footerLogo.innerHTML = `${lang === 'ar' ? (info.name_ar || info.name) : info.name} <span></span>`;
-        const footerCopy = document.querySelector('.footer-copy');
-        if (footerCopy) {
-          footerCopy.textContent = lang === 'ar'
-            ? `© 2026 ${info.name_ar || info.name}. جميع الحقوق محفوظة. | مهندس برمجيات وصانع محتوى تعليمي`
-            : `© 2026 ${info.name}. All Rights Reserved. | Software Engineer & Educational Content Creator`;
-        }
+                        // Footer
+                        const footerLogo = document.querySelector('.footer-logo');
+                        if (footerLogo) footerLogo.innerHTML = `${lang === 'ar' ? (info.name_ar || info.name) : info.name} <span></span>`;
+                        const footerCopy = document.querySelector('.footer-copy');
+                        if (footerCopy) {
+                            footerCopy.textContent = lang === 'ar' ?
+                                `© 2026 ${info.name_ar || info.name}. جميع الحقوق محفوظة. | مهندس برمجيات وصانع محتوى تعليمي` :
+                                `© 2026 ${info.name}. All Rights Reserved. | Software Engineer & Educational Content Creator`;
+                        }
 
-        // Social icons in contact section
-        renderSocialLinks(info, document.querySelector('.social-links'));
+                        // Social icons in contact section
+                        renderSocialLinks(info, document.querySelector('.social-links'));
 
-        // Hero social quick links
-        renderHeroSocials(info);
-      }
+                        // Hero social quick links
+                        renderHeroSocials(info);
+                    }
 
-      if (portfolioData.skills && portfolioData.skills.length > 0) renderSkills(portfolioData.skills);
-      if (portfolioData.languages && portfolioData.languages.length > 0) renderLanguages(portfolioData.languages);
-      if (portfolioData.timeline && portfolioData.timeline.length > 0) renderTimeline(portfolioData.timeline);
-      if (portfolioData.achievements && portfolioData.achievements.length > 0) renderAchievements(portfolioData.achievements);
-      if (portfolioData.testimonials && portfolioData.testimonials.length > 0) {
-        testimonialsData = portfolioData.testimonials;
-        renderTestimonials();
-      }
-      if (portfolioData.certificates && portfolioData.certificates.length > 0) renderCertificates(portfolioData.certificates);
-      if (portfolioData.youtubeVideos && portfolioData.youtubeVideos.length > 0) renderYouTube(portfolioData.youtubeVideos, portfolioData.personalInfo);
-      renderProjects();
-    }
-  }
+                    if (portfolioData.skills && portfolioData.skills.length > 0) renderSkills(portfolioData.skills);
+                    if (portfolioData.languages && portfolioData.languages.length > 0) renderLanguages(portfolioData.languages);
+                    if (portfolioData.timeline && portfolioData.timeline.length > 0) renderTimeline(portfolioData.timeline);
+                    if (portfolioData.achievements && portfolioData.achievements.length > 0) renderAchievements(portfolioData.achievements);
+                    if (portfolioData.testimonials && portfolioData.testimonials.length > 0) {
+                        testimonialsData = portfolioData.testimonials;
+                        renderTestimonials();
+                    }
+                    if (portfolioData.certificates && portfolioData.certificates.length > 0) renderCertificates(portfolioData.certificates);
+                    if (portfolioData.youtubeVideos && portfolioData.youtubeVideos.length > 0) renderYouTube(portfolioData.youtubeVideos, portfolioData.personalInfo);
+                    renderProjects();
+                }
+            }
 
-  // ─── MAIN BOOT ───────────────────────────────────────────────────────────────
-  async function loadPortfolioData() {
-    try {
-      const res = await fetch(`${API_URL}/api/settings`);
-      portfolioData = await res.json();
+            // ─── MAIN BOOT ───────────────────────────────────────────────────────────────
+            async function loadPortfolioData() {
+                try {
+                    const res = await fetch(`${API_URL}/api/settings`);
+                    portfolioData = await res.json();
 
-      // Update stats from database
-      const stats = portfolioData.personalInfo?.stats || {};
-      if (stats.students) {
-        const el = document.getElementById('stat-students');
-        if (el) el.textContent = stats.students;
-      }
-      if (stats.tutorials) {
-        const el = document.getElementById('yt-stat-tutorials');
-        if (el) el.textContent = stats.tutorials;
-      }
-      if (stats.views) {
-        const el = document.getElementById('yt-stat-views');
-        if (el) el.textContent = stats.views;
-      }
-      if (stats.students) {
-        const el = document.getElementById('yt-stat-students');
-        if (el) el.textContent = stats.students;
-      }
+                    // Update stats from database
+                    const stats = portfolioData.personalInfo ? .stats || {};
+                    if (stats.students) {
+                        const el = document.getElementById('stat-students');
+                        if (el) el.textContent = stats.students;
+                    }
+                    if (stats.tutorials) {
+                        const el = document.getElementById('yt-stat-tutorials');
+                        if (el) el.textContent = stats.tutorials;
+                    }
+                    if (stats.views) {
+                        const el = document.getElementById('yt-stat-views');
+                        if (el) el.textContent = stats.views;
+                    }
+                    if (stats.students) {
+                        const el = document.getElementById('yt-stat-students');
+                        if (el) el.textContent = stats.students;
+                    }
 
-      // Update YouTube section from database
-      const yt = portfolioData.personalInfo?.youtube || {};
-      if (yt.title) {
-        const el = document.getElementById('yt-section-title');
-        if (el) el.textContent = yt.title;
-      }
-      if (yt.description) {
-        const el = document.getElementById('yt-section-desc');
-        if (el) el.textContent = yt.description;
-      }
-      if (yt.badgeImage) {
-        const el = document.getElementById('yt-badge-img');
-        if (el) el.src = yt.badgeImage;
-      }
+                    // Update YouTube section from database
+                    const yt = portfolioData.personalInfo ? .youtube || {};
+                    if (yt.title) {
+                        const el = document.getElementById('yt-section-title');
+                        if (el) el.textContent = yt.title;
+                    }
+                    if (yt.description) {
+                        const el = document.getElementById('yt-section-desc');
+                        if (el) el.textContent = yt.description;
+                    }
+                    if (yt.badgeImage) {
+                        const el = document.getElementById('yt-badge-img');
+                        if (el) el.src = yt.badgeImage;
+                    }
 
-      // Update avatar from database
-      const info = portfolioData.personalInfo || {};
-      if (info.avatar) {
-        const el = document.getElementById('dev-avatar');
-        if (el) el.src = info.avatar;
-      }
+                    // Update avatar from database
+                    const info = portfolioData.personalInfo || {};
+                    if (info.avatar) {
+                        const el = document.getElementById('dev-avatar');
+                        if (el) el.src = info.avatar;
+                    }
 
-      // Fetch projects
-      await loadProjects();
+                    // Fetch projects
+                    await loadProjects();
 
-      // Set initial language
-      setLanguage(currentLang);
+                    // Set initial language
+                    setLanguage(currentLang);
 
-      // Setup language toggle button event listener
-      if (langToggleBtn) {
-        langToggleBtn.addEventListener('click', () => {
-          const nextLang = currentLang === 'en' ? 'ar' : 'en';
-          setLanguage(nextLang);
-        });
-      }
+                    // Setup language toggle button event listener
+                    if (langToggleBtn) {
+                        langToggleBtn.addEventListener('click', () => {
+                            const nextLang = currentLang === 'en' ? 'ar' : 'en';
+                            setLanguage(nextLang);
+                        });
+                    }
 
-      bindScrollObservers();
-    } catch (error) {
-      console.error('Failed to load portfolio data:', error);
-    }
-  }
+                    bindScrollObservers();
+                } catch (error) {
+                    console.error('Failed to load portfolio data:', error);
+                }
+            }
 
-  // ─── SOCIAL LINKS RENDER ─────────────────────────────────────────────────────
-  function renderSocialLinks(info, container) {
-    if (!container) return;
-    container.innerHTML = `
+            // ─── SOCIAL LINKS RENDER ─────────────────────────────────────────────────────
+            function renderSocialLinks(info, container) {
+                if (!container) return;
+                container.innerHTML = `
       ${info.githubUrl    ? `<a href="${info.githubUrl}"    target="_blank" class="social-link" title="GitHub">${svgGithub()}</a>`    : ''}
       ${info.linkedinUrl  ? `<a href="${info.linkedinUrl}"  target="_blank" class="social-link" title="LinkedIn">${svgLinkedin()}</a>`  : ''}
       ${info.youtubeUrl   ? `<a href="${info.youtubeUrl}"   target="_blank" class="social-link" title="YouTube">${svgYoutube()}</a>`    : ''}
@@ -581,13 +581,24 @@ document.addEventListener('DOMContentLoaded', () => {
     certificates.forEach(cert => {
       const displayTitle = currentLang === 'ar' ? (cert.title_ar || cert.title) : cert.title;
       const isPdf = cert.image.toLowerCase().endsWith('.pdf');
+      
+      // Use Google Docs Viewer to preview PDF as an image
+      const previewUrl = isPdf 
+        ? `https://docs.google.com/viewer?url=${encodeURIComponent(window.location.origin + cert.image)}&embedded=true`
+        : cert.image;
+
       const previewHtml = isPdf 
-        ? `<div class="cert-pdf-preview"><span style="font-size: 3rem;">📄</span></div>`
+        ? `<iframe src="${previewUrl}" class="cert-carousel-img" style="border: none; pointer-events: none;"></iframe>`
         : `<img src="${cert.image}" alt="${displayTitle}" class="cert-carousel-img" loading="lazy">`;
 
       container.insertAdjacentHTML('beforeend', `
         <a href="${cert.image}" target="_blank" class="cert-carousel-card" style="text-decoration: none; cursor: pointer;">
-          ${previewHtml}
+          <div class="cert-img-container">
+            ${previewHtml}
+            <div class="cert-overlay">
+              <span>🔍 View Full PDF</span>
+            </div>
+          </div>
           <div class="cert-carousel-label">
             <span class="cert-carousel-emoji">🏆</span>
             <span class="cert-carousel-title">${displayTitle}</span>
