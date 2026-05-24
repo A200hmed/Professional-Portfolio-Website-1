@@ -236,6 +236,45 @@ async function initConnection() {
 
     uri = uri.trim().replace(/^["'](.+)["']$/, '$1');
 
+    // Auto-encode password/username if they contain special characters
+    try {
+        const protocolMatch = uri.match(/^(mongodb(?:\+srv)?:\/\/)/i);
+        if (protocolMatch) {
+            const protocol = protocolMatch[1];
+            const rest = uri.slice(protocol.length);
+            
+            // Find the last '@' which separates credentials from host
+            const lastAtIndex = rest.lastIndexOf('@');
+            if (lastAtIndex !== -1) {
+                const credentials = rest.substring(0, lastAtIndex);
+                const hostAndQuery = rest.substring(lastAtIndex + 1);
+                
+                // Find first ':' in credentials
+                const firstColonIndex = credentials.indexOf(':');
+                if (firstColonIndex !== -1) {
+                    const username = credentials.substring(0, firstColonIndex);
+                    const password = credentials.substring(firstColonIndex + 1);
+                    
+                    // URL-encode username and password, but only if they aren't already encoded
+                    const safeEncode = (str) => {
+                        // Check if it already contains URL encoded sequence (e.g., %2F, %40)
+                        if (/%[0-9a-fA-F]{2}/.test(str)) {
+                            return str; 
+                        }
+                        return encodeURIComponent(str);
+                    };
+                    
+                    const encodedUsername = safeEncode(username);
+                    const encodedPassword = safeEncode(password);
+                    
+                    uri = `${protocol}${encodedUsername}:${encodedPassword}@${hostAndQuery}`;
+                }
+            }
+        }
+    } catch (err) {
+        console.warn('⚠️ MongoDB URI auto-encode failed:', err.message);
+    }
+
     try {
         console.log('🔌 Connecting to MongoDB Atlas...');
         cachedConnection = mongoose.connect(uri, {
