@@ -236,25 +236,32 @@ function getIsConnected() {
     return mongoose.connection.readyState === 1;
 }
 
+// Global variable to store last connection error
+let lastError = null;
+
 // Initialize connection and sets state
 async function initConnection() {
     if (getIsConnected()) return true;
 
     const uri = process.env.MONGODB_URI;
     if (!uri) {
+        lastError = 'MONGODB_URI environment variable is missing';
         console.log('⚠️ No MONGODB_URI. Falling back to JSON.');
         return false;
     }
 
     try {
         await mongoose.connect(uri.trim(), {
-            serverSelectionTimeoutMS: 10000, // Increase to 10s
+            serverSelectionTimeoutMS: 10000,
             socketTimeoutMS: 45000,
-            dbName: 'portfolio' // Explicitly set DB name
+            dbName: 'portfolio',
+            connectTimeoutMS: 10000
         });
         console.log('🚀 MongoDB Connected successfully!');
+        lastError = null;
         return true;
     } catch (err) {
+        lastError = err.message;
         console.error('❌ MongoDB Connection Error:', err.message);
         return false;
     }
@@ -320,7 +327,7 @@ async function updatePersonalInfo(infoData) {
     }
 
     if (process.env.NODE_ENV === 'production') {
-        throw new Error('Database not connected in production mode.');
+        throw new Error(`Database connection failed: ${lastError || 'Unknown Error'}`);
     }
 
     const db = await readLocalJSON();
@@ -400,7 +407,9 @@ async function addCertificate(cert) {
             throw e;
         }
     }
-    if (process.env.NODE_ENV === 'production') throw new Error('DB not connected');
+    if (process.env.NODE_ENV === 'production') {
+        throw new Error(`Database connection failed: ${lastError || 'Unknown Error'}`);
+    }
     const db = await readLocalJSON();
     if (!db.certificates) db.certificates = [];
     db.certificates.push(cert);
