@@ -100,53 +100,63 @@ app.post('/api/auth/login', (req, res) => {
 // SETTINGS (personal info + arrays)
 // ══════════════════════════════════════════════════════════════════════════════
 app.get('/api/settings', async(req, res) => {
-    const db = await dbMongo.readDB();
-    res.json({
-        personalInfo: db.personalInfo,
-        skills: db.skills || [],
-        languages: db.languages || [],
-        timeline: db.timeline || [],
-        achievements: db.achievements || [],
-        testimonials: db.testimonials || [],
-        certificates: db.certificates || [],
-        youtubeVideos: db.youtubeVideos || []
-    });
+    try {
+        const db = await dbMongo.readDB();
+        res.json({
+            personalInfo: db.personalInfo,
+            skills: db.skills || [],
+            languages: db.languages || [],
+            timeline: db.timeline || [],
+            achievements: db.achievements || [],
+            testimonials: db.testimonials || [],
+            certificates: db.certificates || [],
+            youtubeVideos: db.youtubeVideos || []
+        });
+    } catch (err) {
+        console.error('❌ Error in GET /api/settings:', err.message);
+        res.status(500).json({ error: 'Failed to load settings' });
+    }
 });
 
 app.post('/api/settings', requireAuth, async(req, res) => {
-    const db = await dbMongo.readDB();
-    const info = db.personalInfo;
-    const newInfo = {
-        name: req.body.name || info.name,
-        name_ar: req.body.name_ar !== undefined ? req.body.name_ar : (info.name_ar || ''),
-        title: req.body.title || info.title,
-        title_ar: req.body.title_ar !== undefined ? req.body.title_ar : (info.title_ar || ''),
-        bio: req.body.bio !== undefined ? req.body.bio : info.bio,
-        bio_ar: req.body.bio_ar !== undefined ? req.body.bio_ar : (info.bio_ar || ''),
-        avatar: req.body.avatar || info.avatar,
-        resumeUrl: req.body.resumeUrl || info.resumeUrl,
-        location: req.body.location || info.location,
-        location_ar: req.body.location_ar !== undefined ? req.body.location_ar : (info.location_ar || ''),
-        email: req.body.email || info.email,
-        whatsapp: req.body.whatsapp || info.whatsapp || '',
-        githubUrl: req.body.githubUrl || info.githubUrl || '',
-        linkedinUrl: req.body.linkedinUrl || info.linkedinUrl || '',
-        youtubeUrl: req.body.youtubeUrl || info.youtubeUrl || '',
-        facebookUrl: req.body.facebookUrl || info.facebookUrl || '',
-        instagramUrl: req.body.instagramUrl || info.instagramUrl || '',
-        telegramUrl: req.body.telegramUrl || info.telegramUrl || '',
-        twitterUrl: req.body.twitterUrl || info.twitterUrl || '',
-        stats: req.body.stats || info.stats || { students: '100K+', tutorials: '150+', views: '5M+' },
-        youtube: req.body.youtube || info.youtube || {
-            title: 'YouTube Content Creator',
-            title_ar: 'صانع محتوى يوتيوب',
-            description: 'Educating developers worldwide through structured programming tutorials, full-stack walkthroughs, and software engineering deep-dives.',
-            description_ar: 'تعليم المطورين حول العالم من خلال شروحات برمجية منظمة، وشرح شامل للمشاريع الكاملة، واستعراض عميق لهندسة البرمجيات.',
-            badgeImage: '/zero_to_code_badge.png'
-        }
-    };
-    const updated = await dbMongo.updatePersonalInfo(newInfo);
-    res.json(updated);
+    try {
+        const db = await dbMongo.readDB();
+        const info = db.personalInfo;
+        const newInfo = {
+            name: req.body.name || info.name,
+            name_ar: req.body.name_ar !== undefined ? req.body.name_ar : (info.name_ar || ''),
+            title: req.body.title || info.title,
+            title_ar: req.body.title_ar !== undefined ? req.body.title_ar : (info.title_ar || ''),
+            bio: req.body.bio !== undefined ? req.body.bio : info.bio,
+            bio_ar: req.body.bio_ar !== undefined ? req.body.bio_ar : (info.bio_ar || ''),
+            avatar: req.body.avatar || info.avatar,
+            resumeUrl: req.body.resumeUrl || info.resumeUrl,
+            location: req.body.location || info.location,
+            location_ar: req.body.location_ar !== undefined ? req.body.location_ar : (info.location_ar || ''),
+            email: req.body.email || info.email,
+            whatsapp: req.body.whatsapp || info.whatsapp || '',
+            githubUrl: req.body.githubUrl || info.githubUrl || '',
+            linkedinUrl: req.body.linkedinUrl || info.linkedinUrl || '',
+            youtubeUrl: req.body.youtubeUrl || info.youtubeUrl || '',
+            facebookUrl: req.body.facebookUrl || info.facebookUrl || '',
+            instagramUrl: req.body.instagramUrl || info.instagramUrl || '',
+            telegramUrl: req.body.telegramUrl || info.telegramUrl || '',
+            twitterUrl: req.body.twitterUrl || info.twitterUrl || '',
+            stats: req.body.stats || info.stats || { students: '100K+', tutorials: '150+', views: '5M+' },
+            youtube: req.body.youtube || info.youtube || {
+                title: 'YouTube Content Creator',
+                title_ar: 'صانع محتوى يوتيوب',
+                description: 'Educating developers worldwide through structured programming tutorials, full-stack walkthroughs, and software engineering deep-dives.',
+                description_ar: 'تعليم المطورين حول العالم من خلال شروحات برمجية منظمة، وشرح شامل للمشاريع الكاملة، واستعراض عميق لهندسة البرمجيات.',
+                badgeImage: '/zero_to_code_badge.png'
+            }
+        };
+        const updated = await dbMongo.updatePersonalInfo(newInfo);
+        res.json(updated);
+    } catch (err) {
+        console.error('❌ Error in POST /api/settings:', err.message);
+        res.status(500).json({ error: 'Internal Server Error: ' + err.message });
+    }
 });
 
 // ── Array Settings ─────────────────────────────────────────────────────────────

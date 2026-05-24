@@ -608,11 +608,10 @@ async function addMessage(msg) {
     if (getIsConnected()) {
         try {
             const res = await Message.create(msg);
-            console.log('✅ Message saved to MongoDB');
+            console.log('✅ Message saved to MongoDB Atlas');
             return res;
         } catch (e) {
             console.error('❌ Failed to save message to MongoDB:', e.message);
-            // Don't throw for messages to allow email to proceed
         }
     }
     const db = await readLocalJSON();
