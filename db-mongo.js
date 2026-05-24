@@ -212,13 +212,19 @@ function getIsConnected() {
     return mongoose.connection.readyState === 1;
 }
 
-// Global variable to cache the connection
-let isConnecting = false;
+// Global variable to cache the connection promise
+let cachedPromise = null;
 
-// Initialize connection (Ultra-Stable for Vercel)
+// Initialize connection (Official MongoDB/Vercel Recommended Pattern)
 async function initConnection() {
-    if (mongoose.connection.readyState >= 1) return true;
-    if (isConnecting) return false;
+    // If already connected (readyState 1), return immediately
+    if (mongoose.connection.readyState === 1) return true;
+
+    // If connecting (readyState 2), wait for the existing promise
+    if (mongoose.connection.readyState === 2 && cachedPromise) {
+        await cachedPromise;
+        return true;
+    }
 
     const uri = (process.env.MONGODB_URI || '').trim().replace(/^["'](.+)["']$/, '$1').replace(/[\r\n\t]/g, '');
     if (!uri) {
@@ -226,19 +232,26 @@ async function initConnection() {
         return false;
     }
 
-    isConnecting = true;
-    try {
-        await mongoose.connect(uri, {
+    // Create a new connection promise if none exists or if the previous one failed
+    if (!cachedPromise) {
+        const opts = {
+            bufferCommands: false, // Disable buffering for serverless
             serverSelectionTimeoutMS: 5000,
-            socketTimeoutMS: 30000,
-            maxPoolSize: 1
+            maxPoolSize: 1,
+            connectTimeoutMS: 10000,
+        };
+
+        cachedPromise = mongoose.connect(uri, opts).catch(err => {
+            cachedPromise = null; // Reset on failure so we can retry
+            throw err;
         });
-        console.log('🚀 MongoDB Connected!');
-        isConnecting = false;
+    }
+
+    try {
+        await cachedPromise;
         return true;
     } catch (err) {
-        isConnecting = false;
-        console.error('❌ Connection Error:', err.message);
+        console.error('❌ MongoDB Connection Error:', err.message);
         return false;
     }
 }
