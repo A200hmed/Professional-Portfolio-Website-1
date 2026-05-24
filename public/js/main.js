@@ -580,15 +580,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     certificates.forEach(cert => {
       const displayTitle = currentLang === 'ar' ? (cert.title_ar || cert.title) : cert.title;
+      const isPdf = cert.image.toLowerCase().endsWith('.pdf');
+      const previewHtml = isPdf 
+        ? `<div class="cert-pdf-preview"><span style="font-size: 3rem;">📄</span></div>`
+        : `<img src="${cert.image}" alt="${displayTitle}" class="cert-carousel-img" loading="lazy">`;
 
       container.insertAdjacentHTML('beforeend', `
-        <div class="cert-carousel-card">
-          <img src="${cert.image}" alt="${displayTitle}" class="cert-carousel-img" loading="lazy">
+        <a href="${cert.image}" target="_blank" class="cert-carousel-card" style="text-decoration: none; cursor: pointer;">
+          ${previewHtml}
           <div class="cert-carousel-label">
             <span class="cert-carousel-emoji">🏆</span>
             <span class="cert-carousel-title">${displayTitle}</span>
           </div>
-        </div>
+        </a>
       `);
     });
   }
