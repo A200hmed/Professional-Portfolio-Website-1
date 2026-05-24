@@ -250,7 +250,9 @@ async function initConnection() {
     } catch (err) {
         cachedPromise = null;
         console.error('❌ MongoDB Connection Error:', err.message);
-        throw new Error(`Database connection failed: ${err.message}`);
+        // Do NOT throw error to prevent Vercel Function Crash
+        // Instead, we return false and the CRUD functions will handle it
+        return false;
     }
 }
 
