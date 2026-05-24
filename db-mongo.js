@@ -213,26 +213,61 @@ function getIsConnected() {
     return mongoose.connection.readyState === 1;
 }
 
-// Global variable to cache connection
-let isConnected = false;
+// Global variable to cache the connection promise
+let cachedPromise = null;
 
-// Initialize connection (Minimalist & Direct for Vercel)
+// Initialize connection (Standard Singleton for Vercel)
 async function initConnection() {
-    if (isConnected && mongoose.connection.readyState === 1) return true;
+    if (mongoose.connection.readyState === 1) return true;
+    if (mongoose.connection.readyState === 2) {
+        if (cachedPromise) await cachedPromise;
+        return mongoose.connection.readyState === 1;
+    }
 
-    const uri = (process.env.MONGODB_URI || '').trim().replace(/^["'](.+)["']$/, '$1').replace(/[\r\n\t]/g, '');
+    let uri = process.env.MONGODB_URI;
     if (!uri) return false;
 
+    // Clean URI from any invisible characters or quotes
+    uri = uri.trim().replace(/^["'](.+)["']$/, '$1').replace(/[\r\n\t]/g, '');
+
+    // Senior Hack: Automatically encode password if it contains special characters
     try {
-        await mongoose.connect(uri, {
+        if (uri.includes('://') && uri.includes('@')) {
+            const protocol = uri.split('://')[0] + '://';
+            const rest = uri.split('://')[1];
+            const credentials = rest.split('@')[0];
+            const host = rest.split('@')[1];
+            if (credentials.includes(':')) {
+                const user = credentials.split(':')[0];
+                const pass = credentials.split(':')[1];
+                // Only encode if not already encoded
+                const safePass = pass.includes('%') ? pass : encodeURIComponent(pass);
+                uri = `${protocol}${user}:${safePass}@${host}`;
+            }
+        }
+    } catch (e) {
+        console.warn('URI Auto-encode skipped');
+    }
+
+    if (!cachedPromise) {
+        cachedPromise = mongoose.connect(uri, {
             serverSelectionTimeoutMS: 10000,
             socketTimeoutMS: 45000,
-            maxPoolSize: 1
+            maxPoolSize: 1,
+            connectTimeoutMS: 10000,
+            bufferCommands: false
+        }).catch(err => {
+            cachedPromise = null;
+            throw err;
         });
-        isConnected = true;
+    }
+
+    try {
+        await cachedPromise;
         return true;
     } catch (err) {
         console.error('❌ MongoDB Connection Error:', err.message);
+        cachedPromise = null;
         return false;
     }
 }
