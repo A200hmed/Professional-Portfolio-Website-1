@@ -227,13 +227,35 @@ async function initConnection() {
     // Clean URI: trim whitespace and remove potential surrounding quotes
     uri = uri.trim().replace(/^["'](.+)["']$/, '$1');
 
+    // Senior Insight: Check if the password contains special characters that aren't encoded
+    // This is a common cause of "bad auth"
+    if (uri.includes('@') && uri.lastIndexOf('@') > uri.indexOf(':')) {
+        const parts = uri.split('@');
+        const connectionPart = parts[0]; // mongodb+srv://user:pass
+        const hostPart = parts.slice(1).join('@');
+        
+        if (connectionPart.includes('://')) {
+            const protocol = connectionPart.split('://')[0];
+            const credentials = connectionPart.split('://')[1];
+            if (credentials.includes(':')) {
+                const [user, pass] = credentials.split(':');
+                // If password has special chars but isn't encoded, this helps
+                // but we must be careful not to double-encode.
+                // For now, we'll just log a warning if we detect suspicious chars
+                if (pass.match(/[#?]/)) {
+                    console.warn('⚠️ Warning: Password contains unencoded special characters (# or ?). This may cause authentication failure.');
+                }
+            }
+        }
+    }
+
     try {
-        // We remove forced dbName to allow URI to define it, 
-        // which fixes many "bad auth" issues where the user has specific DB permissions.
+        console.log(`🔌 Attempting MongoDB connection (URI length: ${uri.length})...`);
         await mongoose.connect(uri, {
-            serverSelectionTimeoutMS: 15000,
+            serverSelectionTimeoutMS: 20000, // Increased to 20s for slow cold starts
             socketTimeoutMS: 45000,
-            connectTimeoutMS: 15000
+            connectTimeoutMS: 20000,
+            heartbeatFrequencyMS: 10000
         });
         console.log('🚀 MongoDB Connected successfully!');
         lastError = null;
