@@ -50,7 +50,19 @@ const PersonalInfoSchema = new mongoose.Schema({
     facebookUrl: { type: String, default: '' },
     instagramUrl: { type: String, default: '' },
     telegramUrl: { type: String, default: '' },
-    twitterUrl: { type: String, default: '' }
+    twitterUrl: { type: String, default: '' },
+    stats: {
+        students: { type: String, default: '100K+' },
+        tutorials: { type: String, default: '150+' },
+        views: { type: String, default: '5M+' }
+    },
+    youtube: {
+        title: { type: String, default: 'YouTube Content Creator' },
+        title_ar: { type: String, default: 'صانع محتوى يوتيوب' },
+        description: { type: String, default: 'Educating developers worldwide through tutorials.' },
+        description_ar: { type: String, default: 'تعليم المطورين حول العالم.' },
+        badgeImage: { type: String, default: '/zero_to_code_badge.png' }
+    }
 }, { minimize: false });
 
 const SkillSchema = new mongoose.Schema({
@@ -280,7 +292,7 @@ async function updatePersonalInfo(infoData) {
                 Object.assign(info, infoData);
             }
             await info.save();
-            console.log('✅ PersonalInfo updated in MongoDB');
+            console.log('✅ PersonalInfo updated successfully in MongoDB Atlas');
             return info.toObject();
         } catch (err) {
             console.error('❌ Failed to update PersonalInfo on MongoDB:', err.message);
@@ -325,7 +337,7 @@ async function saveArrayField(fieldName, arrayData) {
             if (arrayData && arrayData.length > 0) {
                 await Model.insertMany(arrayData);
             }
-            console.log(`✅ ${fieldName} updated in MongoDB`);
+            console.log(`✅ Array field [${fieldName}] updated successfully in MongoDB Atlas (${arrayData.length} items)`);
             return true;
         } catch (err) {
             console.error(`❌ Failed to update ${fieldName} in MongoDB:`, err.message);

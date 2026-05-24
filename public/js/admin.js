@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-            const API_URL = '';
+            const API_URL = window.location.origin;
             const token = localStorage.getItem('admin_token');
 
             // ── Auth Guard ─────────────────────────────────────────────────────────────

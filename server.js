@@ -10,6 +10,14 @@ const mailer = require('./mailer');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Database masking for logs
+if (process.env.MONGODB_URI) {
+    const masked = process.env.MONGODB_URI.replace(/:([^@]+)@/, ':****@');
+    console.log(`📡 MONGODB_URI detected: ${masked}`);
+} else {
+    console.log('📡 MONGODB_URI not found. Using local JSON fallback.');
+}
+
 // Initialize Database Connection and ensure it waits
 async function ensureDB() {
     if (!dbMongo.getIsConnected()) {
