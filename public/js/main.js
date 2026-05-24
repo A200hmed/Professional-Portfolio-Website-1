@@ -593,22 +593,23 @@ document.addEventListener('DOMContentLoaded', () => {
     certificates.forEach(cert => {
       const displayTitle = currentLang === 'ar' ? (cert.title_ar || cert.title) : cert.title;
       
-      // Professional Icon based on certificate type
-      let icon = '📜';
-      if (displayTitle.toLowerCase().includes('ccna')) icon = '🌐';
-      if (displayTitle.toLowerCase().includes('security')) icon = '🛡️';
-      if (displayTitle.toLowerCase().includes('enterprise')) icon = '🏢';
-
+      // Professional Certificate Template Look
       container.insertAdjacentHTML('beforeend', `
         <a href="${cert.image}" target="_blank" class="cert-carousel-card" style="text-decoration: none; cursor: pointer;">
-          <div class="cert-img-container" style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(56,189,248,0.1), rgba(59,130,246,0.1));">
-            <div style="font-size: 4rem; filter: drop-shadow(0 0 10px rgba(56,189,248,0.3));">${icon}</div>
+          <div class="cert-img-container" style="background: #fff; padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-bottom: 1px solid #eee;">
+            <div style="width: 100%; height: 100%; border: 2px solid #005073; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; background: #f9f9f9; position: relative; overflow: hidden;">
+              <div style="position: absolute; top: 5px; left: 5px; opacity: 0.1; width: 40px;"><img src="https://www.cisco.com/c/dam/cdc/i/logos/cisco-logo-black.png" style="width: 100%;"></div>
+              <div style="font-size: 0.6rem; color: #666; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">Certificate of Completion</div>
+              <div style="font-size: 0.8rem; font-weight: bold; color: #005073; text-align: center; margin-bottom: 5px;">${displayTitle}</div>
+              <div style="font-size: 0.5rem; color: #999;">Awarded to Ahmed Khaled Anwar</div>
+              <div style="margin-top: 10px; font-size: 1.5rem;">🏆</div>
+            </div>
             <div class="cert-overlay">
-              <span>📄 Open Certificate</span>
+              <span>🔍 View Official PDF</span>
             </div>
           </div>
           <div class="cert-carousel-label">
-            <span class="cert-carousel-emoji">🏆</span>
+            <span class="cert-carousel-emoji">📜</span>
             <span class="cert-carousel-title">${displayTitle}</span>
           </div>
         </a>
