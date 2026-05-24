@@ -231,16 +231,32 @@ async function writeLocalJSON(data) {
     }
 }
 
-// Initialize connection and sets state
-async function initConnection() {
-    if (mongoose.connection.readyState === 1) return true;
-    isConnected = await connectDB();
-    return isConnected;
+// Global function to check connection status directly from Mongoose
+function getIsConnected() {
+    return mongoose.connection.readyState === 1;
 }
 
-function getIsConnected() {
-    // 1 = connected, 2 = connecting
-    return mongoose.connection.readyState === 1 || mongoose.connection.readyState === 2;
+// Initialize connection and sets state
+async function initConnection() {
+    if (getIsConnected()) return true;
+
+    const uri = process.env.MONGODB_URI;
+    if (!uri) {
+        console.log('⚠️ No MONGODB_URI. Falling back to JSON.');
+        return false;
+    }
+
+    try {
+        await mongoose.connect(uri.trim(), {
+            serverSelectionTimeoutMS: 5000,
+            socketTimeoutMS: 45000,
+        });
+        console.log('🚀 MongoDB Connected!');
+        return true;
+    } catch (err) {
+        console.error('❌ DB Error:', err.message);
+        return false;
+    }
 }
 
 // ── CRUD Functions with fallback ───────────────────────────────────────
@@ -283,7 +299,8 @@ async function readDB() {
 }
 
 async function updatePersonalInfo(infoData) {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             let info = await PersonalInfo.findOne();
             if (!info) {
@@ -311,7 +328,8 @@ async function updatePersonalInfo(infoData) {
 }
 
 async function saveArrayField(fieldName, arrayData) {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             let Model;
             switch (fieldName) {
@@ -357,7 +375,8 @@ async function saveArrayField(fieldName, arrayData) {
 
 // Certificates CRUD
 async function getCertificates() {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             return await Certificate.find();
         } catch (e) {
@@ -368,7 +387,8 @@ async function getCertificates() {
 }
 
 async function addCertificate(cert) {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             const res = await Certificate.create(cert);
             console.log('✅ Certificate added to MongoDB');
@@ -501,7 +521,8 @@ async function deleteYoutubeVideo(id) {
 
 // Projects CRUD
 async function getProjects() {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             return await Project.find();
         } catch (e) {
@@ -512,7 +533,8 @@ async function getProjects() {
 }
 
 async function addProject(project) {
-    if (isConnected) {
+    await initConnection();
+    if (getIsConnected()) {
         try {
             const res = await Project.create(project);
             console.log('✅ Project added to MongoDB');
