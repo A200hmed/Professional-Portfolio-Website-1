@@ -346,8 +346,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('✨ Data loaded successfully. Initializing UI components...');
 
                 // Update stats from database
-                const stats = portfolioData.personalInfo ? .stats || {};
-                // ... rest of the function remains the same ...
+                const stats = (portfolioData.personalInfo && portfolioData.personalInfo.stats) || {};
+                
                 if (stats.students) {
                     const el = document.getElementById('stat-students');
                     if (el) el.textContent = stats.students;
@@ -366,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Update YouTube section from database
-                const yt = portfolioData.personalInfo ? .youtube || {};
+                const yt = (portfolioData.personalInfo && portfolioData.personalInfo.youtube) || {};
                 if (yt.title) {
                     const el = document.getElementById('yt-section-title');
                     if (el) el.textContent = yt.title;
