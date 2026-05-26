@@ -213,6 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // ─── LANGUAGE SWITCHER ───────────────────────────────────────────────────────
             function setLanguage(lang) {
+                console.log(`🌐 Switching language to: ${lang}`);
                 localStorage.setItem('portfolio-lang', lang);
                 currentLang = lang;
 
@@ -244,103 +245,109 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Re-render dynamic portfolio elements with active language
                 if (portfolioData) {
-                    const info = portfolioData.personalInfo;
-                    if (info) {
-                        if (titleEl) titleEl.textContent = lang === 'ar' ? (info.title_ar || info.title) : info.title;
-                        if (bioEl) bioEl.textContent = lang === 'ar' ? (info.bio_ar || info.bio) : info.bio;
-                        if (bioheroEl) bioheroEl.textContent = lang === 'ar' ? (info.bio_ar || info.bio) : info.bio;
-                        if (contactLocEl) contactLocEl.textContent = lang === 'ar' ? (info.location_ar || info.location) : info.location;
-                        if (avatarEl && info.avatar) avatarEl.src = info.avatar;
-                        if (resumeBtn && info.resumeUrl && info.resumeUrl !== '#') {
-                            resumeBtn.href = info.resumeUrl;
-                            resumeBtn.target = "_blank";
-                        }
-                        if (heroResumeBtn && info.resumeUrl && info.resumeUrl !== '#') {
-                            heroResumeBtn.href = info.resumeUrl;
-                            heroResumeBtn.target = "_blank";
+                    try {
+                        const info = portfolioData.personalInfo;
+                        if (info) {
+                            if (titleEl) titleEl.textContent = lang === 'ar' ? (info.title_ar || info.title) : info.title;
+                            if (bioEl) bioEl.textContent = lang === 'ar' ? (info.bio_ar || info.bio) : info.bio;
+                            if (bioheroEl) bioheroEl.textContent = lang === 'ar' ? (info.bio_ar || info.bio) : info.bio;
+                            if (contactLocEl) contactLocEl.textContent = lang === 'ar' ? (info.location_ar || info.location) : info.location;
+                            if (avatarEl && info.avatar) avatarEl.src = info.avatar;
+                            if (resumeBtn && info.resumeUrl && info.resumeUrl !== '#') {
+                                resumeBtn.href = info.resumeUrl;
+                                resumeBtn.target = "_blank";
+                            }
+                            if (heroResumeBtn && info.resumeUrl && info.resumeUrl !== '#') {
+                                heroResumeBtn.href = info.resumeUrl;
+                                heroResumeBtn.target = "_blank";
+                            }
+
+                            if (contactEmailEl) {
+                                contactEmailEl.textContent = info.email;
+                                contactEmailEl.href = `mailto:${info.email}`;
+                            }
+                            if (contactWhatsappEl && info.whatsapp) {
+                                contactWhatsappEl.href = info.whatsapp;
+                            }
+                            if (ytChannelLink && info.youtubeUrl) {
+                                ytChannelLink.href = info.youtubeUrl;
+                            }
+
+                            // Footer
+                            const footerLogo = document.querySelector('.footer-logo');
+                            if (footerLogo) footerLogo.innerHTML = `${lang === 'ar' ? (info.name_ar || info.name) : info.name} <span></span>`;
+                            const footerCopy = document.querySelector('.footer-copy');
+                            if (footerCopy) {
+                                footerCopy.textContent = lang === 'ar' ?
+                                    `© 2026 ${info.name_ar || info.name}. جميع الحقوق محفوظة. | مهندس برمجيات وصانع محتوى تعليمي` :
+                                    `© 2026 ${info.name}. All Rights Reserved. | Software Engineer & Educational Content Creator`;
+                            }
+
+                            // Social icons in contact section
+                            renderSocialLinks(info, document.querySelector('.social-links'));
+
+                            // Hero social quick links
+                            renderHeroSocials(info);
                         }
 
-                        if (contactEmailEl) {
-                            contactEmailEl.textContent = info.email;
-                            contactEmailEl.href = `mailto:${info.email}`;
+                        if (portfolioData.skills && portfolioData.skills.length > 0) renderSkills(portfolioData.skills);
+                        if (portfolioData.languages && portfolioData.languages.length > 0) renderLanguages(portfolioData.languages);
+                        if (portfolioData.timeline && portfolioData.timeline.length > 0) renderTimeline(portfolioData.timeline);
+                        if (portfolioData.achievements && portfolioData.achievements.length > 0) renderAchievements(portfolioData.achievements);
+                        if (portfolioData.testimonials && portfolioData.testimonials.length > 0) {
+                            testimonialsData = portfolioData.testimonials;
+                            renderTestimonials();
                         }
-                        if (contactWhatsappEl && info.whatsapp) {
-                            contactWhatsappEl.href = info.whatsapp;
-                        }
-                        if (ytChannelLink && info.youtubeUrl) {
-                            ytChannelLink.href = info.youtubeUrl;
-                        }
-
-                        // Footer
-                        const footerLogo = document.querySelector('.footer-logo');
-                        if (footerLogo) footerLogo.innerHTML = `${lang === 'ar' ? (info.name_ar || info.name) : info.name} <span></span>`;
-                        const footerCopy = document.querySelector('.footer-copy');
-                        if (footerCopy) {
-                            footerCopy.textContent = lang === 'ar' ?
-                                `© 2026 ${info.name_ar || info.name}. جميع الحقوق محفوظة. | مهندس برمجيات وصانع محتوى تعليمي` :
-                                `© 2026 ${info.name}. All Rights Reserved. | Software Engineer & Educational Content Creator`;
-                        }
-
-                        // Social icons in contact section
-                        renderSocialLinks(info, document.querySelector('.social-links'));
-
-                        // Hero social quick links
-                        renderHeroSocials(info);
+                        if (portfolioData.certificates && portfolioData.certificates.length > 0) renderCertificates(portfolioData.certificates);
+                        if (portfolioData.youtubeVideos && portfolioData.youtubeVideos.length > 0) renderYouTube(portfolioData.youtubeVideos, portfolioData.personalInfo);
+                        renderProjects();
+                    } catch (renderErr) {
+                        console.error('❌ Error during rendering:', renderErr);
                     }
-
-                    if (portfolioData.skills && portfolioData.skills.length > 0) renderSkills(portfolioData.skills);
-                    if (portfolioData.languages && portfolioData.languages.length > 0) renderLanguages(portfolioData.languages);
-                    if (portfolioData.timeline && portfolioData.timeline.length > 0) renderTimeline(portfolioData.timeline);
-                    if (portfolioData.achievements && portfolioData.achievements.length > 0) renderAchievements(portfolioData.achievements);
-                    if (portfolioData.testimonials && portfolioData.testimonials.length > 0) {
-                        testimonialsData = portfolioData.testimonials;
-                        renderTestimonials();
-                    }
-                    if (portfolioData.certificates && portfolioData.certificates.length > 0) renderCertificates(portfolioData.certificates);
-                    if (portfolioData.youtubeVideos && portfolioData.youtubeVideos.length > 0) renderYouTube(portfolioData.youtubeVideos, portfolioData.personalInfo);
-                    renderProjects();
+                } else {
+                    console.warn('⚠️ No portfolioData available for rendering.');
                 }
             }
 
             // ─── MAIN BOOT ───────────────────────────────────────────────────────────────
             async function loadPortfolioData() {
+                console.log('🚀 Booting portfolio application...');
+                
                 // Priority 1: Use injected data from HTML if available
                 if (window.INITIAL_PORTFOLIO_DATA) {
+                    console.log('📦 Using injected INITIAL_PORTFOLIO_DATA');
                     portfolioData = window.INITIAL_PORTFOLIO_DATA;
-                    // Pre-fill projectsData and testimonialsData if they exist in injected data
                     if (portfolioData.projects) projectsData = portfolioData.projects;
                     if (portfolioData.testimonials) testimonialsData = portfolioData.testimonials;
                     finalizeBoot();
                     return;
                 }
 
+                console.log('📡 Fetching data from API fallback...');
                 try {
                     const res = await fetch(`${API_URL}/api/settings`);
                     portfolioData = await res.json();
                     
-                    // Also try to get projects if they aren't in the main settings
-                    if (!portfolioData.projects) {
-                        try {
-                            const pRes = await fetch(`${API_URL}/api/projects`);
-                            projectsData = await pRes.json();
-                        } catch (e) { console.error("Failed to load projects separately", e); }
-                    } else {
-                        projectsData = portfolioData.projects;
-                    }
-                    
+                    if (portfolioData.projects) projectsData = portfolioData.projects;
                     if (portfolioData.testimonials) testimonialsData = portfolioData.testimonials;
 
                     finalizeBoot();
                 } catch (error) {
-                    console.error('Failed to load portfolio data:', error);
+                    console.error('❌ Failed to load portfolio data:', error);
                 }
             }
 
             function finalizeBoot() {
-                if (!portfolioData) return;
+                if (!portfolioData) {
+                    console.error('❌ Cannot finalize boot: portfolioData is missing');
+                    return;
+                }
+                
+                console.log('✨ Data loaded successfully. Initializing UI components...');
 
                 // Update stats from database
                 const stats = portfolioData.personalInfo ? .stats || {};
+                // ... rest of the function remains the same ...
                 if (stats.students) {
                     const el = document.getElementById('stat-students');
                     if (el) el.textContent = stats.students;

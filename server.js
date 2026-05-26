@@ -103,16 +103,7 @@ app.post('/api/auth/login', (req, res) => {
 app.get('/api/settings', async(req, res) => {
     try {
         const db = await dbMongo.readDB();
-        res.json({
-            personalInfo: db.personalInfo,
-            skills: db.skills || [],
-            languages: db.languages || [],
-            timeline: db.timeline || [],
-            achievements: db.achievements || [],
-            testimonials: db.testimonials || [],
-            certificates: db.certificates || [],
-            youtubeVideos: db.youtubeVideos || []
-        });
+        res.json(db); // Return the full DB object which includes projects, skills, etc.
     } catch (err) {
         console.error('❌ Error in GET /api/settings:', err.message);
         res.status(500).json({ error: 'Failed to load settings' });
