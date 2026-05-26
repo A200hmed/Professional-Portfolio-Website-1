@@ -49,9 +49,7 @@ app.get('/', async(req, res) => {
         let html = await fs.readFile(filePath, 'utf8');
 
         // Fetch data once on server side
-        const data = await dbMongo.readDB();
-        const projects = await dbMongo.getProjects();
-        const combinedData = {...data, projects };
+        const combinedData = await dbMongo.readDB();
 
         // Inject data into HTML before sending
         const injection = `<script>window.INITIAL_PORTFOLIO_DATA = ${JSON.stringify(combinedData)}; window.DATA_TIMESTAMP = "${new Date().toISOString()}";</script>`;

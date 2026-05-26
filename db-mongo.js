@@ -332,7 +332,7 @@ async function initConnection() {
     }
 }
 
-// ── CRUD Functions with fallback ───────────────────────────────────────
+// CRUD Functions with fallback
 async function readDB() {
     // Attempt connection but don't wait forever
     const connected = await Promise.race([
@@ -355,18 +355,26 @@ async function readDB() {
                 Message.find()
             ]);
 
-            return {
-                personalInfo: info ? info.toObject() : JSON_DEFAULT.personalInfo,
-                skills: skills.map(s => s.toObject()),
-                languages: languages.map(l => l.toObject()),
-                timeline: timeline.map(t => t.toObject()),
-                achievements: achievements.map(a => a.toObject()),
-                testimonials: testimonials.map(t => t.toObject()),
-                certificates: certificates.map(c => c.toObject()),
-                youtubeVideos: youtubeVideos.map(v => v.toObject()),
-                projects: projects.map(p => p.toObject()),
-                messages: messages.map(m => m.toObject())
+            const data = {
+                personalInfo: info ? info.toObject() : null,
+                skills: (skills && skills.length > 0) ? skills.map(s => s.toObject()) : [],
+                languages: (languages && languages.length > 0) ? languages.map(l => l.toObject()) : [],
+                timeline: (timeline && timeline.length > 0) ? timeline.map(t => t.toObject()) : [],
+                achievements: (achievements && achievements.length > 0) ? achievements.map(a => a.toObject()) : [],
+                testimonials: (testimonials && testimonials.length > 0) ? testimonials.map(t => t.toObject()) : [],
+                certificates: (certificates && certificates.length > 0) ? certificates.map(c => c.toObject()) : [],
+                youtubeVideos: (youtubeVideos && youtubeVideos.length > 0) ? youtubeVideos.map(v => v.toObject()) : [],
+                projects: (projects && projects.length > 0) ? projects.map(p => p.toObject()) : [],
+                messages: (messages && messages.length > 0) ? messages.map(m => m.toObject()) : []
             };
+
+            // If critical data is missing in MongoDB (like projects or skills), fallback to local JSON
+            if (!data.personalInfo || data.projects.length === 0 || data.skills.length === 0) {
+                console.log('⚠️ MongoDB appears empty or incomplete. Falling back to local JSON for content.');
+                return readLocalJSON();
+            }
+
+            return data;
         } catch (err) {
             console.error('❌ MongoDB Read Error, using local JSON:', err.message);
         }
@@ -384,11 +392,9 @@ async function updatePersonalInfo(infoData) {
             if (!info) {
                 info = new PersonalInfo(infoData);
             } else {
-                // Use set() for top-level fields
                 Object.keys(infoData).forEach(key => {
                     info.set(key, infoData[key]);
                 });
-                // Explicitly mark nested objects as modified so Mongoose detects the change
                 if (infoData.stats) info.markModified('stats');
                 if (infoData.youtube) info.markModified('youtube');
             }
@@ -397,7 +403,6 @@ async function updatePersonalInfo(infoData) {
             return info.toObject();
         } catch (err) {
             console.error('❌ Failed to update PersonalInfo on MongoDB:', err.message);
-            // Fall back gracefully instead of crashing
         }
     }
 
@@ -433,7 +438,6 @@ async function saveArrayField(fieldName, arrayData) {
             }
             await Model.deleteMany({});
             if (arrayData && arrayData.length > 0) {
-                // Strip Mongoose _id and __v fields to avoid immutable field errors on re-insert
                 const cleanData = arrayData.map(item => {
                     const { _id, __v, ...rest } = (item.toObject ? item.toObject() : item);
                     return rest;
@@ -444,7 +448,6 @@ async function saveArrayField(fieldName, arrayData) {
             return true;
         } catch (err) {
             console.error(`❌ Failed to update ${fieldName} in MongoDB:`, err.message);
-            // Fall back gracefully instead of crashing
         }
     }
 
@@ -459,7 +462,8 @@ async function getCertificates() {
     await initConnection();
     if (getIsConnected()) {
         try {
-            return await Certificate.find();
+            const res = await Certificate.find();
+            if (res && res.length > 0) return res;
         } catch (e) {
             console.error('❌ Error getting certificates from MongoDB:', e.message);
         }
@@ -532,7 +536,8 @@ async function getYoutubeVideos() {
     await initConnection();
     if (getIsConnected()) {
         try {
-            return await YoutubeVideo.find();
+            const res = await YoutubeVideo.find();
+            if (res && res.length > 0) return res;
         } catch (e) {
             console.error('❌ Error getting videos from MongoDB:', e.message);
         }
@@ -605,7 +610,8 @@ async function getProjects() {
     await initConnection();
     if (getIsConnected()) {
         try {
-            return await Project.find();
+            const res = await Project.find();
+            if (res && res.length > 0) return res;
         } catch (e) {
             console.error('❌ Error getting projects from MongoDB:', e.message);
         }
