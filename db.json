@@ -20,16 +20,16 @@
         "telegramUrl": "https://t.me/A1KAAB",
         "twitterUrl": "",
         "stats": {
-            "students": "100K+",
-            "tutorials": "150+",
-            "views": "5M+"
+            "students": "240",
+            "tutorials": "40",
+            "views": "30K"
         },
         "youtube": {
             "title": "YouTube Content Creator",
             "title_ar": "صانع محتوى يوتيوب",
             "description": "Educating developers worldwide through structured programming tutorials, full-stack walkthroughs, and software engineering deep-dives.",
             "description_ar": "تعليم المطورين حول العالم من خلال شروحات برمجية منظمة، وشرح شامل للمشاريع الكاملة، واستعراض عميق لهندسة البرمجيات.",
-            "badgeImage": ""
+            "badgeImage": "/yotu.png"
         }
     },
     "skills": [{
@@ -206,11 +206,11 @@
             "type": "education",
             "role": "University Journey Beginning",
             "role_ar": "بداية الرحلة الجامعية",
-            "company": "Faculty of Technology and Energy",
-            "company_ar": "كلية التكنولوجيا والطاقة",
+            "company": "Fayoum International Technological University (FITU)",
+            "company_ar": "جامعه الفيوم التكنولوجيا fitu",
             "duration": "2023",
-            "description": "Enrollment in the Faculty of Technology and Energy. Beginning of deep diving into programming and modern technology. Developing programming fundamentals and building a strong understanding of computer science and networking.",
-            "description_ar": "الالتحاق بكلية التكنولوجيا والطاقة. بداية التعمق في مجالات البرمجة والتكنولوجيا الحديثة. تطوير الأساسيات البرمجية وبناء فهم قوي لعلوم الحاسب والشبكات."
+            "description": "Enrollment in Fayoum International Technological University (FITU). Beginning of deep diving into programming and modern technology. Developing programming fundamentals and building a strong understanding of computer science and networking.",
+            "description_ar": "الالتحاق بجامعه الفيوم التكنولوجيا fitu. بداية التعمق في مجالات البرمجة والتكنولوجيا الحديثة. تطوير الأساسيات البرمجية وبناء فهم قوي لعلوم الحاسب والشبكات."
         },
         {
             "id": "t2",
@@ -268,8 +268,7 @@
             "description_ar": "التعمق في Software Engineering ومفاهيم بناء الأنظمة. تطوير المهارات العملية في Front-End و Databases و Networking و Linux. الاستمرار في صناعة المحتوى التعليمي ومشاركة الخبرات التقنية."
         }
     ],
-    "certificates": [
-        {
+    "certificates": [{
             "id": "cert_ccna_enterprise",
             "title": "CCNA: Enterprise Networking, Security, and Automation",
             "title_ar": "CCNA: شبكات المؤسسات والأمن والأتمتة",
@@ -393,36 +392,25 @@
     ],
     "youtubeVideos": [{
             "id": "y1",
-            "title": "Learn Node.js & Express - Complete Guide for Absolute Beginners",
-            "title_ar": "تعلم Node.js و Express - الدليل الكامل للمبتدئين",
-            "url": "https://youtube.com",
-            "thumbnail": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=300",
-            "views": "120K Views",
+            "title": "Python Programming Course",
+            "title_ar": "دورة تعلم لغة بايثون",
+            "url": "https://youtube.com/playlist?list=PLTk7ExzQvmFe3cSuNiGZ7fUmG-47dG8yh&si=AAj2dsxxdNUulFRp",
+            "thumbnail": "/yotu.png",
+            "views": "30K Views",
             "category": "Backend",
-            "description": "Complete beginner guide to Node.js and Express framework",
-            "description_ar": "دليل كامل للمبتدئين في Node.js وإطار Express"
+            "description": "Comprehensive Python programming course for beginners to advanced levels.",
+            "description_ar": "دورة شاملة لتعلم لغة البرمجة بايثون من الصفر حتى الاحتراف."
         },
         {
             "id": "y2",
-            "title": "Mastering Next.js 14 App Router & Server Components",
-            "title_ar": "احتراف Next.js 14 ومكونات الخادم",
-            "url": "https://youtube.com",
-            "thumbnail": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=300",
-            "views": "85K Views",
-            "category": "Frontend",
-            "description": "Master Next.js 14 with App Router and Server Components",
-            "description_ar": "احتراف Next.js 14 مع App Router ومكونات الخادم"
-        },
-        {
-            "id": "y3",
-            "title": "Clean Code Architecture: How to Write Professional Software",
-            "title_ar": "بنية الأكواد النظيفة: كيف تكتب برمجيات احترافية",
-            "url": "https://youtube.com",
-            "thumbnail": "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&q=80&w=300",
-            "views": "64K Views",
-            "category": "Software Design",
-            "description": "Learn clean code principles and professional software architecture",
-            "description_ar": "تعلم مبادئ الأكواد النظيفة وبنية البرمجيات الاحترافية"
+            "title": "C Programming Course",
+            "title_ar": "دورة تعلم لغة C",
+            "url": "https://youtube.com/playlist?list=PLTk7ExzQvmFdEtCZ9_RJimAN7IC0DXRxx&si=1rAcFBVzsaAcFYpU",
+            "thumbnail": "/yotu.png",
+            "views": "30K Views",
+            "category": "Systems",
+            "description": "Master C programming language from scratch with practical examples.",
+            "description_ar": "احترف لغة البرمجة C من الصفر مع تطبيقات عملية مكثفة."
         }
     ],
     "messages": [{

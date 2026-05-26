@@ -178,13 +178,13 @@ const JSON_DEFAULT = {
         instagramUrl: "https://www.tiktok.com/@ahmedkhalad26?_r=1&_t=ZS-96dB7dWFo1d",
         telegramUrl: "https://t.me/A1KAAB",
         twitterUrl: "",
-        stats: { students: "100K+", tutorials: "150+", views: "5M+" },
+        stats: { students: "240", tutorials: "40", views: "30K" },
         youtube: {
             title: "YouTube Content Creator",
             title_ar: "صانع محتوى يوتيوب",
-            description: "Educating developers worldwide.",
+            description: "Educating developers worldwide through tutorials.",
             description_ar: "تعليم المطورين حول العالم.",
-            badgeImage: ""
+            badgeImage: "/yotu.png"
         }
     },
     skills: [
@@ -198,7 +198,7 @@ const JSON_DEFAULT = {
         { id: "l5", name: "Node.js", name_ar: "نود جي إس", level: 90, color: "#22c55e", icon: "🟢", category: "backend" }
     ],
     timeline: [
-        { id: "t1", type: "education", role: "University Journey Beginning", role_ar: "بداية الرحلة الجامعية", company: "Faculty of Technology and Energy", company_ar: "كلية التكنولوجيا والطاقة", duration: "2023", description: "Enrollment in the Faculty of Technology and Energy. Beginning of deep diving into programming and modern technology. Developing programming fundamentals and building a strong understanding of computer science and networking.", description_ar: "الالتحاق بكلية التكنولوجيا والطاقة. بداية التعمق في مجالات البرمجة والتكنولوجيا الحديثة. تطوير الأساسيات البرمجية وبناء فهم قوي لعلوم الحاسب والشبكات." },
+        { id: "t1", type: "education", role: "University Journey Beginning", role_ar: "بداية الرحلة الجامعية", company: "Fayoum International Technological University (FITU)", company_ar: "جامعه الفيوم التكنولوجيا fitu", duration: "2023", description: "Enrollment in Fayoum International Technological University (FITU). Beginning of deep diving into programming and modern technology. Developing programming fundamentals and building a strong understanding of computer science and networking.", description_ar: "الالتحاق بجامعه الفيوم التكنولوجيا fitu. بداية التعمق في مجالات البرمجة والتكنولوجيا الحديثة. تطوير الأساسيات البرمجية وبناء فهم قوي لعلوم الحاسب والشبكات." },
         { id: "t2", type: "experience", role: "Principal Tech Instructor", role_ar: "المدرب والمطور الرئيسي", company: "YouTube", company_ar: "يوتيوب", duration: "2021 - Present", description: "100K+ developers", description_ar: "تعليم أكثر من 100 ألف مطور" }
     ],
     achievements: [
@@ -221,31 +221,46 @@ const JSON_DEFAULT = {
         { id: "p1", title: "CodeCamp LMS", title_ar: "كود كامب", description: "LMS platform", description_ar: "منصة تعليمية", category: "fullstack", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3", tags: ["React", "Node.js"], featured: true }
     ],
     testimonials: [],
-    youtubeVideos: [],
+    youtubeVideos: [{
+            id: "y1",
+            title: "Python Programming Course",
+            title_ar: "دورة تعلم لغة بايثون",
+            url: "https://youtube.com/playlist?list=PLTk7ExzQvmFe3cSuNiGZ7fUmG-47dG8yh&si=AAj2dsxxdNUulFRp",
+            thumbnail: "/yotu.png",
+            views: "30K Views",
+            category: "Backend",
+            description: "Comprehensive Python programming course.",
+            description_ar: "دورة شاملة لتعلم لغة البرمجة بايثون."
+        },
+        {
+            id: "y2",
+            title: "C Programming Course",
+            title_ar: "دورة تعلم لغة C",
+            url: "https://youtube.com/playlist?list=PLTk7ExzQvmFdEtCZ9_RJimAN7IC0DXRxx&si=1rAcFBVzsaAcFYpU",
+            thumbnail: "/yotu.png",
+            views: "30K Views",
+            category: "Systems",
+            description: "Master C programming language.",
+            description_ar: "احترف لغة البرمجة C."
+        }
+    ],
     messages: []
 };
 
-// Load local data as a module to ensure Vercel bundles it
-let LOCAL_DATA_MODULE;
-try {
-    LOCAL_DATA_MODULE = require('./db.json');
-} catch (e) {
-    LOCAL_DATA_MODULE = JSON_DEFAULT;
-}
-
 // JSON Helper functions
 async function readLocalJSON() {
-    // If we have a bundled module with data, use it (it has certificates/social links)
-    if (LOCAL_DATA_MODULE && LOCAL_DATA_MODULE.personalInfo) {
-        return LOCAL_DATA_MODULE;
+    try {
+        const data = await fs.readFile(DB_PATH, 'utf8');
+        return JSON.parse(data);
+    } catch (e) {
+        return JSON_DEFAULT;
     }
-    return JSON_DEFAULT;
 }
 
 async function writeLocalJSON(data) {
     // Never try to write to local filesystem on Vercel
     if (process.env.VERCEL) return;
-    
+
     try {
         await fs.writeFile(DB_PATH, JSON.stringify(data, null, 2), 'utf8');
     } catch (err) {
@@ -356,7 +371,7 @@ async function readDB() {
             console.error('❌ MongoDB Read Error, using local JSON:', err.message);
         }
     }
-    
+
     // Ultimate fallback: Always return local data to ensure website works
     return readLocalJSON();
 }

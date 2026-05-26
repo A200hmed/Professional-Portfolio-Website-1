@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     btnGithub: "GitHub",
                     aboutTitle: "About Me",
                     metricProjects: "Projects Built",
-                    metricVideos: "YouTube Tutorials",
+                    metricVideos: "YouTube Videos",
                     metricAwards: "Certifications",
                     metricStudents: "Students Reached",
                     skillsTitle: "Core Competencies",
@@ -72,8 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     youtubeChannelBadge: "YouTube Creator",
                     youtubeTitle: "YouTube Content Creator",
                     youtubeSubtitle: "Educating developers worldwide through structured programming tutorials, full-stack walkthroughs, and software engineering deep-dives.",
-                    ytStatStudents: "Students",
-                    ytStatVideos: "Tutorials Published",
+                    ytStatStudents: "Followers & Students",
+                    ytStatVideos: "Videos Published",
                     ytStatViews: "Total Views",
                     youtubeChannelBtn: "Visit YouTube Channel",
                     resumeTitle: "Career Milestones",
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     btnGithub: "جيت هاب",
                     aboutTitle: "من أنا",
                     metricProjects: "المشاريع المنجزة",
-                    metricVideos: "شروحات يوتيوب",
+                    metricVideos: "فيديو يوتيوب",
                     metricAwards: "الشهادات التقنية",
                     metricStudents: "الطلاب والمتابعين",
                     skillsTitle: "الكفاءات الأساسية",
@@ -162,8 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     youtubeChannelBadge: "صانع محتوى",
                     youtubeTitle: "صانع محتوى على يوتيوب",
                     youtubeSubtitle: "تعليم المطورين في جميع أنحاء العالم من خلال دروس برمجة منظمة وشروحات شاملة وتعمق في هندسة البرمجيات.",
-                    ytStatStudents: "طالب ومتابع",
-                    ytStatVideos: "درس منشور",
+                    ytStatStudents: "متابع وطالب",
+                    ytStatVideos: "فيديو منشور",
                     ytStatViews: "إجمالي المشاهدات",
                     youtubeChannelBtn: "زيارة قناة يوتيوب",
                     resumeTitle: "محطات المسيرة المهنية",
@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!portfolioData) return;
 
                 // Update stats from database
-                const stats = portfolioData.personalInfo?.stats || {};
+                const stats = portfolioData.personalInfo ? .stats || {};
                 if (stats.students) {
                     const el = document.getElementById('stat-students');
                     if (el) el.textContent = stats.students;
@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Update YouTube section from database
-                const yt = portfolioData.personalInfo?.youtube || {};
+                const yt = portfolioData.personalInfo ? .youtube || {};
                 if (yt.title) {
                     const el = document.getElementById('yt-section-title');
                     if (el) el.textContent = yt.title;
@@ -653,7 +653,9 @@ document.addEventListener('DOMContentLoaded', () => {
     container.innerHTML = '';
 
     const countEl = document.getElementById('count-videos');
-    if (countEl) countEl.textContent = videos.length + '+';
+    if (countEl) {
+      countEl.textContent = (info?.stats?.tutorials || videos.length) + '+';
+    }
 
     videos.forEach(video => {
       const displayTitle    = currentLang === 'ar' ? (video.title_ar || video.title) : video.title;
