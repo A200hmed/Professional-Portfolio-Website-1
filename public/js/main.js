@@ -307,6 +307,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Priority 1: Use injected data from HTML if available
                 if (window.INITIAL_PORTFOLIO_DATA) {
                     portfolioData = window.INITIAL_PORTFOLIO_DATA;
+                    // Pre-fill projectsData and testimonialsData if they exist in injected data
+                    if (portfolioData.projects) projectsData = portfolioData.projects;
+                    if (portfolioData.testimonials) testimonialsData = portfolioData.testimonials;
                     finalizeBoot();
                     return;
                 }
@@ -314,6 +317,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 try {
                     const res = await fetch(`${API_URL}/api/settings`);
                     portfolioData = await res.json();
+                    
+                    // Also try to get projects if they aren't in the main settings
+                    if (!portfolioData.projects) {
+                        try {
+                            const pRes = await fetch(`${API_URL}/api/projects`);
+                            projectsData = await pRes.json();
+                        } catch (e) { console.error("Failed to load projects separately", e); }
+                    } else {
+                        projectsData = portfolioData.projects;
+                    }
+                    
+                    if (portfolioData.testimonials) testimonialsData = portfolioData.testimonials;
+
                     finalizeBoot();
                 } catch (error) {
                     console.error('Failed to load portfolio data:', error);
@@ -364,10 +380,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (el) el.src = info.avatar;
                 }
 
-                // Fetch projects
-                loadProjects();
+                // Update project count if we have projects
+                const countEl = document.getElementById('count-projects');
+                if (countEl && projectsData) countEl.textContent = projectsData.length;
 
-                // Set initial language
+                // Set initial language (this will trigger all render functions)
                 setLanguage(currentLang);
 
                 // Setup language toggle button event listener
