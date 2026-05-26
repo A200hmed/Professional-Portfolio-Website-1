@@ -259,12 +259,16 @@ async function readLocalJSON() {
 
 async function writeLocalJSON(data) {
     // Never try to write to local filesystem on Vercel
-    if (process.env.VERCEL) return;
+    if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+        console.warn('⚠️ Writing to local JSON is disabled in production/Vercel. Please connect MongoDB Atlas.');
+        throw new Error('قاعدة البيانات المحلية للقراءة فقط في بيئة الرفع. يرجى ربط MongoDB Atlas لحفظ التغييرات.');
+    }
 
     try {
         await fs.writeFile(DB_PATH, JSON.stringify(data, null, 2), 'utf8');
     } catch (err) {
-        console.warn('⚠️ Local DB write skipped.');
+        console.warn('⚠️ Local DB write failed:', err.message);
+        throw err;
     }
 }
 

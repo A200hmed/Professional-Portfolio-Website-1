@@ -107,99 +107,134 @@
   "projects": [
     {
       "id": "p1",
-      "title": "CodeCamp - Advanced E-Learning Platform",
-      "title_ar": "كود كامب - منصة التعليم البرمجي المتقدمة",
-      "description": "A comprehensive LMS platform featuring live code compilation, structured curriculums, and interactive student analytics.",
-      "description_ar": "منصة شاملة لإدارة التعلم تتميز بمحرر أكواد تشغيلي تفاعلي، ومناهج تعليمية منظمة، وتحليلات متقدمة لمستوى الطلاب.",
-      "longDescription": "CodeCamp is an enterprise-level learning management system designed to facilitate programming education. It incorporates an sandboxed code execution environment, automated grading engines, custom dynamic progress reports, student telemetry tracking, and integrated live-chat rooms for peer learning.",
-      "longDescription_ar": "كود كامب هي منصة إدارة تعلم (LMS) على مستوى المؤسسات صُممت لتسهيل تعليم البرمجة. تتضمن بيئة تشغيل أكواد معزولة، ومحرك تصحيح آلي، وتقارير تقدم تفاعلية وديناميكية، وتتبع تقدم الطلاب، وغرف دردشة متكاملة للتعلم التعاوني.",
-      "category": "fullstack",
-      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800",
+      "title": "Smart Home - Intelligent Living System",
+      "title_ar": "سمارت هوم - نظام المنزل الذكي",
+      "description": "An integrated IoT system for controlling home devices and monitoring environmental conditions in real-time.",
+      "description_ar": "نظام متكامل لإنترنت الأشياء (IoT) للتحكم في أجهزة المنزل ومراقبة الظروف البيئية في الوقت الفعلي.",
+      "longDescription": "This project features a comprehensive smart home solution, allowing users to control lighting, temperature, and security systems through a centralized dashboard. It integrates various sensors and actuators for an automated living experience.",
+      "longDescription_ar": "يتميز هذا المشروع بحل شامل للمنزل الذكي، مما يسمح للمستخدمين بالتحكم في الإضاءة ودرجة الحرارة وأنظمة الأمان من خلال لوحة تحكم مركزية. يدمج العديد من الحساسات والمشغلات لتجربة معيشية مؤتمتة.",
+      "category": "tools",
+      "image": "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=800",
       "tags": [
-        "React.js",
-        "Node.js",
-        "Express",
-        "MongoDB",
-        "TailwindCSS"
+        "Arduino",
+        "ESP32",
+        "IoT",
+        "C++",
+        "Sensors"
       ],
-      "demoUrl": "https://example.com",
-      "githubUrl": "https://github.com",
+      "demoUrl": "#",
+      "githubUrl": "https://github.com/A200hmed",
       "featured": true,
       "features": [
-        "Interactive virtual code editor playground with compiler",
-        "Dynamic structured video syllabus player",
-        "Detailed dashboard charts measuring student progress",
-        "Automated PDF certificates generation on course completion"
+        "Real-time sensor data monitoring",
+        "Remote device control via web/mobile interface",
+        "Automated security alerts and notifications",
+        "Energy consumption analytics and reporting"
       ],
       "features_ar": [
-        "محرر أكواد تفاعلي مع مترجم مدمج",
-        "مشغل مناهج فيديو منظم وديناميكي",
-        "رسوم بيانية مفصلة لقياس تقدم الطلاب في لوحة التحكم",
-        "توليد شهادات PDF تلقائية عند إتمام الدورات"
+        "مراقبة بيانات الحساسات في الوقت الفعلي",
+        "التحكم في الأجهزة عن بعد عبر واجهة الويب/الجوال",
+        "تنبيهات وإشعارات أمان مؤتمتة",
+        "تحليلات وتقارير استهلاك الطاقة"
       ]
     },
     {
       "id": "p2",
-      "title": "Vercel-Inspired Obsidian Components",
-      "title_ar": "مكونات أوبسيديان المستوحاة من فيرسيل",
-      "description": "A luxury open-source library of dark glassmorphic UI components, designed for fast dashboard prototyping.",
-      "description_ar": "مكتبة مكونات واجهات مستخدم مظلمة وزجاجية مفتوحة المصدر، مصممة لبناء النماذج الأولية للوحات التحكم بسرعة عالية.",
-      "longDescription": "Obsidian Components provides modern developers with a wide array of copy-paste luxury dark theme elements. Complete with translucent cards, floating background glows, responsive layouts, active focus tracking, and hardware-accelerated CSS animations.",
-      "longDescription_ar": "توفر مكونات أوبسيديان للمطورين مجموعة واسعة من عناصر التصميم المظلم الفاخر الجاهزة للنسخ واللصق. تتميز ببطاقات شبه شفافة، وتوهجات خلفية عائمة، وتخطيطات متجاوبة، وتتبع التركيز النشط، ورسوم متحركة CSS مسرعة عتادياً.",
-      "category": "frontend",
-      "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800",
+      "title": "Global Travel & Hotel Booking Engine",
+      "title_ar": "بوابة السفر والسياحة وحجز الفنادق",
+      "description": "A full-stack travel platform for searching destinations, booking hotels, and managing trip itineraries.",
+      "description_ar": "منصة سفر كاملة (Full-Stack) للبحث عن الوجهات، وحجز الفنادق، وإدارة مسارات الرحلات.",
+      "longDescription": "A robust web application providing a seamless experience for travelers. Includes advanced search filters, secure booking systems, and a user dashboard for managing reservations. Built with modern web technologies for performance and scalability.",
+      "longDescription_ar": "تطبيق ويب قوي يوفر تجربة سلسة للمسافرين. يتضمن فلاتر بحث متقدمة، وأنظمة حجز آمنة، ولوحة تحكم للمستخدم لإدارة الحجوزات. تم بناؤه باستخدام تقنيات الويب الحديثة لضمان الأداء والقابلية للتوسع.",
+      "category": "fullstack",
+      "image": "https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?auto=format&fit=crop&q=80&w=800",
       "tags": [
-        "HTML5",
-        "CSS3",
+        "PHP",
+        "MySQL",
         "JavaScript",
-        "Animation"
+        "Bootstrap",
+        "Full-Stack"
       ],
-      "demoUrl": "https://example.com",
-      "githubUrl": "https://github.com",
+      "demoUrl": "#",
+      "githubUrl": "https://github.com/A200hmed",
       "featured": true,
       "features": [
-        "Lightweight component bundles under 10kb gzipped",
-        "Hardware-accelerated CSS transitions for buttery smooth FPS",
-        "100% compliant with responsive web criteria",
-        "Customizable design variables utilizing standard HSL tokens"
+        "Dynamic hotel search with advanced filtering",
+        "Secure user authentication and profile management",
+        "Real-time booking confirmation and management",
+        "Integrated payment gateway simulation"
       ],
       "features_ar": [
-        "حزم مكونات خفيفة الوزن أقل من 10 كيلوبايت مضغوطة",
-        "انتقالات CSS مسرعة عتادياً للحصول على إطارات سلسة للغاية",
-        "متوافق بنسبة 100٪ مع معايير الويب المتجاوبة",
-        "متغيرات تصميم قابلة للتخصيص باستخدام رموز HSL القياسية"
+        "بحث ديناميكي عن الفنادق مع فلاتر متقدمة",
+        "نظام مصادقة مستخدم آمن وإدارة الملف الشخصي",
+        "تأكيد وإدارة الحجوزات في الوقت الفعلي",
+        "محاكاة بوابة دفع متكاملة"
       ]
     },
     {
       "id": "p3",
-      "title": "HeliosRouter - Fast Serverless Engine",
-      "title_ar": "هيليوس راوتر - محرك سريع بدون خادم",
-      "description": "A lightweight, prefix-tree based serverless routing middleware optimized for minimal runtime footprint.",
-      "description_ar": "برمجية وسيطة لتوجيه الطلبات بدون خادم خفيفة الوزن تعتمد على بنية تري (Prefix-Tree) ومحسنة للعمل بأقل بصمة تشغيلية.",
-      "longDescription": "HeliosRouter is specifically engineered for Cloudflare Workers and AWS Lambda runtimes to minimize cold-start latency. It uses a custom trie-prefix matcher and automatic body parsers to process client-side telemetry in under 12ms.",
-      "longDescription_ar": "تم تصميم هيليوس راوتر خصيصاً لبيئات تشغيل Cloudflare Workers و AWS Lambda لتقليل وقت بدء التشغيل البارد. يستخدم معالج مطابقة البادئة وتجزئة تلقائية لمعالجة بيانات العميل في أقل من 12 ميلي ثانية.",
-      "category": "tools",
-      "image": "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&q=80&w=800",
+      "title": "Elite Restaurant Management System",
+      "title_ar": "نظام إدارة المطاعم الفاخرة",
+      "description": "A full-stack digital solution for restaurants featuring online ordering, table reservations, and menu management.",
+      "description_ar": "حل رقمي كامل للمطاعم يتميز بالطلب عبر الإنترنت، وحجز الطاولات، وإدارة القوائم.",
+      "longDescription": "Designed to modernize restaurant operations, this platform allows customers to browse menus, place orders, and reserve tables online. It includes an administrative dashboard for managing orders, staff, and inventory in real-time.",
+      "longDescription_ar": "صُممت هذه المنصة لتحديث عمليات المطاعم، وتسمح للعملاء بتصفح القوائم، وتقديم الطلبات، وحجز الطاولات عبر الإنترنت. تتضمن لوحة تحكم إدارية لإدارة الطلبات والموظفين والمخزون في الوقت الفعلي.",
+      "category": "fullstack",
+      "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800",
       "tags": [
-        "Node.js",
-        "Serverless",
-        "AWS",
-        "Middleware"
+        "PHP",
+        "JavaScript",
+        "SQL Server",
+        "CSS3",
+        "Frontend & Backend"
       ],
-      "demoUrl": "https://example.com",
-      "githubUrl": "https://github.com",
-      "featured": false,
+      "demoUrl": "#",
+      "githubUrl": "https://github.com/A200hmed",
+      "featured": true,
       "features": [
-        "Sub-15ms cold start footprint",
-        "Extremely fast trie-based prefix route matching",
-        "Built-in token-bucket rate limiter middleware",
-        "Comprehensive TypeScript bindings out of the box"
+        "Interactive digital menu with category filtering",
+        "Real-time order tracking and management",
+        "Online table reservation system",
+        "Admin analytics dashboard for sales and inventory"
       ],
       "features_ar": [
-        "بصمة بدء تشغيل بارد أقل من 15 ميلي ثانية",
-        "توجيه سريع للغاية بالاعتماد على بنية Trie",
-        "برمجية وسيطة مدمجة لتحديد معدل الطلبات",
-        "دعم كامل للغة TypeScript من البداية"
+        "قائمة رقمية تفاعلية مع فلاتر للأصناف",
+        "تتبع وإدارة الطلبات في الوقت الفعلي",
+        "نظام حجز طاولات عبر الإنترنت",
+        "لوحة تحكم إدارية للتحليلات والمبيعات والمخزون"
+      ]
+    },
+    {
+      "id": "p4",
+      "title": "Professional Tech Portfolio",
+      "title_ar": "البرتفوليو التقني الاحترافي",
+      "description": "A modern, high-performance portfolio showcasing software engineering skills, projects, and educational content.",
+      "description_ar": "برتفوليو حديث وعالي الأداء يعرض مهارات هندسة البرمجيات والمشاريع والمحتوى التعليمي.",
+      "longDescription": "This very portfolio you are browsing, featuring a luxury dark theme, glassmorphism UI, real-time data sync with MongoDB, and an advanced administrative CMS for easy content management.",
+      "longDescription_ar": "هذا البرتفوليو الذي تتصفحه حالياً، يتميز بتصميم مظلم فاخر، واجهة مستخدم زجاجية، مزامنة بيانات في الوقت الفعلي مع MongoDB، ونظام إدارة محتوى (CMS) متقدم لسهولة التحكم.",
+      "category": "frontend",
+      "image": "/me.jpeg",
+      "tags": [
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Vanilla JS",
+        "Animations"
+      ],
+      "demoUrl": "/",
+      "githubUrl": "https://github.com/A200hmed",
+      "featured": true,
+      "features": [
+        "Advanced Preloader with percentage tracking",
+        "Luxury Glassmorphism & Dark UI theme",
+        "CMS Dashboard with Full Auth & CRUD",
+        "Dual-Language support (Arabic/English)"
+      ],
+      "features_ar": [
+        "شاشة تحميل متقدمة مع تتبع النسبة المئوية",
+        "تصميم زجاجي فاخر وواجهة مظلمة",
+        "لوحة تحكم CMS كاملة مع صلاحيات الوصول",
+        "دعم كامل للغتين (العربية/الإنجليزية)"
       ]
     }
   ],
@@ -418,44 +453,7 @@
       "description_ar": "احترف لغة البرمجة C من الصفر مع تطبيقات عملية مكثفة."
     }
   ],
-  "messages": [
-    {
-      "id": "msg_1779570076366",
-      "name": "ع",
-      "email": "ahmedkhalad679@gmail.com",
-      "subject": "ت",
-      "message": "نخمةمةم",
-      "timestamp": "2026-05-23T21:01:16.366Z",
-      "read": false
-    },
-    {
-      "id": "msg_1779573297968",
-      "name": "ثث",
-      "email": "ahmed.khaled@devstudio.com",
-      "subject": "ت",
-      "message": "ىلهح3رصثحس",
-      "timestamp": "2026-05-23T21:54:57.968Z",
-      "read": false
-    },
-    {
-      "id": "msg_1779573377858",
-      "name": "عمر",
-      "email": "ahmedkhalad679@gmail.com",
-      "subject": "j",
-      "message": "jjio",
-      "timestamp": "2026-05-23T21:56:17.858Z",
-      "read": false
-    },
-    {
-      "id": "msg_1779573422703",
-      "name": "غريب",
-      "email": "ahmedkhalad679@gmail.com",
-      "subject": "اريد عمل",
-      "message": "شغل موقع ويب عالمي",
-      "timestamp": "2026-05-23T21:57:02.703Z",
-      "read": false
-    }
-  ],
+  "messages": [],
   "achievements": [
     {
       "id": "a1",
