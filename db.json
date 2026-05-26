@@ -1,635 +1,645 @@
 {
-    "personalInfo": {
-        "name": "Ahmed Khaled Anwar",
-        "name_ar": "أحمد خالد أنور",
-        "title": "Software Engineer & Educational Content Creator",
-        "title_ar": "مهندس برمجيات وصانع محتوى تعليمي",
-        "bio": "I build modern web applications and create educational programming content. Highly passionate about teaching advanced system design, clean coding architectures, and modern cloud technologies to the next generation of engineers.",
-        "bio_ar": "أقوم ببناء تطبيقات الويب الحديثة وصناعة المحتوى البرمجي التعليمي. لدي شغف كبير بتدريس تصميم النظم المتقدمة، وبنيات الأكواد النظيفة، وتقنيات السحاب الحديثة للجيل القادم من المهندسين.",
-        "avatar": "/me.jpeg",
-        "resumeUrl": "/mycv.pdf",
-        "location": "Cairo, Egypt",
-        "location_ar": "القاهرة، مصر",
-        "email": "ahmedkhalad679@gmail.com",
-        "whatsapp": "https://wa.me/201123313248",
-        "githubUrl": "https://github.com/A200hmed",
-        "linkedinUrl": "https://www.linkedin.com/in/ahmed-khaled-ba87742b0?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-        "youtubeUrl": "https://youtube.com/@zerotocode-c4o?si=pIeefGHqTA4dn4dR",
-        "facebookUrl": "https://www.facebook.com/share/1EGhxW6v3a/",
-        "instagramUrl": "https://www.tiktok.com/@ahmedkhalad26?_r=1&_t=ZS-96dB7dWFo1d",
-        "telegramUrl": "https://t.me/A1KAAB",
-        "twitterUrl": "",
-        "stats": {
-            "students": "240",
-            "tutorials": "40",
-            "views": "30K"
-        },
-        "youtube": {
-            "title": "YouTube Content Creator",
-            "title_ar": "صانع محتوى يوتيوب",
-            "description": "Educating developers worldwide through structured programming tutorials, full-stack walkthroughs, and software engineering deep-dives.",
-            "description_ar": "تعليم المطورين حول العالم من خلال شروحات برمجية منظمة، وشرح شامل للمشاريع الكاملة، واستعراض عميق لهندسة البرمجيات.",
-            "badgeImage": "/yotu.png"
-        }
+  "personalInfo": {
+    "name": "Ahmed Khaled Anwar",
+    "name_ar": "أحمد خالد أنور",
+    "title": "Software Engineer & Educational Content Creator",
+    "title_ar": "مهندس برمجيات وصانع محتوى تعليمي",
+    "bio": "I build modern web applications and create educational programming content. Highly passionate about teaching advanced system design, clean coding architectures, and modern cloud technologies to the next generation of engineers.",
+    "bio_ar": "أقوم ببناء تطبيقات الويب الحديثة وصناعة المحتوى البرمجي التعليمي. لدي شغف كبير بتدريس تصميم النظم المتقدمة، وبنيات الأكواد النظيفة، وتقنيات السحاب الحديثة للجيل القادم من المهندسين.",
+    "avatar": "/me.jpeg",
+    "resumeUrl": "/mycv.pdf",
+    "location": "Cairo, Egypt",
+    "location_ar": "القاهرة، مصر",
+    "email": "ahmedkhalad679@gmail.com",
+    "whatsapp": "https://wa.me/201123313248",
+    "githubUrl": "https://github.com/A200hmed",
+    "linkedinUrl": "https://www.linkedin.com/in/ahmed-khaled-ba87742b0?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    "youtubeUrl": "https://youtube.com/@zerotocode-c4o?si=pIeefGHqTA4dn4dR",
+    "facebookUrl": "https://www.facebook.com/share/1EGhxW6v3a/",
+    "instagramUrl": "https://www.tiktok.com/@ahmedkhalad26?_r=1&_t=ZS-96dB7dWFo1d",
+    "telegramUrl": "https://t.me/A1KAAB",
+    "twitterUrl": "",
+    "stats": {
+      "students": "240",
+      "tutorials": "50",
+      "views": "300K"
     },
-    "skills": [{
-            "id": "s1",
-            "name": "Mobile App Development",
-            "name_ar": "تطوير تطبيقات الموبايل",
-            "category": "dev",
-            "level": 90
-        },
-        {
-            "id": "s2",
-            "name": "Web Development (HTML, PHP)",
-            "name_ar": "تطوير الويب (HTML, PHP)",
-            "category": "dev",
-            "level": 85
-        },
-        {
-            "id": "s3",
-            "name": "IoT with Arduino & ESP32",
-            "name_ar": "IoT مع Arduino و ESP32",
-            "category": "dev",
-            "level": 80
-        },
-        {
-            "id": "s4",
-            "name": "Cisco Networking",
-            "name_ar": "Cisco Networking",
-            "category": "networking",
-            "level": 88
-        },
-        {
-            "id": "s5",
-            "name": "AWS Cloud",
-            "name_ar": "AWS Cloud",
-            "category": "networking",
-            "level": 85
-        },
-        {
-            "id": "s6",
-            "name": "AI Fundamentals",
-            "name_ar": "أساسيات الذكاء الاصطناعي",
-            "category": "ai",
-            "level": 82
-        },
-        {
-            "id": "s7",
-            "name": "Large Language Models (LLM)",
-            "name_ar": "نماذج اللغة الكبيرة (LLM)",
-            "category": "ai",
-            "level": 78
-        },
-        {
-            "id": "s8",
-            "name": "NVIDIA AI",
-            "name_ar": "NVIDIA AI",
-            "category": "ai",
-            "level": 75
-        },
-        {
-            "id": "s9",
-            "name": "Cyber Security",
-            "name_ar": "الأمن السيبراني",
-            "category": "cybersecurity",
-            "level": 87
-        },
-        {
-            "id": "s10",
-            "name": "Digital Safety",
-            "name_ar": "السلامة الرقمية",
-            "category": "cybersecurity",
-            "level": 83
-        }
-    ],
-    "projects": [{
-            "id": "p1",
-            "title": "CodeCamp - Advanced E-Learning Platform",
-            "title_ar": "كود كامب - منصة التعليم البرمجي المتقدمة",
-            "description": "A comprehensive LMS platform featuring live code compilation, structured curriculums, and interactive student analytics.",
-            "description_ar": "منصة شاملة لإدارة التعلم تتميز بمحرر أكواد تشغيلي تفاعلي، ومناهج تعليمية منظمة، وتحليلات متقدمة لمستوى الطلاب.",
-            "longDescription": "CodeCamp is an enterprise-level learning management system designed to facilitate programming education. It incorporates an sandboxed code execution environment, automated grading engines, custom dynamic progress reports, student telemetry tracking, and integrated live-chat rooms for peer learning.",
-            "longDescription_ar": "كود كامب هي منصة إدارة تعلم (LMS) على مستوى المؤسسات صُممت لتسهيل تعليم البرمجة. تتضمن بيئة تشغيل أكواد معزولة، ومحرك تصحيح آلي، وتقارير تقدم تفاعلية وديناميكية، وتتبع تقدم الطلاب، وغرف دردشة متكاملة للتعلم التعاوني.",
-            "category": "fullstack",
-            "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800",
-            "tags": [
-                "React.js",
-                "Node.js",
-                "Express",
-                "MongoDB",
-                "TailwindCSS"
-            ],
-            "demoUrl": "https://example.com",
-            "githubUrl": "https://github.com",
-            "featured": true,
-            "features": [
-                "Interactive virtual code editor playground with compiler",
-                "Dynamic structured video syllabus player",
-                "Detailed dashboard charts measuring student progress",
-                "Automated PDF certificates generation on course completion"
-            ],
-            "features_ar": [
-                "محرر أكواد تفاعلي مع مترجم مدمج",
-                "مشغل مناهج فيديو منظم وديناميكي",
-                "رسوم بيانية مفصلة لقياس تقدم الطلاب في لوحة التحكم",
-                "توليد شهادات PDF تلقائية عند إتمام الدورات"
-            ]
-        },
-        {
-            "id": "p2",
-            "title": "Vercel-Inspired Obsidian Components",
-            "title_ar": "مكونات أوبسيديان المستوحاة من فيرسيل",
-            "description": "A luxury open-source library of dark glassmorphic UI components, designed for fast dashboard prototyping.",
-            "description_ar": "مكتبة مكونات واجهات مستخدم مظلمة وزجاجية مفتوحة المصدر، مصممة لبناء النماذج الأولية للوحات التحكم بسرعة عالية.",
-            "longDescription": "Obsidian Components provides modern developers with a wide array of copy-paste luxury dark theme elements. Complete with translucent cards, floating background glows, responsive layouts, active focus tracking, and hardware-accelerated CSS animations.",
-            "longDescription_ar": "توفر مكونات أوبسيديان للمطورين مجموعة واسعة من عناصر التصميم المظلم الفاخر الجاهزة للنسخ واللصق. تتميز ببطاقات شبه شفافة، وتوهجات خلفية عائمة، وتخطيطات متجاوبة، وتتبع التركيز النشط، ورسوم متحركة CSS مسرعة عتادياً.",
-            "category": "frontend",
-            "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800",
-            "tags": [
-                "HTML5",
-                "CSS3",
-                "JavaScript",
-                "Animation"
-            ],
-            "demoUrl": "https://example.com",
-            "githubUrl": "https://github.com",
-            "featured": true,
-            "features": [
-                "Lightweight component bundles under 10kb gzipped",
-                "Hardware-accelerated CSS transitions for buttery smooth FPS",
-                "100% compliant with responsive web criteria",
-                "Customizable design variables utilizing standard HSL tokens"
-            ],
-            "features_ar": [
-                "حزم مكونات خفيفة الوزن أقل من 10 كيلوبايت مضغوطة",
-                "انتقالات CSS مسرعة عتادياً للحصول على إطارات سلسة للغاية",
-                "متوافق بنسبة 100٪ مع معايير الويب المتجاوبة",
-                "متغيرات تصميم قابلة للتخصيص باستخدام رموز HSL القياسية"
-            ]
-        },
-        {
-            "id": "p3",
-            "title": "HeliosRouter - Fast Serverless Engine",
-            "title_ar": "هيليوس راوتر - محرك سريع بدون خادم",
-            "description": "A lightweight, prefix-tree based serverless routing middleware optimized for minimal runtime footprint.",
-            "description_ar": "برمجية وسيطة لتوجيه الطلبات بدون خادم خفيفة الوزن تعتمد على بنية تري (Prefix-Tree) ومحسنة للعمل بأقل بصمة تشغيلية.",
-            "longDescription": "HeliosRouter is specifically engineered for Cloudflare Workers and AWS Lambda runtimes to minimize cold-start latency. It uses a custom trie-prefix matcher and automatic body parsers to process client-side telemetry in under 12ms.",
-            "longDescription_ar": "تم تصميم هيليوس راوتر خصيصاً لبيئات تشغيل Cloudflare Workers و AWS Lambda لتقليل وقت بدء التشغيل البارد. يستخدم معالج مطابقة البادئة وتجزئة تلقائية لمعالجة بيانات العميل في أقل من 12 ميلي ثانية.",
-            "category": "tools",
-            "image": "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&q=80&w=800",
-            "tags": [
-                "Node.js",
-                "Serverless",
-                "AWS",
-                "Middleware"
-            ],
-            "demoUrl": "https://example.com",
-            "githubUrl": "https://github.com",
-            "featured": false,
-            "features": [
-                "Sub-15ms cold start footprint",
-                "Extremely fast trie-based prefix route matching",
-                "Built-in token-bucket rate limiter middleware",
-                "Comprehensive TypeScript bindings out of the box"
-            ],
-            "features_ar": [
-                "بصمة بدء تشغيل بارد أقل من 15 ميلي ثانية",
-                "توجيه سريع للغاية بالاعتماد على بنية Trie",
-                "برمجية وسيطة مدمجة لتحديد معدل الطلبات",
-                "دعم كامل للغة TypeScript من البداية"
-            ]
-        }
-    ],
-    "timeline": [{
-            "id": "t1",
-            "type": "education",
-            "role": "University Journey Beginning",
-            "role_ar": "بداية الرحلة الجامعية",
-            "company": "Fayoum International Technological University (FITU)",
-            "company_ar": "جامعه الفيوم التكنولوجيا fitu",
-            "duration": "2023",
-            "description": "Enrollment in Fayoum International Technological University (FITU). Beginning of deep diving into programming and modern technology. Developing programming fundamentals and building a strong understanding of computer science and networking.",
-            "description_ar": "الالتحاق بجامعه الفيوم التكنولوجيا fitu. بداية التعمق في مجالات البرمجة والتكنولوجيا الحديثة. تطوير الأساسيات البرمجية وبناء فهم قوي لعلوم الحاسب والشبكات."
-        },
-        {
-            "id": "t2",
-            "type": "experience",
-            "role": "Building Technical Foundation",
-            "role_ar": "بناء الأساس التقني",
-            "company": "Self-Development",
-            "company_ar": "تطوير ذاتي",
-            "duration": "2023 — 2024",
-            "description": "Study and application of core programming concepts. Learning Front-End Development (HTML, CSS, JavaScript). Implementing practical projects and applications to develop skills.",
-            "description_ar": "دراسة وتطبيق مفاهيم البرمجة الأساسية. تعلم تطوير الواجهات الأمامية (Front-End Development). اكتساب خبرة عملية في HTML و CSS و JavaScript. تنفيذ مشاريع وتطبيقات عملية لتطوير المهارات."
-        },
-        {
-            "id": "t3",
-            "type": "experience",
-            "role": "Expansion in Programming Fields",
-            "role_ar": "التوسع في مجالات البرمجة",
-            "company": "Specialization",
-            "company_ar": "تخصص تقني",
-            "duration": "2024",
-            "description": "Studying databases and SQL Server. Working on integrated database projects. Deep diving into Networking (OSI Model, VLSM). Using Linux environments for development.",
-            "description_ar": "دراسة قواعد البيانات وSQL Server. العمل على مشاريع Database متكاملة وربط الجداول والعلاقات. التعمق في مفاهيم Networking وOSI Model وVLSM. استخدام بيئات وأنظمة Linux في التطوير والعمل التقني."
-        },
-        {
-            "id": "t4",
-            "type": "experience",
-            "role": "Technical Content Creation",
-            "role_ar": "صناعة المحتوى التقني",
-            "company": "YouTube",
-            "company_ar": "يوتيوب",
-            "duration": "2024 — 2025",
-            "description": "Creating educational technical content on YouTube. Providing educational explanations in programming and computer science. Building a community interested in technical learning.",
-            "description_ar": "إنشاء محتوى تعليمي تقني على يوتيوب. تقديم شروحات تعليمية في البرمجة وعلوم الحاسب. تبسيط المفاهيم البرمجية للطلاب والمبتدئين. بناء مجتمع مهتم بالتعلم والتطوير التقني."
-        },
-        {
-            "id": "t5",
-            "type": "experience",
-            "role": "Professional Identity Development",
-            "role_ar": "تطوير الهوية المهنية",
-            "company": "Portfolio & Brand",
-            "company_ar": "الهوية الشخصية",
-            "duration": "2025",
-            "description": "Building a professional portfolio. Developing advanced programming and database projects. Focusing on UI/UX improvement and modern designs. Preparing for the freelance market.",
-            "description_ar": "العمل على بناء Portfolio احترافي يعرض المهارات والمشاريع. تطوير مشاريع أكثر احترافية في البرمجة وقواعد البيانات. التركيز على تحسين الـ UI/UX والأنيميشن والتصميمات الحديثة. الاستعداد لسوق العمل والعمل الحر في مجال البرمجة."
-        },
-        {
-            "id": "t6",
-            "type": "experience",
-            "role": "Continuous Expansion and Development",
-            "role_ar": "التوسع والتطوير المستمر",
-            "company": "Present Journey",
-            "company_ar": "المسيرة الحالية",
-            "duration": "2025 — Present",
-            "description": "Deepening Software Engineering knowledge. Practical skills in Front-End, Databases, Networking, and Linux. Continuing educational content creation and expertise sharing.",
-            "description_ar": "التعمق في Software Engineering ومفاهيم بناء الأنظمة. تطوير المهارات العملية في Front-End و Databases و Networking و Linux. الاستمرار في صناعة المحتوى التعليمي ومشاركة الخبرات التقنية."
-        }
-    ],
-    "certificates": [{
-            "id": "cert_ccna_enterprise",
-            "title": "CCNA: Enterprise Networking, Security, and Automation",
-            "title_ar": "CCNA: شبكات المؤسسات والأمن والأتمتة",
-            "issuer": "Cisco Networking Academy",
-            "issuer_ar": "أكاديمية سيسكو للشبكات",
-            "year": "2024",
-            "image": "/certificates/CCNA-_Enterprise_Networking-_Security-_and_Automation.pdf",
-            "description": "Enterprise networking, security, and automation concepts.",
-            "description_ar": "مفاهيم شبكات المؤسسات والأمن والأتمتة."
-        },
-        {
-            "id": "cert_ccna_intro",
-            "title": "CCNA: Introduction to Networks",
-            "title_ar": "CCNA: مقدمة في الشبكات",
-            "issuer": "Cisco Networking Academy",
-            "issuer_ar": "أكاديمية سيسكو للشبكات",
-            "year": "2024",
-            "image": "/certificates/CCNA-_Introduction_to_Networks.pdf",
-            "description": "Fundamental networking concepts and technologies.",
-            "description_ar": "مفاهيم وتقنيات الشبكات الأساسية."
-        },
-        {
-            "id": "cert_ccna_switching",
-            "title": "CCNA: Switching, Routing, and Wireless Essentials",
-            "title_ar": "CCNA: أساسيات التبديل والتوجيه واللاسلكي",
-            "issuer": "Cisco Networking Academy",
-            "issuer_ar": "أكاديمية سيسكو للشبكات",
-            "year": "2024",
-            "image": "/certificates/CCNA-_Switching-_Routing-_and_Wireless_Essentials.pdf",
-            "description": "Switching, routing, and wireless essentials.",
-            "description_ar": "أساسيات التبديل والتوجيه واللاسلكي."
-        },
-        {
-            "id": "cert_data_science",
-            "title": "Introduction to Data Science",
-            "title_ar": "مقدمة في علم البيانات",
-            "issuer": "Cisco Networking Academy",
-            "issuer_ar": "أكاديمية سيسكو للشبكات",
-            "year": "2024",
-            "image": "/certificates/Cisco-Certificate-1.pdf",
-            "description": "Foundational knowledge in data science and analytics.",
-            "description_ar": "المعرفة الأساسية في علم البيانات والتحليلات."
-        },
-        {
-            "id": "cert_cybersecurity_intro",
-            "title": "Introduction to Cybersecurity",
-            "title_ar": "مقدمة في الأمن السيبراني",
-            "issuer": "Cisco Networking Academy",
-            "issuer_ar": "أكاديمية سيسكو للشبكات",
-            "year": "2024",
-            "image": "/certificates/Cisco-Certificate-3.pdf",
-            "description": "Basic cybersecurity concepts and threats.",
-            "description_ar": "مفاهيم الأمن السيبراني الأساسية والتهديدات."
-        },
-        {
-            "id": "cert_iot_intro",
-            "title": "Introduction to IoT and Digital Transformation",
-            "title_ar": "مقدمة في إنترنت الأشياء والتحول الرقمي",
-            "issuer": "Cisco Networking Academy",
-            "issuer_ar": "أكاديمية سيسكو للشبكات",
-            "year": "2024",
-            "image": "/certificates/Cisco-Certificate-4.pdf",
-            "description": "Impact of IoT and digital transformation in industry.",
-            "description_ar": "تأثير إنترنت الأشياء والتحول الرقمي في الصناعة."
-        },
-        {
-            "id": "cert_networking_essentials",
-            "title": "Networking Essentials",
-            "title_ar": "أساسيات الشبكات",
-            "issuer": "Cisco Networking Academy",
-            "issuer_ar": "أكاديمية سيسكو للشبكات",
-            "year": "2024",
-            "image": "/certificates/Cisco-Certificate-5.pdf",
-            "description": "Essential networking skills and knowledge.",
-            "description_ar": "مهارات ومعرفة الشبكات الأساسية."
-        },
-        {
-            "id": "cert_cybersecurity_essentials",
-            "title": "Cybersecurity Essentials",
-            "title_ar": "أساسيات الأمن السيبراني",
-            "issuer": "Cisco Networking Academy",
-            "issuer_ar": "أكاديمية سيسكو للشبكات",
-            "year": "2024",
-            "image": "/certificates/Cisco-Certificate-6.pdf",
-            "description": "Fundamental cybersecurity tools and procedures.",
-            "description_ar": "أدوات وإجراءات الأمن السيبراني الأساسية."
-        },
-        {
-            "id": "cert_cisco_7",
-            "title": "Endpoint Security",
-            "title_ar": "أمن الأجهزة الطرفية",
-            "issuer": "Cisco Networking Academy",
-            "issuer_ar": "أكاديمية سيسكو للشبكات",
-            "year": "2024",
-            "image": "/certificates/Cisco-Certificate-7.pdf",
-            "description": "Securing endpoint devices in a network.",
-            "description_ar": "تأمين الأجهزة الطرفية في الشبكة."
-        },
-        {
-            "id": "cert_cisco_8",
-            "title": "Network Defense",
-            "title_ar": "الدفاع عن الشبكات",
-            "issuer": "Cisco Networking Academy",
-            "issuer_ar": "أكاديمية سيسكو للشبكات",
-            "year": "2024",
-            "image": "/certificates/Cisco-Certificate-8.pdf",
-            "description": "Defending networks against cyber attacks.",
-            "description_ar": "الدفاع عن الشبكات ضد الهجمات السيبرانية."
-        },
-        {
-            "id": "cert_cisco_9",
-            "title": "Cyber Threat Management",
-            "title_ar": "إدارة التهديدات السيبرانية",
-            "issuer": "Cisco Networking Academy",
-            "issuer_ar": "أكاديمية سيسكو للشبكات",
-            "year": "2024",
-            "image": "/certificates/Cisco-Certificate-9.pdf",
-            "description": "Managing and mitigating cyber threats.",
-            "description_ar": "إدارة وتخفيف التهديدات السيبرانية."
-        }
-    ],
-    "youtubeVideos": [{
-            "id": "y1",
-            "title": "Python Programming Course",
-            "title_ar": "دورة تعلم لغة بايثون",
-            "url": "https://youtube.com/playlist?list=PLTk7ExzQvmFe3cSuNiGZ7fUmG-47dG8yh&si=AAj2dsxxdNUulFRp",
-            "thumbnail": "/yotu.png",
-            "views": "30K Views",
-            "category": "Backend",
-            "description": "Comprehensive Python programming course for beginners to advanced levels.",
-            "description_ar": "دورة شاملة لتعلم لغة البرمجة بايثون من الصفر حتى الاحتراف."
-        },
-        {
-            "id": "y2",
-            "title": "C Programming Course",
-            "title_ar": "دورة تعلم لغة C",
-            "url": "https://youtube.com/playlist?list=PLTk7ExzQvmFdEtCZ9_RJimAN7IC0DXRxx&si=1rAcFBVzsaAcFYpU",
-            "thumbnail": "/yotu.png",
-            "views": "30K Views",
-            "category": "Systems",
-            "description": "Master C programming language from scratch with practical examples.",
-            "description_ar": "احترف لغة البرمجة C من الصفر مع تطبيقات عملية مكثفة."
-        }
-    ],
-    "messages": [{
-            "id": "msg_1779570076366",
-            "name": "ع",
-            "email": "ahmedkhalad679@gmail.com",
-            "subject": "ت",
-            "message": "نخمةمةم",
-            "timestamp": "2026-05-23T21:01:16.366Z",
-            "read": false
-        },
-        {
-            "id": "msg_1779573297968",
-            "name": "ثث",
-            "email": "ahmed.khaled@devstudio.com",
-            "subject": "ت",
-            "message": "ىلهح3رصثحس",
-            "timestamp": "2026-05-23T21:54:57.968Z",
-            "read": false
-        },
-        {
-            "id": "msg_1779573377858",
-            "name": "عمر",
-            "email": "ahmedkhalad679@gmail.com",
-            "subject": "j",
-            "message": "jjio",
-            "timestamp": "2026-05-23T21:56:17.858Z",
-            "read": false
-        },
-        {
-            "id": "msg_1779573422703",
-            "name": "غريب",
-            "email": "ahmedkhalad679@gmail.com",
-            "subject": "اريد عمل",
-            "message": "شغل موقع ويب عالمي",
-            "timestamp": "2026-05-23T21:57:02.703Z",
-            "read": false
-        }
-    ],
-    "achievements": [{
-            "id": "a1",
-            "title": "MVP Instructor",
-            "title_ar": "أفضل مدرب برمجيات",
-            "issuer": "Dev Academy",
-            "issuer_ar": "أكاديمية المطورين",
-            "year": "2025",
-            "icon": "award"
-        },
-        {
-            "id": "a2",
-            "title": "Clean Code Shield",
-            "title_ar": "درع الأكواد النظيفة",
-            "issuer": "Global Tech Committee",
-            "issuer_ar": "اللجنة التقنية العالمية",
-            "year": "2024",
-            "icon": "shield"
-        }
-    ],
-    "testimonials": [{
-        "id": "tst1",
-        "name": "Hassan Ali",
-        "role": "Tech Lead",
-        "company": "SmartSolutions",
-        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150",
-        "message": "Ahmed's tutorials are masterclasses! He simplified complex microservice topics and clean architecture patterns in a way that helped our whole developer team level up.",
-        "message_ar": "دروس أحمد هي فصول دراسية متقدمة بحق! لقد بسط مواضيع الخدمات المصغرة المعقدة وأنماط هندسة الأكواد النظيفة بطريقة ساعدت فريق المطورين لدينا بأكمله على الارتقاء بمستواهم."
-    }],
-    "languages": [{
-            "id": "l1",
-            "name": "JavaScript",
-            "name_ar": "جافا سكريبت",
-            "level": 92,
-            "color": "#f59e0b",
-            "icon": "⚡",
-            "category": "frontend"
-        },
-        {
-            "id": "l2",
-            "name": "TypeScript",
-            "name_ar": "تايب سكريبت",
-            "level": 88,
-            "color": "#3178c6",
-            "icon": "📘",
-            "category": "frontend"
-        },
-        {
-            "id": "l3",
-            "name": "HTML5 / CSS3",
-            "name_ar": "HTML5 / CSS3",
-            "level": 90,
-            "color": "#e34f26",
-            "icon": "🎨",
-            "category": "frontend"
-        },
-        {
-            "id": "l4",
-            "name": "Sass / SCSS",
-            "name_ar": "Sass / SCSS",
-            "level": 84,
-            "color": "#cc6699",
-            "icon": "💅",
-            "category": "frontend"
-        },
-        {
-            "id": "l5",
-            "name": "Node.js",
-            "name_ar": "نود جي إس",
-            "level": 90,
-            "color": "#22c55e",
-            "icon": "🟢",
-            "category": "backend"
-        },
-        {
-            "id": "l6",
-            "name": "Python",
-            "name_ar": "بايثون",
-            "level": 90,
-            "color": "#3b82f6",
-            "icon": "🐍",
-            "category": "backend"
-        },
-        {
-            "id": "l7",
-            "name": "PHP",
-            "name_ar": "PHP",
-            "level": 85,
-            "color": "#a855f7",
-            "icon": "🐘",
-            "category": "backend"
-        },
-        {
-            "id": "l8",
-            "name": "SQL / Postgre",
-            "name_ar": "SQL / PostgreSQL",
-            "level": 88,
-            "color": "#f97316",
-            "icon": "🗄️",
-            "category": "backend"
-        },
-        {
-            "id": "l9",
-            "name": "Go (Golang)",
-            "name_ar": "جو (Golang)",
-            "level": 82,
-            "color": "#00add8",
-            "icon": "🐹",
-            "category": "backend"
-        },
-        {
-            "id": "l10",
-            "name": "Java",
-            "name_ar": "جافا",
-            "level": 80,
-            "color": "#e41f23",
-            "icon": "☕",
-            "category": "backend"
-        },
-        {
-            "id": "l11",
-            "name": "Dart / Flutter",
-            "name_ar": "دارت / فلاتر",
-            "level": 85,
-            "color": "#0ea5e9",
-            "icon": "🎯",
-            "category": "mobile"
-        },
-        {
-            "id": "l12",
-            "name": "Swift",
-            "name_ar": "سويفت (iOS)",
-            "level": 80,
-            "color": "#ff4500",
-            "icon": "🍎",
-            "category": "mobile"
-        },
-        {
-            "id": "l13",
-            "name": "Kotlin",
-            "name_ar": "كوتلن (Android)",
-            "level": 82,
-            "color": "#7f52ff",
-            "icon": "🤖",
-            "category": "mobile"
-        },
-        {
-            "id": "l14",
-            "name": "Git / GitHub",
-            "name_ar": "جيت / جيت هاب",
-            "level": 90,
-            "color": "#f1502f",
-            "icon": "🐙",
-            "category": "systems"
-        },
-        {
-            "id": "l15",
-            "name": "Docker",
-            "name_ar": "دوكر",
-            "level": 83,
-            "color": "#2496ed",
-            "icon": "🐳",
-            "category": "systems"
-        },
-        {
-            "id": "l16",
-            "name": "C / C++",
-            "name_ar": "سي / سي بلس بلس",
-            "level": 80,
-            "color": "#10b981",
-            "icon": "⚙️",
-            "category": "systems"
-        },
-        {
-            "id": "l17",
-            "name": "Bash / Shell",
-            "name_ar": "باش / شيل",
-            "level": 80,
-            "color": "#6366f1",
-            "icon": "🖥️",
-            "category": "systems"
-        }
-    ]
+    "youtube": {
+      "title": "YouTube Content Creator",
+      "title_ar": "صانع محتوى يوتيوب",
+      "description": "Educating developers worldwide through structured programming tutorials, full-stack walkthroughs, and software engineering deep-dives.",
+      "description_ar": "تعليم المطورين حول العالم من خلال شروحات برمجية منظمة، وشرح شامل للمشاريع الكاملة، واستعراض عميق لهندسة البرمجيات.",
+      "badgeImage": "/yotu.png"
+    }
+  },
+  "skills": [
+    {
+      "id": "s1",
+      "name": "Mobile App Development",
+      "name_ar": "تطوير تطبيقات الموبايل",
+      "category": "dev",
+      "level": 90
+    },
+    {
+      "id": "s2",
+      "name": "Web Development (HTML, PHP)",
+      "name_ar": "تطوير الويب (HTML, PHP)",
+      "category": "dev",
+      "level": 85
+    },
+    {
+      "id": "s3",
+      "name": "IoT with Arduino & ESP32",
+      "name_ar": "IoT مع Arduino و ESP32",
+      "category": "dev",
+      "level": 80
+    },
+    {
+      "id": "s4",
+      "name": "Cisco Networking",
+      "name_ar": "Cisco Networking",
+      "category": "networking",
+      "level": 88
+    },
+    {
+      "id": "s5",
+      "name": "AWS Cloud",
+      "name_ar": "AWS Cloud",
+      "category": "networking",
+      "level": 85
+    },
+    {
+      "id": "s6",
+      "name": "AI Fundamentals",
+      "name_ar": "أساسيات الذكاء الاصطناعي",
+      "category": "ai",
+      "level": 82
+    },
+    {
+      "id": "s7",
+      "name": "Large Language Models (LLM)",
+      "name_ar": "نماذج اللغة الكبيرة (LLM)",
+      "category": "ai",
+      "level": 78
+    },
+    {
+      "id": "s8",
+      "name": "NVIDIA AI",
+      "name_ar": "NVIDIA AI",
+      "category": "ai",
+      "level": 75
+    },
+    {
+      "id": "s9",
+      "name": "Cyber Security",
+      "name_ar": "الأمن السيبراني",
+      "category": "cybersecurity",
+      "level": 87
+    },
+    {
+      "id": "s10",
+      "name": "Digital Safety",
+      "name_ar": "السلامة الرقمية",
+      "category": "cybersecurity",
+      "level": 83
+    }
+  ],
+  "projects": [
+    {
+      "id": "p1",
+      "title": "CodeCamp - Advanced E-Learning Platform",
+      "title_ar": "كود كامب - منصة التعليم البرمجي المتقدمة",
+      "description": "A comprehensive LMS platform featuring live code compilation, structured curriculums, and interactive student analytics.",
+      "description_ar": "منصة شاملة لإدارة التعلم تتميز بمحرر أكواد تشغيلي تفاعلي، ومناهج تعليمية منظمة، وتحليلات متقدمة لمستوى الطلاب.",
+      "longDescription": "CodeCamp is an enterprise-level learning management system designed to facilitate programming education. It incorporates an sandboxed code execution environment, automated grading engines, custom dynamic progress reports, student telemetry tracking, and integrated live-chat rooms for peer learning.",
+      "longDescription_ar": "كود كامب هي منصة إدارة تعلم (LMS) على مستوى المؤسسات صُممت لتسهيل تعليم البرمجة. تتضمن بيئة تشغيل أكواد معزولة، ومحرك تصحيح آلي، وتقارير تقدم تفاعلية وديناميكية، وتتبع تقدم الطلاب، وغرف دردشة متكاملة للتعلم التعاوني.",
+      "category": "fullstack",
+      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800",
+      "tags": [
+        "React.js",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "TailwindCSS"
+      ],
+      "demoUrl": "https://example.com",
+      "githubUrl": "https://github.com",
+      "featured": true,
+      "features": [
+        "Interactive virtual code editor playground with compiler",
+        "Dynamic structured video syllabus player",
+        "Detailed dashboard charts measuring student progress",
+        "Automated PDF certificates generation on course completion"
+      ],
+      "features_ar": [
+        "محرر أكواد تفاعلي مع مترجم مدمج",
+        "مشغل مناهج فيديو منظم وديناميكي",
+        "رسوم بيانية مفصلة لقياس تقدم الطلاب في لوحة التحكم",
+        "توليد شهادات PDF تلقائية عند إتمام الدورات"
+      ]
+    },
+    {
+      "id": "p2",
+      "title": "Vercel-Inspired Obsidian Components",
+      "title_ar": "مكونات أوبسيديان المستوحاة من فيرسيل",
+      "description": "A luxury open-source library of dark glassmorphic UI components, designed for fast dashboard prototyping.",
+      "description_ar": "مكتبة مكونات واجهات مستخدم مظلمة وزجاجية مفتوحة المصدر، مصممة لبناء النماذج الأولية للوحات التحكم بسرعة عالية.",
+      "longDescription": "Obsidian Components provides modern developers with a wide array of copy-paste luxury dark theme elements. Complete with translucent cards, floating background glows, responsive layouts, active focus tracking, and hardware-accelerated CSS animations.",
+      "longDescription_ar": "توفر مكونات أوبسيديان للمطورين مجموعة واسعة من عناصر التصميم المظلم الفاخر الجاهزة للنسخ واللصق. تتميز ببطاقات شبه شفافة، وتوهجات خلفية عائمة، وتخطيطات متجاوبة، وتتبع التركيز النشط، ورسوم متحركة CSS مسرعة عتادياً.",
+      "category": "frontend",
+      "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800",
+      "tags": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Animation"
+      ],
+      "demoUrl": "https://example.com",
+      "githubUrl": "https://github.com",
+      "featured": true,
+      "features": [
+        "Lightweight component bundles under 10kb gzipped",
+        "Hardware-accelerated CSS transitions for buttery smooth FPS",
+        "100% compliant with responsive web criteria",
+        "Customizable design variables utilizing standard HSL tokens"
+      ],
+      "features_ar": [
+        "حزم مكونات خفيفة الوزن أقل من 10 كيلوبايت مضغوطة",
+        "انتقالات CSS مسرعة عتادياً للحصول على إطارات سلسة للغاية",
+        "متوافق بنسبة 100٪ مع معايير الويب المتجاوبة",
+        "متغيرات تصميم قابلة للتخصيص باستخدام رموز HSL القياسية"
+      ]
+    },
+    {
+      "id": "p3",
+      "title": "HeliosRouter - Fast Serverless Engine",
+      "title_ar": "هيليوس راوتر - محرك سريع بدون خادم",
+      "description": "A lightweight, prefix-tree based serverless routing middleware optimized for minimal runtime footprint.",
+      "description_ar": "برمجية وسيطة لتوجيه الطلبات بدون خادم خفيفة الوزن تعتمد على بنية تري (Prefix-Tree) ومحسنة للعمل بأقل بصمة تشغيلية.",
+      "longDescription": "HeliosRouter is specifically engineered for Cloudflare Workers and AWS Lambda runtimes to minimize cold-start latency. It uses a custom trie-prefix matcher and automatic body parsers to process client-side telemetry in under 12ms.",
+      "longDescription_ar": "تم تصميم هيليوس راوتر خصيصاً لبيئات تشغيل Cloudflare Workers و AWS Lambda لتقليل وقت بدء التشغيل البارد. يستخدم معالج مطابقة البادئة وتجزئة تلقائية لمعالجة بيانات العميل في أقل من 12 ميلي ثانية.",
+      "category": "tools",
+      "image": "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&q=80&w=800",
+      "tags": [
+        "Node.js",
+        "Serverless",
+        "AWS",
+        "Middleware"
+      ],
+      "demoUrl": "https://example.com",
+      "githubUrl": "https://github.com",
+      "featured": false,
+      "features": [
+        "Sub-15ms cold start footprint",
+        "Extremely fast trie-based prefix route matching",
+        "Built-in token-bucket rate limiter middleware",
+        "Comprehensive TypeScript bindings out of the box"
+      ],
+      "features_ar": [
+        "بصمة بدء تشغيل بارد أقل من 15 ميلي ثانية",
+        "توجيه سريع للغاية بالاعتماد على بنية Trie",
+        "برمجية وسيطة مدمجة لتحديد معدل الطلبات",
+        "دعم كامل للغة TypeScript من البداية"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "id": "t1",
+      "type": "education",
+      "role": "University Journey Beginning",
+      "role_ar": "بداية الرحلة الجامعية",
+      "company": "Fayoum International Technological University (FITU)",
+      "company_ar": "جامعه الفيوم التكنولوجيا fitu",
+      "duration": "2023",
+      "description": "Enrollment in Fayoum International Technological University (FITU). Beginning of deep diving into programming and modern technology. Developing programming fundamentals and building a strong understanding of computer science and networking.",
+      "description_ar": "الالتحاق بجامعه الفيوم التكنولوجيا fitu. بداية التعمق في مجالات البرمجة والتكنولوجيا الحديثة. تطوير الأساسيات البرمجية وبناء فهم قوي لعلوم الحاسب والشبكات."
+    },
+    {
+      "id": "t2",
+      "type": "experience",
+      "role": "Building Technical Foundation",
+      "role_ar": "بناء الأساس التقني",
+      "company": "Self-Development",
+      "company_ar": "تطوير ذاتي",
+      "duration": "2023 — 2024",
+      "description": "Study and application of core programming concepts. Learning Front-End Development (HTML, CSS, JavaScript). Implementing practical projects and applications to develop skills.",
+      "description_ar": "دراسة وتطبيق مفاهيم البرمجة الأساسية. تعلم تطوير الواجهات الأمامية (Front-End Development). اكتساب خبرة عملية في HTML و CSS و JavaScript. تنفيذ مشاريع وتطبيقات عملية لتطوير المهارات."
+    },
+    {
+      "id": "t3",
+      "type": "experience",
+      "role": "Expansion in Programming Fields",
+      "role_ar": "التوسع في مجالات البرمجة",
+      "company": "Specialization",
+      "company_ar": "تخصص تقني",
+      "duration": "2024",
+      "description": "Studying databases and SQL Server. Working on integrated database projects. Deep diving into Networking (OSI Model, VLSM). Using Linux environments for development.",
+      "description_ar": "دراسة قواعد البيانات وSQL Server. العمل على مشاريع Database متكاملة وربط الجداول والعلاقات. التعمق في مفاهيم Networking وOSI Model وVLSM. استخدام بيئات وأنظمة Linux في التطوير والعمل التقني."
+    },
+    {
+      "id": "t4",
+      "type": "experience",
+      "role": "Technical Content Creation",
+      "role_ar": "صناعة المحتوى التقني",
+      "company": "YouTube",
+      "company_ar": "يوتيوب",
+      "duration": "2024 — 2025",
+      "description": "Creating educational technical content on YouTube. Providing educational explanations in programming and computer science. Building a community interested in technical learning.",
+      "description_ar": "إنشاء محتوى تعليمي تقني على يوتيوب. تقديم شروحات تعليمية في البرمجة وعلوم الحاسب. تبسيط المفاهيم البرمجية للطلاب والمبتدئين. بناء مجتمع مهتم بالتعلم والتطوير التقني."
+    },
+    {
+      "id": "t5",
+      "type": "experience",
+      "role": "Professional Identity Development",
+      "role_ar": "تطوير الهوية المهنية",
+      "company": "Portfolio & Brand",
+      "company_ar": "الهوية الشخصية",
+      "duration": "2025",
+      "description": "Building a professional portfolio. Developing advanced programming and database projects. Focusing on UI/UX improvement and modern designs. Preparing for the freelance market.",
+      "description_ar": "العمل على بناء Portfolio احترافي يعرض المهارات والمشاريع. تطوير مشاريع أكثر احترافية في البرمجة وقواعد البيانات. التركيز على تحسين الـ UI/UX والأنيميشن والتصميمات الحديثة. الاستعداد لسوق العمل والعمل الحر في مجال البرمجة."
+    },
+    {
+      "id": "t6",
+      "type": "experience",
+      "role": "Continuous Expansion and Development",
+      "role_ar": "التوسع والتطوير المستمر",
+      "company": "Present Journey",
+      "company_ar": "المسيرة الحالية",
+      "duration": "2025 — Present",
+      "description": "Deepening Software Engineering knowledge. Practical skills in Front-End, Databases, Networking, and Linux. Continuing educational content creation and expertise sharing.",
+      "description_ar": "التعمق في Software Engineering ومفاهيم بناء الأنظمة. تطوير المهارات العملية في Front-End و Databases و Networking و Linux. الاستمرار في صناعة المحتوى التعليمي ومشاركة الخبرات التقنية."
+    }
+  ],
+  "certificates": [
+    {
+      "id": "cert_ccna_enterprise",
+      "title": "CCNA: Enterprise Networking, Security, and Automation",
+      "title_ar": "CCNA: شبكات المؤسسات والأمن والأتمتة",
+      "issuer": "Cisco Networking Academy",
+      "issuer_ar": "أكاديمية سيسكو للشبكات",
+      "year": "2024",
+      "image": "/certificates/CCNA-_Enterprise_Networking-_Security-_and_Automation.pdf",
+      "description": "Enterprise networking, security, and automation concepts.",
+      "description_ar": "مفاهيم شبكات المؤسسات والأمن والأتمتة."
+    },
+    {
+      "id": "cert_ccna_intro",
+      "title": "CCNA: Introduction to Networks",
+      "title_ar": "CCNA: مقدمة في الشبكات",
+      "issuer": "Cisco Networking Academy",
+      "issuer_ar": "أكاديمية سيسكو للشبكات",
+      "year": "2024",
+      "image": "/certificates/CCNA-_Introduction_to_Networks.pdf",
+      "description": "Fundamental networking concepts and technologies.",
+      "description_ar": "مفاهيم وتقنيات الشبكات الأساسية."
+    },
+    {
+      "id": "cert_ccna_switching",
+      "title": "CCNA: Switching, Routing, and Wireless Essentials",
+      "title_ar": "CCNA: أساسيات التبديل والتوجيه واللاسلكي",
+      "issuer": "Cisco Networking Academy",
+      "issuer_ar": "أكاديمية سيسكو للشبكات",
+      "year": "2024",
+      "image": "/certificates/CCNA-_Switching-_Routing-_and_Wireless_Essentials.pdf",
+      "description": "Switching, routing, and wireless essentials.",
+      "description_ar": "أساسيات التبديل والتوجيه واللاسلكي."
+    },
+    {
+      "id": "cert_data_science",
+      "title": "Introduction to Data Science",
+      "title_ar": "مقدمة في علم البيانات",
+      "issuer": "Cisco Networking Academy",
+      "issuer_ar": "أكاديمية سيسكو للشبكات",
+      "year": "2024",
+      "image": "/certificates/Cisco-Certificate-1.pdf",
+      "description": "Foundational knowledge in data science and analytics.",
+      "description_ar": "المعرفة الأساسية في علم البيانات والتحليلات."
+    },
+    {
+      "id": "cert_cybersecurity_intro",
+      "title": "Introduction to Cybersecurity",
+      "title_ar": "مقدمة في الأمن السيبراني",
+      "issuer": "Cisco Networking Academy",
+      "issuer_ar": "أكاديمية سيسكو للشبكات",
+      "year": "2024",
+      "image": "/certificates/Cisco-Certificate-3.pdf",
+      "description": "Basic cybersecurity concepts and threats.",
+      "description_ar": "مفاهيم الأمن السيبراني الأساسية والتهديدات."
+    },
+    {
+      "id": "cert_iot_intro",
+      "title": "Introduction to IoT and Digital Transformation",
+      "title_ar": "مقدمة في إنترنت الأشياء والتحول الرقمي",
+      "issuer": "Cisco Networking Academy",
+      "issuer_ar": "أكاديمية سيسكو للشبكات",
+      "year": "2024",
+      "image": "/certificates/Cisco-Certificate-4.pdf",
+      "description": "Impact of IoT and digital transformation in industry.",
+      "description_ar": "تأثير إنترنت الأشياء والتحول الرقمي في الصناعة."
+    },
+    {
+      "id": "cert_networking_essentials",
+      "title": "Networking Essentials",
+      "title_ar": "أساسيات الشبكات",
+      "issuer": "Cisco Networking Academy",
+      "issuer_ar": "أكاديمية سيسكو للشبكات",
+      "year": "2024",
+      "image": "/certificates/Cisco-Certificate-5.pdf",
+      "description": "Essential networking skills and knowledge.",
+      "description_ar": "مهارات ومعرفة الشبكات الأساسية."
+    },
+    {
+      "id": "cert_cybersecurity_essentials",
+      "title": "Cybersecurity Essentials",
+      "title_ar": "أساسيات الأمن السيبراني",
+      "issuer": "Cisco Networking Academy",
+      "issuer_ar": "أكاديمية سيسكو للشبكات",
+      "year": "2024",
+      "image": "/certificates/Cisco-Certificate-6.pdf",
+      "description": "Fundamental cybersecurity tools and procedures.",
+      "description_ar": "أدوات وإجراءات الأمن السيبراني الأساسية."
+    },
+    {
+      "id": "cert_cisco_7",
+      "title": "Endpoint Security",
+      "title_ar": "أمن الأجهزة الطرفية",
+      "issuer": "Cisco Networking Academy",
+      "issuer_ar": "أكاديمية سيسكو للشبكات",
+      "year": "2024",
+      "image": "/certificates/Cisco-Certificate-7.pdf",
+      "description": "Securing endpoint devices in a network.",
+      "description_ar": "تأمين الأجهزة الطرفية في الشبكة."
+    },
+    {
+      "id": "cert_cisco_8",
+      "title": "Network Defense",
+      "title_ar": "الدفاع عن الشبكات",
+      "issuer": "Cisco Networking Academy",
+      "issuer_ar": "أكاديمية سيسكو للشبكات",
+      "year": "2024",
+      "image": "/certificates/Cisco-Certificate-8.pdf",
+      "description": "Defending networks against cyber attacks.",
+      "description_ar": "الدفاع عن الشبكات ضد الهجمات السيبرانية."
+    },
+    {
+      "id": "cert_cisco_9",
+      "title": "Cyber Threat Management",
+      "title_ar": "إدارة التهديدات السيبرانية",
+      "issuer": "Cisco Networking Academy",
+      "issuer_ar": "أكاديمية سيسكو للشبكات",
+      "year": "2024",
+      "image": "/certificates/Cisco-Certificate-9.pdf",
+      "description": "Managing and mitigating cyber threats.",
+      "description_ar": "إدارة وتخفيف التهديدات السيبرانية."
+    }
+  ],
+  "youtubeVideos": [
+    {
+      "id": "y1",
+      "title": "Python Programming Course",
+      "title_ar": "دورة تعلم لغة بايثون",
+      "url": "https://youtube.com/playlist?list=PLTk7ExzQvmFe3cSuNiGZ7fUmG-47dG8yh&si=AAj2dsxxdNUulFRp",
+      "thumbnail": "/yotu.png",
+      "views": "30K Views",
+      "category": "Backend",
+      "description": "Comprehensive Python programming course for beginners to advanced levels.",
+      "description_ar": "دورة شاملة لتعلم لغة البرمجة بايثون من الصفر حتى الاحتراف."
+    },
+    {
+      "id": "y2",
+      "title": "C Programming Course",
+      "title_ar": "دورة تعلم لغة C",
+      "url": "https://youtube.com/playlist?list=PLTk7ExzQvmFdEtCZ9_RJimAN7IC0DXRxx&si=1rAcFBVzsaAcFYpU",
+      "thumbnail": "/yotu.png",
+      "views": "30K Views",
+      "category": "Systems",
+      "description": "Master C programming language from scratch with practical examples.",
+      "description_ar": "احترف لغة البرمجة C من الصفر مع تطبيقات عملية مكثفة."
+    }
+  ],
+  "messages": [
+    {
+      "id": "msg_1779570076366",
+      "name": "ع",
+      "email": "ahmedkhalad679@gmail.com",
+      "subject": "ت",
+      "message": "نخمةمةم",
+      "timestamp": "2026-05-23T21:01:16.366Z",
+      "read": false
+    },
+    {
+      "id": "msg_1779573297968",
+      "name": "ثث",
+      "email": "ahmed.khaled@devstudio.com",
+      "subject": "ت",
+      "message": "ىلهح3رصثحس",
+      "timestamp": "2026-05-23T21:54:57.968Z",
+      "read": false
+    },
+    {
+      "id": "msg_1779573377858",
+      "name": "عمر",
+      "email": "ahmedkhalad679@gmail.com",
+      "subject": "j",
+      "message": "jjio",
+      "timestamp": "2026-05-23T21:56:17.858Z",
+      "read": false
+    },
+    {
+      "id": "msg_1779573422703",
+      "name": "غريب",
+      "email": "ahmedkhalad679@gmail.com",
+      "subject": "اريد عمل",
+      "message": "شغل موقع ويب عالمي",
+      "timestamp": "2026-05-23T21:57:02.703Z",
+      "read": false
+    }
+  ],
+  "achievements": [
+    {
+      "id": "a1",
+      "title": "MVP Instructor",
+      "title_ar": "أفضل مدرب برمجيات",
+      "issuer": "Dev Academy",
+      "issuer_ar": "أكاديمية المطورين",
+      "year": "2025",
+      "icon": "award"
+    },
+    {
+      "id": "a2",
+      "title": "Clean Code Shield",
+      "title_ar": "درع الأكواد النظيفة",
+      "issuer": "Global Tech Committee",
+      "issuer_ar": "اللجنة التقنية العالمية",
+      "year": "2024",
+      "icon": "shield"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "tst1",
+      "name": "Hassan Ali",
+      "role": "Tech Lead",
+      "company": "SmartSolutions",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150",
+      "message": "Ahmed's tutorials are masterclasses! He simplified complex microservice topics and clean architecture patterns in a way that helped our whole developer team level up.",
+      "message_ar": "دروس أحمد هي فصول دراسية متقدمة بحق! لقد بسط مواضيع الخدمات المصغرة المعقدة وأنماط هندسة الأكواد النظيفة بطريقة ساعدت فريق المطورين لدينا بأكمله على الارتقاء بمستواهم."
+    }
+  ],
+  "languages": [
+    {
+      "id": "l1",
+      "name": "JavaScript",
+      "name_ar": "جافا سكريبت",
+      "level": 92,
+      "color": "#f59e0b",
+      "icon": "⚡",
+      "category": "frontend"
+    },
+    {
+      "id": "l2",
+      "name": "TypeScript",
+      "name_ar": "تايب سكريبت",
+      "level": 88,
+      "color": "#3178c6",
+      "icon": "📘",
+      "category": "frontend"
+    },
+    {
+      "id": "l3",
+      "name": "HTML5 / CSS3",
+      "name_ar": "HTML5 / CSS3",
+      "level": 90,
+      "color": "#e34f26",
+      "icon": "🎨",
+      "category": "frontend"
+    },
+    {
+      "id": "l4",
+      "name": "Sass / SCSS",
+      "name_ar": "Sass / SCSS",
+      "level": 84,
+      "color": "#cc6699",
+      "icon": "💅",
+      "category": "frontend"
+    },
+    {
+      "id": "l5",
+      "name": "Node.js",
+      "name_ar": "نود جي إس",
+      "level": 90,
+      "color": "#22c55e",
+      "icon": "🟢",
+      "category": "backend"
+    },
+    {
+      "id": "l6",
+      "name": "Python",
+      "name_ar": "بايثون",
+      "level": 90,
+      "color": "#3b82f6",
+      "icon": "🐍",
+      "category": "backend"
+    },
+    {
+      "id": "l7",
+      "name": "PHP",
+      "name_ar": "PHP",
+      "level": 85,
+      "color": "#a855f7",
+      "icon": "🐘",
+      "category": "backend"
+    },
+    {
+      "id": "l8",
+      "name": "SQL / Postgre",
+      "name_ar": "SQL / PostgreSQL",
+      "level": 88,
+      "color": "#f97316",
+      "icon": "🗄️",
+      "category": "backend"
+    },
+    {
+      "id": "l9",
+      "name": "Go (Golang)",
+      "name_ar": "جو (Golang)",
+      "level": 82,
+      "color": "#00add8",
+      "icon": "🐹",
+      "category": "backend"
+    },
+    {
+      "id": "l10",
+      "name": "Java",
+      "name_ar": "جافا",
+      "level": 80,
+      "color": "#e41f23",
+      "icon": "☕",
+      "category": "backend"
+    },
+    {
+      "id": "l11",
+      "name": "Dart / Flutter",
+      "name_ar": "دارت / فلاتر",
+      "level": 85,
+      "color": "#0ea5e9",
+      "icon": "🎯",
+      "category": "mobile"
+    },
+    {
+      "id": "l12",
+      "name": "Swift",
+      "name_ar": "سويفت (iOS)",
+      "level": 80,
+      "color": "#ff4500",
+      "icon": "🍎",
+      "category": "mobile"
+    },
+    {
+      "id": "l13",
+      "name": "Kotlin",
+      "name_ar": "كوتلن (Android)",
+      "level": 82,
+      "color": "#7f52ff",
+      "icon": "🤖",
+      "category": "mobile"
+    },
+    {
+      "id": "l14",
+      "name": "Git / GitHub",
+      "name_ar": "جيت / جيت هاب",
+      "level": 90,
+      "color": "#f1502f",
+      "icon": "🐙",
+      "category": "systems"
+    },
+    {
+      "id": "l15",
+      "name": "Docker",
+      "name_ar": "دوكر",
+      "level": 83,
+      "color": "#2496ed",
+      "icon": "🐳",
+      "category": "systems"
+    },
+    {
+      "id": "l16",
+      "name": "C / C++",
+      "name_ar": "سي / سي بلس بلس",
+      "level": 80,
+      "color": "#10b981",
+      "icon": "⚙️",
+      "category": "systems"
+    },
+    {
+      "id": "l17",
+      "name": "Bash / Shell",
+      "name_ar": "باش / شيل",
+      "level": 80,
+      "color": "#6366f1",
+      "icon": "🖥️",
+      "category": "systems"
+    }
+  ]
 }
